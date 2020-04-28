@@ -1,0 +1,195 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  error = TRUE
+)
+```
+# transx
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of transx is to ...
+
+## Installation
+
+You can install the released version of transx from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+remotes::install_github("transx")
+```
+
+## Motivation
+
+### Problem
+
+```{r problem, message=FALSE}
+library(dplyr)
+
+illu_data <- gapminder::gapminder %>% 
+  filter(country == "Afghanistan") 
+
+illu_data %>% 
+  mutate(pop_lag = stats::lag(pop))
+
+# dplyr has thought about this problem
+illu_data%>% 
+  mutate(pop_lag = dplyr::lag(pop))
+
+```
+However, this problem extends to all the univariate functions that are applied in
+the same manner in a data.frame. For example
+
+```{r example-diff}
+illu_data %>% 
+  mutate(pop_diff = base::diff(pop))
+```
+
+The idea for `transx` is coming from the need to construct wrapper functions.
+
+```{r new-fun}
+diffx <- function(x, ...) x - dplyr::lag(x, ... )
+
+illu_data %>% 
+    mutate(pop_diff = diffx(pop))
+```
+
+## Categories 
+
+### Basic Trasformation
+
+- [] leadx: Lead values
+- [] lagx: Lag values
+
+- [] diffx: Simple Differences
+- [] ldiffx: Logarithic Differences
+- [] rdiffx: Percentage change
+
+- [] standarise
+- [] normalise
+- [] normalise0
+- [] minmax
+- [] demean
+
+## Power Transform
+
+- [] boc_cox: Box-Cox
+- [] yeo_johnsonYeo-Johnson
+
+## Trend
+
+### Deterministic Trend
+
+- [] dtrend_lin():
+- [] dtrend_quad():
+- [] dtrend_poly():
+
+### Stochastic Trend
+
+- [] st_arima
+
+### Cycle Trend Decomposition
+
+filter_*
+
+- [] filter_hp(): Hodrick Prescot
+- [] filter_bk(): Baxter King
+- [] filter_cf(): Chirstiano Fitzgerlard
+- [] filter_bw(): Buttersword
+- [] filter_tr(): Trigonometric
+- [] decomp_bn(): Beveridge-Nelson decomposition
+
+- [] filter_ham: Hamilton
+
+## Outliers
+
+out_*
+
+- [] out_drop()
+- [] out_trim()
+- [] out_trim_qt()
+- [] out_winsorize()
+
+## Smoothers
+
+sm_*
+
+2. Local smoothers
+
+- [] smooth_holt_winters: Holt Winters - https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/HoltWinters
+- [] smooth_exp(): Expontential Smoothin
+- [] smooth_ma(): 
+- [] smooth_mm():
+- [] smooth_gaussian:
+- [] smooth_wiener:
+- [] smooth_kalman() :
+- [] smooth_nn: Nearest neighbor smoother
+- [] smooth_kernel(): Kernel smoothers
+- [] smooth_spline(): Smoothing splines
+<!-- - [] sm_loess(): LOESS (locally estimated scatterplot smoother)  -->
+
+## Resampling
+
+- [] resample():
+- [] resample_norm():
+- [] resample_rad():
+- [] resample_mammen():
+
+## Window Operations
+
+### Recursive
+
+rec_*
+
+- [] rec_fun
+- [] rec_sample
+- [] rec_sum
+- [] rec_mean
+- [] rec_median
+- [] rec_prod
+- [] rec_var
+- [] rec_sd
+<!-- - [] rec_qt
+- [] rec_skew
+- [] rec_kurt -->
+- [] rec_max
+- [] rec_min
+
+### Rolling
+
+roll_*
+
+- [] roll_fun
+- [] roll_sample
+- [] roll_sum
+- [] roll_mean
+- [] roll_median
+- [] roll_prod
+- [] roll_var
+- [] roll_sd
+- [] roll_max
+- [] roll_min
+
+### Block 
+
+blck_*
+
+- [] blck_fun
+- [] blck_sample
+- [] blck_sum
+- [] blck_mean
+- [] blck_median
+- [] blck_prod
+- [] blck_var
+- [] blck_sd
+- [] blck_max
+- [] blck_min

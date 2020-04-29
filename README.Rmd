@@ -16,13 +16,17 @@ knitr::opts_chunk$set(
 # transx
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/transx)](https://CRAN.R-project.org/package=transx)
 <!-- badges: end -->
 
-The goal of transx is to ...
+> **WARNING**: The package is still in early stages of development!
 
+`transx` implements several time series operations that follow an opiniated design. We abstract from the common `ts` object and we focus on numeric series.
 ## Installation
 
-You can install the released version of transx from [CRAN](https://CRAN.R-project.org) with:
+
+ You can install the development version from [Github](https://github.com/kvasilopoulos/transx).
 
 ``` r
 remotes::install_github("transx")

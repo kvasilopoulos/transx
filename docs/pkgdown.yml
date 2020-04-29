@@ -2,5 +2,8 @@ pandoc: 2.7.2
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles: []
-last_built: 2020-04-28T10:03Z
+last_built: 2020-04-28T10:55Z
+urls:
+  reference: https://kvasilopoulos.github.io/transx//reference
+  article: https://kvasilopoulos.github.io/transx//articles
 

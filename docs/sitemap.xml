@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//index.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/diffx-rdiff-ldiff.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/dt_lin.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/iqr_score.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/lead-lag.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/st_arima.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/z_score_mod.html</loc>
+  </url>
+</urlset>

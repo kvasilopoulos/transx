@@ -20,10 +20,10 @@ assert_length_default <- function(n, default) {
 #' @param default Value used for non-existent rows. Defaults to `NA`.
 #' @importFrom stats lag
 #'
-#' @name lead-lag
+#' @name leadx-lagx
 
 
-#' @rdname lead-lag
+#' @rdname leadx-lagx
 #' @export
 lagx <- function(x, n = 1L, default = NA, ...) {
   # assert_length_default(n, default)
@@ -35,7 +35,7 @@ lagx <- function(x, n = 1L, default = NA, ...) {
   new_vctr(out, class = "lagx")
 }
 
-#' @rdname lead-lag
+#' @rdname leadx-lagx
 #' @export
 leadx <- function(x, n = 1L, default = NA, ...) {
   if (n == 0) {
@@ -55,15 +55,20 @@ leadx <- function(x, n = 1L, default = NA, ...) {
 #'
 #' Returns
 #'
-#' @name diffx-rdiff-ldiff
+#' @name diffx-rdiffx-ldiffx
+#' @export
 diffx <- function(x, n = 1L, order = 1L, default = NA) {
   x - lag(x, n = n)
 }
 
+#' @rdname diffx-rdiffx-ldiffx
+#' @export
 rdiffx <- function(x, n = 1L, order = 1L, default = NA) {
   x/x[-length(x)] - 1
 }
 
+#' @rdname diffx-rdiffx-ldiffx
+#' @export
 ldiffx <- function(x, n = 1L, order = 1L, default = NA) {
   diff(log(x))
 }
@@ -71,23 +76,47 @@ ldiffx <- function(x, n = 1L, order = 1L, default = NA) {
 
 # Normalisation -----------------------------------------------------------
 
-
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 demean <- function(x, ...) {
   x - mean(x, ...)
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 normalise <- normalize <- function(x, n = 1L) {
   x/x[n]
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 normalise0 <- normalize0 <- function(x, n = 1L) {
   x/x[n] - 1
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 minmax <- function(x, ...) {
   (x - min(x, ...))/(max(x, ...) - min(x, ...))
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 standardise <- standarize <- function(x, ...) {
   # center <- centerFun(x)
   # x <- x - center
@@ -107,7 +136,11 @@ standardise <- standarize <- function(x, ...) {
 
 # Other -------------------------------------------------------------------
 
-
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 box_cox <- function(x, lam1, lam2 = NULL) {
 
   lam2 <- ifelse(is.null(lam2), 0, lam2)
@@ -119,6 +152,11 @@ box_cox <- function(x, lam1, lam2 = NULL) {
 
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 tukey <- function(x, lam) {
   y^lam
 }
@@ -175,6 +213,11 @@ yj <- function(U, lambda, jacobian.adjusted = FALSE) {
   else z
 }
 
+#' Some title
+#'
+#' @param x some param
+#'
+#' @export
 yeo_johnson <- function(x) {
 
 }

@@ -1,0 +1,82 @@
+title: transx
+url: https://kvasilopoulos.github.io/transx/
+destination: docs
+
+template:
+  params:
+    bootswatch: cosmo
+
+authors:
+  Kostas Vasilopoulos:
+    href: https://kvasilopoulos.com/
+
+
+reference:
+
+  - title: Basic Transformations
+    contents:
+      - leadx-lagx
+      - diffx-rdiffx-ldiffx
+      - demean
+      - normalise
+      - minmax
+      - standarize
+      - box_cox
+      - yeo_johnson
+      - tukey
+
+  - title: Deterministic Trend
+    contents:
+      - starts_with("det")
+
+  - title: Stochastic Trend
+    contents:
+      - starts_with("st")
+
+  - title: Cycle Trend Decomposition
+    contents:
+      - starts_with("cycle")
+
+  - title: Recursive
+    contents:
+      - starts_with("resample")
+
+  - title: Recursive
+    contents:
+      - starts_with("rec")
+
+  - title: Block
+    contents:
+      - starts_with("blck")
+
+  - title: Rolling
+    contents:
+      - starts_with("roll")
+
+  - title: Outliers
+    contents:
+      - starts_with("out")
+
+
+navbar:
+  type: default
+  structure:
+    left:
+    - home
+    - reference
+    right:
+    - news
+    - github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/kvasilopoulos/transx

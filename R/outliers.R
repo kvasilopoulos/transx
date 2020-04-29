@@ -1,5 +1,8 @@
 # TODO outliers function have to print a message for identification reasons
 
+#' Winsorize
+#'
+#' @export
 out_winsorise <- out_winsorize <- function(x) {
   # tandardized = FALSE, centerFun = median, scaleFun = mad,
   # const = 2, return = c("data", "weights"), ...
@@ -34,11 +37,22 @@ out_winsorise <- out_winsorize <- function(x) {
   # return(x)
 }
 
+#' Trim with Percentils
+#'
+#' @param x mpla
+#' @param pt percentile
+#'
+#' @export
 out_trim_pt <- function(x, default = NA, pt = c(0.1, 0.9)) {
   threshold_pt <- quantile(x, probs = pt)
   out_trim(x, default = default, threshold_low = threshold_pt[1], threshold_high = threshold_pt[2])
 }
 
+#' Trim with Percentils
+#'
+#' @param x mpla
+#'
+#' @export
 out_trim <- function(x, default = NA, threshold_low = NULL, threshold_high = NULL, ...) {
   # threshold might be a function quantile(0.9)
   if (is.null(threshold_low) && is.null(threshold_high)) {
@@ -61,6 +75,12 @@ not_between <- function(x, t_low, t_high) {
   which((x < t_low) | (x > t_high))
 }
 
+#' Trim with Percentils
+#'
+#' @param x mpla
+#' @param pt percentile
+#'
+#' @export
 out_drop <- function(x, default = NA, rule = NULL) {
 
 }

@@ -4,21 +4,84 @@
     <loc>https://kvasilopoulos.github.io/transx//index.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/diffx-rdiff-ldiff.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/decompose_bn.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/dt_lin.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/demean-demedian.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/iqr_score.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/diffx-rdiffx-ldiffx.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/lead-lag.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/dtrend.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/st_arima.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_linear.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/z_score_mod.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_locf.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_spline.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_bk.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_hamilton.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_hp.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/leadx-lagx.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/modex.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/norm.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_iqr.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_pt.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_threshold.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_winsorise.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_zscore.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_zscore_rob.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/power_boxcox.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/rebase.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/score.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/skewness.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/std.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/yeo_johnson.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//articles/create-fill_fun.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//articles/motivation.html</loc>
   </url>
 </urlset>

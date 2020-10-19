@@ -17,46 +17,41 @@ reference:
     contents:
       - leadx-lagx
       - diffx-rdiffx-ldiffx
-      - demean
-      - normalise
-      - minmax
-      - standarize
-      - box_cox
-      - yeo_johnson
-      - tukey
+
+
+  - title: Rescaling
+    contents:
+      - demean-demedian
+      - rebase
+      - norm
+      - std
+      - score
+
+  - title: Power Transformations
+    contents:
+      - starts_with("power")
 
   - title: Deterministic Trend
     contents:
-      - starts_with("det")
+      - starts_with("dtrend")
 
-  - title: Stochastic Trend
+  - title: Cycle Trend Filtering
     contents:
-      - starts_with("st")
-
-  - title: Cycle Trend Decomposition
-    contents:
-      - starts_with("cycle")
-
-  - title: Recursive
-    contents:
-      - starts_with("resample")
-
-  - title: Recursive
-    contents:
-      - starts_with("rec")
-
-  - title: Block
-    contents:
-      - starts_with("blck")
-
-  - title: Rolling
-    contents:
-      - starts_with("roll")
+      - starts_with("filter")
 
   - title: Outliers
     contents:
       - starts_with("out")
 
+  - title: Fill Functions
+    contents:
+      - starts_with("fill")
+
+  - title: Simple Statistics
+    contents:
+      - modex
+      - skewness
+      - kurtosis
 
 navbar:
   type: default

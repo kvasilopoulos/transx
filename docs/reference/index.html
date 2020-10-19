@@ -8,6 +8,13 @@
 
 <title>Function reference • transx</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
 
@@ -85,6 +93,21 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/create-fill_fun.html">create-fill_fun</a>
+    </li>
+    <li>
+      <a href="../articles/motivation.html">motivation</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -142,45 +165,52 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="diffx-rdiffx-ldiffx.html">diffx()</a></code> <code><a href="diffx-rdiffx-ldiffx.html">rdiffx()</a></code> <code><a href="diffx-rdiffx-ldiffx.html">ldiffx()</a></code> </p>
+          <p><code><a href="diffx-rdiffx-ldiffx.html">diffx()</a></code> <code><a href="diffx-rdiffx-ldiffx.html">rdiff()</a></code> <code><a href="diffx-rdiffx-ldiffx.html">ldiffx()</a></code> </p>
         </td>
-        <td><p>Lagged Differnces</p></td>
-      </tr><tr>
+        <td><p>Compute lagged differnces</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-rescaling" class="hasAnchor"><a href="#section-rescaling" class="anchor"></a>Rescaling</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
-          <p><code><a href="demean.html">demean()</a></code> </p>
+          <p><code><a href="demean-demedian.html">demean()</a></code> <code><a href="demean-demedian.html">demedian()</a></code> </p>
         </td>
         <td><p>Some title</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="normalise.html">normalise()</a></code> </p>
+          <p><code><a href="rebase.html">rebase()</a></code> <code><a href="rebase.html">rebase_origin()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
+        <td><p>Change the base year of an index</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="minmax.html">minmax()</a></code> </p>
+          <p><code><a href="norm.html">norm_minmax()</a></code> <code><a href="norm.html">norm_logistic()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
+        <td><p>Normalise</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="box_cox.html">box_cox()</a></code> </p>
+          <p><code><a href="std.html">std_mean()</a></code> <code><a href="std.html">std_median()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
+        <td><p>Standarize</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="yeo_johnson.html">yeo_johnson()</a></code> </p>
+          <p><code><a href="score.html">score_z()</a></code> <code><a href="score.html">score_mad()</a></code> <code><a href="score.html">score_t()</a></code> <code><a href="score.html">score_chisq()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tukey.html">tukey()</a></code> </p>
-        </td>
-        <td><p>Some title</p></td>
+        <td><p>Score transformation</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -194,11 +224,17 @@
     </tbody><tbody>
       
       
-      
+      <tr>
+        
+        <td>
+          <p><code><a href="dtrend.html">dtrend_lin()</a></code> <code><a href="dtrend.html">dtrend_quad()</a></code> <code><a href="dtrend.html">dtrend_poly()</a></code> </p>
+        </td>
+        <td><p>Deterministic Trends</p></td>
+      </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-stochastic-trend" class="hasAnchor"><a href="#section-stochastic-trend" class="anchor"></a>Stochastic Trend</h2>
+          <h2 id="section-cycle-trend-filtering" class="hasAnchor"><a href="#section-cycle-trend-filtering" class="anchor"></a>Cycle Trend Filtering</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -210,159 +246,22 @@
       <tr>
         
         <td>
-          <p><code><a href="standardise.html">standardise()</a></code> </p>
+          <p><code><a href="filter_bk.html">filter_bk()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
+        <td><p>Baxter King Filter</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="st_arima.html">st_arima()</a></code> </p>
+          <p><code><a href="filter_hamilton.html">filter_hamilton()</a></code> </p>
         </td>
-        <td><p>Stochastic Trends</p></td>
+        <td><p>Hamilton Filter</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_hp.html">filter_hp()</a></code> </p>
+        </td>
+        <td><p>Hodrick Prescot Filter</p></td>
       </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-cycle-trend-decomposition" class="hasAnchor"><a href="#section-cycle-trend-decomposition" class="anchor"></a>Cycle Trend Decomposition</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-recursive" class="hasAnchor"><a href="#section-recursive" class="anchor"></a>Recursive</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-recursive" class="hasAnchor"><a href="#section-recursive" class="anchor"></a>Recursive</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="rec_max.html">rec_max()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_mean.html">rec_mean()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_median.html">rec_median()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_min.html">rec_min()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_mode.html">rec_mode()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_prod.html">rec_prod()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_qtile.html">rec_qtile()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_sd.html">rec_sd()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rec_sum.html">rec_sum()</a></code> </p>
-        </td>
-        <td><p>Recursive</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-block" class="hasAnchor"><a href="#section-block" class="anchor"></a>Block</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="blck_mean.html">blck_mean()</a></code> </p>
-        </td>
-        <td><p>Block</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="blck_median.html">blck_median()</a></code> </p>
-        </td>
-        <td><p>Block</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="blck_sample.html">blck_sample()</a></code> </p>
-        </td>
-        <td><p>Block</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="blck_sd.html">blck_sd()</a></code> </p>
-        </td>
-        <td><p>Block</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-rolling" class="hasAnchor"><a href="#section-rolling" class="anchor"></a>Rolling</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      
     </tbody><tbody>
       <tr>
         <th colspan="2">
@@ -378,27 +277,95 @@
       <tr>
         
         <td>
-          <p><code><a href="out_drop.html">out_drop()</a></code> </p>
+          <p><code><a href="out_iqr.html">out_iqr()</a></code> </p>
         </td>
-        <td><p>Trim with Percentils</p></td>
+        <td><p>Detect outliers with Tukey's method</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="out_trim.html">out_trim()</a></code> </p>
+          <p><code><a href="out_pt.html">out_pt()</a></code> </p>
         </td>
-        <td><p>Trim with Percentils</p></td>
+        <td><p>Detect outliers with Percentiles</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="out_trim_pt.html">out_trim_pt()</a></code> </p>
+          <p><code><a href="out_threshold.html">out_threshold()</a></code> </p>
         </td>
-        <td><p>Trim with Percentils</p></td>
+        <td><p>Detect outliers with upper and lower threshold</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="out_winsorise.html">out_winsorise()</a></code> </p>
         </td>
         <td><p>Winsorize</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="out_zscore.html">out_zscore()</a></code> </p>
+        </td>
+        <td><p>Detect outliers with zscore</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="out_zscore_rob.html">out_zscore_rob()</a></code> </p>
+        </td>
+        <td><p>Detect outliers Iglewicz and Hoaglin (1993) robust z-score method</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-fill-functions" class="hasAnchor"><a href="#section-fill-functions" class="anchor"></a>Fill Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="fill_linear.html">fill_linear()</a></code> </p>
+        </td>
+        <td><p>Fill with linear approximation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fill_locf.html">fill_locf()</a></code> </p>
+        </td>
+        <td><p>Fill with <code>Last Observation Carried Forward</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fill_spline.html">fill_spline()</a></code> </p>
+        </td>
+        <td><p>Fill with cubic spline interpolation</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-simple-statistics" class="hasAnchor"><a href="#section-simple-statistics" class="anchor"></a>Simple Statistics</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="modex.html">modex()</a></code> <code><a href="modex.html">modex_int()</a></code> </p>
+        </td>
+        <td><p>Double</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="skewness.html">skewness()</a></code> <code><a href="skewness.html">kurtosis()</a></code> </p>
+        </td>
+        <td><p>Title</p></td>
       </tr>
     </tbody>
     </table>
@@ -418,7 +385,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

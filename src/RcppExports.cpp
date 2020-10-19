@@ -17,9 +17,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fastIntMode
+int fastIntMode(IntegerVector x, bool narm);
+RcppExport SEXP _transx_fastIntMode(SEXP xSEXP, SEXP narmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type narm(narmSEXP);
+    rcpp_result_gen = Rcpp::wrap(fastIntMode(x, narm));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_transx_rec_mean", (DL_FUNC) &_transx_rec_mean, 1},
+    {"_transx_fastIntMode", (DL_FUNC) &_transx_fastIntMode, 2},
     {NULL, NULL, 0}
 };
 

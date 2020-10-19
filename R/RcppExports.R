@@ -5,3 +5,7 @@ rec_mean <- function(x) {
     .Call(`_transx_rec_mean`, x)
 }
 
+fastIntMode <- function(x, narm = FALSE) {
+    .Call(`_transx_fastIntMode`, x, narm)
+}
+

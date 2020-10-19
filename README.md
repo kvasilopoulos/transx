@@ -59,6 +59,5 @@ lagx(x, fill = 1)
 #> [1] 1 5 3 2 2
 lagx(x, fill_fun = mean)
 #> [1] 3 5 3 2 2
-lagx(x, fill_fun = fill_nocb)
-#> Error in as.list.environment(env): object 'fill_nocb' not found
+# lagx(x, fill_fun = fill_nocb)
 ```

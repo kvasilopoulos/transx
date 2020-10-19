@@ -58,7 +58,7 @@ x <- c(5,3,2,2,5)
 lagx(x)
 lagx(x, fill = 1)
 lagx(x, fill_fun = mean)
-lagx(x, fill_fun = fill_nocb)
+# lagx(x, fill_fun = fill_nocb)
 ```
 
 

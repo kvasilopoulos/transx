@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Normalise — norm" />
-<meta property="og:description" content="Normalise" />
+<meta property="og:description" content="To rescale a range between an arbitrary set of values a, b, the formula becomes:" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -140,12 +140,14 @@
     </div>
 
     <div class="ref-description">
-    <p>Normalise</p>
+    <p>To rescale a range between an arbitrary set of values a, b, the formula becomes:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>norm_minmax</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>norm_range</span><span class='op'>(</span><span class='va'>x</span>, a <span class='op'>=</span> <span class='cn'>NULL</span>, b <span class='op'>=</span> <span class='cn'>NULL</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>norm_logistic</span>(<span class='kw'>x</span>)</pre>
+<span class='fu'>norm_minmax</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>norm_logistic</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +156,14 @@
       <th>x</th>
       <td><p><code>[univariate vector]</code></p>
 <p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
+      <th>a</th>
+      <td><p><code>[numeric(1): NULL]</code></p></td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td><p><code>[numeric(1): NULL]</code></p></td>
     </tr>
     <tr>
       <th>na.rm</th>

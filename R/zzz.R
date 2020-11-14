@@ -10,3 +10,10 @@
     options(op.transx[toset])
   invisible()
 }
+
+# Set Global Variables to avoid NOTES in cmdchecks
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(
+    c("fill")
+  )
+}

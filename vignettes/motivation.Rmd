@@ -42,25 +42,21 @@ econ
 
 Then, we are going to use some `stats` functions:
 
-```{r exist-already}
-econ %>% 
-  mutate(pop_lag = stats::lag(pop))
+```{r exist-already, error=TRUE}
+mutate(econ, pop_lag = stats::lag(pop))
 ```
 
 `base::lag` only works on `ts` objects. However, dplyr has thought about this problem
 
 ```{r dplyr-lag}
-econ %>% 
-  mutate(pop_lag = dplyr::lag(pop))
+mutate(econ, pop_lag = dplyr::lag(pop))
 ```
-
 
 However, this problem extends to all the univariate functions that are applied in
 the same manner in a data.frame. For example
 
 ```{r example-diff, error=TRUE}
-econ %>% 
-  mutate(pop_diff = base::diff(pop))
+mutate(econ, pop_diff = base::diff(pop))
 ```
 
 The idea for `transx` is coming from the need to construct wrapper functions.
@@ -68,6 +64,5 @@ The idea for `transx` is coming from the need to construct wrapper functions.
 ```{r new-fun}
 diffx <- function(x, ...) x - dplyr::lag(x, ... )
 
-econ %>% 
-    mutate(pop_diff = diffx(pop))
+mutate(econ, pop_diff = diffx(pop))
 ```

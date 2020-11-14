@@ -4,8 +4,26 @@
 \alias{fill_spline}
 \title{Fill with cubic spline interpolation}
 \usage{
-fill_spline(vec, body, idx)
+fill_spline(body, idx, ...)
+}
+\arguments{
+\item{body}{\verb{[numeric vector]}
+
+The body of the vector.}
+
+\item{idx}{\verb{[integer vector]}
+
+the index to replace with.}
+
+\item{...}{Further arguments passed to \verb{\link[stats]\{spline\}}}
+}
+\value{
+Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 Fill with cubic spline interpolation
+}
+\examples{
+x <- c(5,3,NA,2,5)
+fill_spline(x, 3)
 }

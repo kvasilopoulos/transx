@@ -43,3 +43,12 @@ Useful for comparing values behind of or ahead of the current values.
 This functions has been taken and modified from the \code{dplyr} package,
 however, to reduce dependecies they are not imported.
 }
+\examples{
+
+vec <- c(5,3,2,2,5)
+lagx(vec)
+lagx(vec, fill_fun = fill_nocb)
+
+leadx(vec)
+leadx(vec, fill_fun = fill_locf)
+}

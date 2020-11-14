@@ -4,8 +4,49 @@
 \alias{fill_locf}
 \title{Fill with \verb{Last Observation Carried Forward}}
 \usage{
-fill_locf(vec, body, idx)
+fill_locf(body, idx, fail = fill)
+}
+\arguments{
+\item{body}{\verb{[numeric vector]}
+
+The body of the vector.}
+
+\item{idx}{\verb{[integer vector]}
+
+the index to replace with.}
+
+\item{default}{\verb{[numeric(1) or numeric vector: fill]}
+
+In case it fails to fill some values.}
+}
+\value{
+Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 Fill with \verb{Last Observation Carried Forward}
+}
+\examples{
+x <- c(5,3,2,2,5)
+lagx(x, n = 2, fill_fun = fill_locf)
+leadx(x, n = 2, fill_fun = fill_locf)
+
+lagx(x, n = 2, fill_fun = fill_nocb)
+leadx(x, n = 2, fill_fun = fill_nocb)
+
+
+xlen <- length(x)
+n <- 2
+n <- pmin(n, xlen)
+idx <- 1:n
+body <- x[seq_len(xlen - n)]
+fill_locf(body, idx, NA)
+
+
+xlen <- length(x)
+n <- 2
+n <- pmin(n, xlen)
+body <- x[-seq_len(n)]
+idx <- (xlen - n + 1):xlen
+fill_locf(body, idx, NA)
+
 }

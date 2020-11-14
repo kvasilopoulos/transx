@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — skewness • transx</title>
+<title>Skewness/Kurtosis Value — skewness • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Title — skewness" />
-<meta property="og:description" content="Descreiption" />
+<meta property="og:title" content="Skewness/Kurtosis Value — skewness" />
+<meta property="og:description" content="Compute the sample skewness/kurtosis" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,19 +134,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Skewness/Kurtosis Value</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/00-stats.R'><code>R/00-stats.R</code></a></small>
     <div class="hidden name"><code>skewness.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Descreiption</p>
+    <p>Compute the sample skewness/kurtosis</p>
     </div>
 
-    <pre class="usage"><span class='fu'>skewness</span>(<span class='kw'>x</span>, na.rm = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"transx.na.rm"</span>))
+    <pre class="usage"><span class='fu'>skewness</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>kurtosis</span>(<span class='kw'>x</span>, na.rm = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"transx.na.rm"</span>))</pre>
+<span class='fu'>kurtosis</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
+      <th>na.rm</th>
+      <td><p><code>[logical(1): getOption("transx.na.rm")]</code></p>
+<p>A value indicating whether NA values should be stripped before the computation proceeds.</p></td>
+    </tr>
+    </table>
 
 
   </div>

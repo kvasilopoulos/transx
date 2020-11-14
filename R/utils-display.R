@@ -1,37 +1,55 @@
+
+
+# disp categoreis ------------------------------------------------------
+
 # tidylog principle
-#
-display_fill <- function() {
 
-}
-
-display_na <- function(x) {
-  is_na <- is.na(x)
-  if(any(is_na)) {
-    n_na <- sum(is_na)
-    display(sprintf("The vector contains %d NA value(s).", n_na))
+disp_na <- function(x, na.rm) {
+  n_na <- is.na(x)
+  if(any(n_na)) {
+    n_na <- sum(n_na)
+    disp_info("The vector contains {n_na} NA value{?s}, `na.rm` is set to {na.rm}.")
   }
 }
 
-display <- function(msg) {
-  if(getOption("transx.display")) {
-    message(msg)
+disp_outlier <- function(x) {
+  if(rlang::is_bare_atomic(x, 0)) {
+    disp_info("no outlier has been identified")
+  } else {
+    disp_sucess("{length(x)} outlier{?s} ha{?s/ve} been identified")
   }
 }
 
+# disp -----------------------------------------------------------------
 
-# glue --------------------------------------------------------------------
-
-transform_glue <- function(transformer) {
-  function(..., .sep = "", .envir = parent.frame(), .open = "{", .close = "}", .na = "NA") {
-    glue( ..., .sep = .sep, .envir = .envir, .open = .open, .close = .close,
-      .na = "NA", .transformer = transformer
-    )
-  }
+disp <- function(...) {
+  with_disp(
+    cli::cli_alert(...)
+  )
 }
 
-conditional_msg <- function(msg, condition) {
-  if(condition)
-    msg
+disp_info <- function(...) {
+  with_disp(
+    cli::cli_alert_info(...)
+  )
 }
 
-# glue_if <- transform_glue(conditional_msg)
+disp_sucess <- function(...) {
+  with_disp(
+    cli::cli_alert_success(...)
+  )
+}
+
+disp_warning <- function(...) {
+  with_disp(
+    cli::cli_alert_warning(...)
+  )
+}
+
+disp_danger <- function(...) {
+  with_disp(
+    cli::cli_alert_danger(...)
+  )
+}
+
+

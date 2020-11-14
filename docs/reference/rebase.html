@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Change the base year of an index — rebase • transx</title>
+<title>Change the base year — rebase • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Change the base year of an index — rebase" />
-<meta property="og:description" content="descriptio goes here" />
+<meta property="og:title" content="Change the base year — rebase" />
+<meta property="og:description" content="Change the" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,24 +134,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Change the base year of an index</h1>
+    <h1>Change the base year</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/01-basic.R'><code>R/01-basic.R</code></a></small>
     <div class="hidden name"><code>rebase.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>descriptio goes here</p>
+    <p>Change the</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rebase</span>(<span class='kw'>x</span>, n = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>rebase_origin</span>(<span class='kw'>x</span>)</pre>
+<span class='fu'>rebase_origin</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>The index of the new base year.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns a vector with the same class and attributes as the input vector.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>10</span>
+
+<span class='co'># New base  would be 5</span>
+<span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.4285714 0.5714286 0.7142857 0.8571429 1.0000000 1.1428571 1.2857143
+#&gt; [8] 1.4285714</div><div class='input'>
+<span class='co'># Or the origin</span>
+<span class='fu'>rebase_origin</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in assert_lx(x, n): object 'n' not found</span></div><div class='input'>
+<span class='co'># Fro the base to be 100 or 0 then:</span>
+<span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>
+</div><div class='output co'>#&gt; [1]  42.85714  57.14286  71.42857  85.71429 100.00000 114.28571 128.57143
+#&gt; [8] 142.85714</div><div class='input'><span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>5</span><span class='op'>)</span> <span class='op'>-</span> <span class='fl'>1</span>
+</div><div class='output co'>#&gt; [1] -0.5714286 -0.4285714 -0.2857143 -0.1428571  0.0000000  0.1428571  0.2857143
+#&gt; [8]  0.4285714</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

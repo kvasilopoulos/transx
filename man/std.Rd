@@ -4,11 +4,11 @@
 \alias{std}
 \alias{std_mean}
 \alias{std_median}
-\title{Standarize}
+\title{Standarization}
 \usage{
-std_mean(x, na.rm = TRUE)
+std_mean(x, na.rm = getOption("transx.na.rm"))
 
-std_median(x, na.rm = TRUE)
+std_median(x, na.rm = getOption("transx.na.rm"))
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -23,5 +23,15 @@ A value indicating whether NA values should be stripped before the computation p
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Standarize
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Convert number of standard deviations by which the value of a raw score
+is above or below the mean value of what is being observed or measured.
+}
+\examples{
+x <- c(10,2,5,3)
+std_mean(x)
+scale(x)
+
+std_median(x)
 }

@@ -4,9 +4,6 @@
     <loc>https://kvasilopoulos.github.io/transx//index.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/decompose_bn.html</loc>
-  </url>
-  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/demean-demedian.html</loc>
   </url>
   <url>
@@ -22,16 +19,13 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/fill_locf.html</loc>
   </url>
   <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_nocb.html</loc>
+  </url>
+  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/fill_spline.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/filter_bk.html</loc>
-  </url>
-  <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/filter_hamilton.html</loc>
-  </url>
-  <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/filter_hp.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/gmean.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/leadx-lagx.html</loc>
@@ -40,13 +34,16 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/modex.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/norm.html</loc>
-  </url>
-  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/out_iqr.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/out_pt.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_score_z.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/out_score_zrob.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/out_threshold.html</loc>
@@ -55,16 +52,31 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/out_winsorise.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/out_zscore.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/plotx.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/out_zscore_rob.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/pow.html</loc>
   </url>
   <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/power_boxcox.html</loc>
+    <loc>https://kvasilopoulos.github.io/transx//reference/pow_boxcox.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/pow_manly.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/pow_yj.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/rebase.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/root_cubic.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/root_sq.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/scale_range.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/score.html</loc>
@@ -74,9 +86,6 @@
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/std.html</loc>
-  </url>
-  <url>
-    <loc>https://kvasilopoulos.github.io/transx//reference/yeo_johnson.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//articles/create-fill_fun.html</loc>

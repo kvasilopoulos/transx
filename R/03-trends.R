@@ -7,20 +7,21 @@ split_at <- function(x, bp) {
   split(x, cumsum(seq_along(x) %in% bp))
 }
 
-
-# TODO not sure bp works here
 # https://uk.mathworks.com/help/matlab/ref/detrend.html
 
-dtrend_ <- function(x, degree = 1, bp = NULL, raw = FALSE) {
+#' @importFrom stats lm poly
+dtrend_ <- function(x, degree = 1, bp = NULL) {
+  t <- seq_along(x)
   if(!is.null(bp)) {
     xsplit <- split_at(x, bp)
+    tsplit <- split_at(t, bp)
     res <- list()
-    for(i in 1:(length(bp)+1)) {
-      res[[i]] <- lm(xsplit[[i]] ~ poly(xsplit[[i]], degree, raw = raw))$residuals
+    for(i in 1:length(xsplit)) {
+      res[[i]] <- lm(xsplit[[i]] ~ poly(tsplit[[i]], degree))$residuals
     }
     res <- Reduce(c, res)
   }else{
-    res <- lm(x ~ poly(x, degree, raw = raw))$residuals
+    res <- lm(x ~ poly(t, degree))$residuals
   }
   na_obs <- is.na(x)
   if(any(na_obs)) {
@@ -31,14 +32,15 @@ dtrend_ <- function(x, degree = 1, bp = NULL, raw = FALSE) {
   out
 }
 
-
-#' Deterministic Trends
+#' Deterministic Trend
 #'
-#' @description Remove global trend information from the series.
+#' @description Remove global deterministic trend information from the series.
 #'
 #' * `dt_lin` removes the linear trend.
 #' * `dt_quad` removes the quadratic trend.
 #' * `dt_poly` removes the nth-degree polynomial trend.
+#'
+#' @template x-na
 #'
 #' @param degree `[positive integer(1)]`
 #'
@@ -48,43 +50,52 @@ dtrend_ <- function(x, degree = 1, bp = NULL, raw = FALSE) {
 #'
 #' Break points to define piecewise segments of the data.
 #'
+#' @template return
 #' @name dtrend
 #' @export
 #' @examples
 #'
 #' set.seed(123)
-#' vec2 <- cumsum(c(rnorm(20), 1+rnorm(20)))
-#' plot.ts(vec2)
+#' t <- 1:20
 #'
-#' plot.ts(cbind(dtrend_lin(vec2), dtrend_lin(vec2, bp = 20)))
-#' dtrend_quad(vec2)
+#' # Linear trend
+#' x <-  3*sin(t) + t
+#' plotx(cbind(x, dtrend_lin(x)))
+#'
+#' # Quadratic trend
+#' x2 <-  3*sin(t) + t + t^2
+#' plotx(cbind(raw = x2, quad = dtrend_quad(x2)))
+#'
+#' # Introduce a breaking point at point = 10
+#' xbp <- 3*sin(t) + t
+#' xbp[10:20] <- x[10:20] + 15
+#' plotx(cbind(raw = xbp, lin = dtrend_lin(xbp), lin_bp = dtrend_lin(xbp, bp = 10)))
 #'
 dtrend_lin <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
-  # asserts_dtrend(x, degree, bp = bp)
-  x <- na_rm_if(x, na.rm)
+  asserts_dtrend(x, bp = bp)
+  x <- with_na_rm(x, na.rm)
   out <- dtrend_(x, 1, bp = bp)
   with_attrs(out, x)
 }
 
 
 #' @rdname dtrend
+#' @export
 dtrend_quad <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
-  # asserts_dtrend(x, degree, bp = bp)
-  x <- na_rm_if(x, na.rm)
+  asserts_dtrend(x, bp = bp)
+  x <- with_na_rm(x, na.rm)
   out <- dtrend_(x, 2, bp = bp)
   with_attrs(out, x)
 }
 
 #' @rdname dtrend
-dtrend_poly <- function(x, degree, bp = NULL, raw = FALSE, na.rm = getOption("transx.na.rm")) {
-  # asserts_dtrend(x, degree, bp = bp, raw = raw)
-  x <- na_rm_if(x, na.rm)
-  out <- dtrend_(x, degree, raw = raw,  bp = bp)
+#' @export
+dtrend_poly <- function(x, degree, bp = NULL, na.rm = getOption("transx.na.rm")) {
+  asserts_dtrend(x, degree, bp = bp, raw = raw)
+  x <- with_na_rm(x, na.rm)
+  out <- dtrend_(x, degree,  bp = bp)
   with_attrs(out, x)
 }
-
-
-
 
 # Stochastic Trend --------------------------------------------------------
 

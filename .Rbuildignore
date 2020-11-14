@@ -9,3 +9,5 @@
 ^R/later$
 ^man-roxygen$
 ^TODO\.txt$
+^\.github$
+^doc$

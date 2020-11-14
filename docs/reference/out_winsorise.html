@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Winsorize — out_winsorise" />
-<meta property="og:description" content="Winsorize" />
+<meta property="og:description" content="Replace extremely values that are defined by min and max." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -135,18 +135,48 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Winsorize</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/03-outliers.R'><code>R/03-outliers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/04-outliers.R'><code>R/04-outliers.R</code></a></small>
     <div class="hidden name"><code>out_winsorise.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Winsorize</p>
+    <p>Replace extremely values that are defined by <code>min</code> and <code>max</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>out_winsorise</span>(<span class='kw'>x</span>, min = <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>x</span>, <span class='fl'>0.05</span>), max = <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>x</span>, <span class='fl'>0.95</span>))</pre>
+    <pre class="usage"><span class='fu'>out_winsorise</span><span class='op'>(</span><span class='va'>x</span>, min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.05</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td><p><code>[numeric(1): quantile(x, 0.05)]</code></p>
+<p>The lower bound, all values lower than this will be replaced by this value.</p></td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td><p><code>[numeric(1): quantile(x, 0.95)]</code></p>
+<p>The upper bound, all values above than this will be replaced by this value.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Returns a vector with the same class and attributes as the input vector.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>Winsorize</code> <code><a href='https://andrisignorell.github.io/DescTools/reference/Winsorize.html'>Winsorize</a></code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='fu'>out_winsorise</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1]  1.0  3.0 -0.5  5.0 10.0 77.5</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

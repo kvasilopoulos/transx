@@ -21,23 +21,23 @@ reference:
 
   - title: Rescaling
     contents:
+      - std
+      - scale_range
       - demean-demedian
       - rebase
-      - norm
-      - std
+
+  - title: Score Transformations
+    contents:
       - score
 
-  - title: Power Transformations
+  - title: Root & Power Transformations
     contents:
-      - starts_with("power")
+      - starts_with("root")
+      - starts_with("pow")
 
   - title: Deterministic Trend
     contents:
-      - starts_with("dtrend")
-
-  - title: Cycle Trend Filtering
-    contents:
-      - starts_with("filter")
+      - contains("trend")
 
   - title: Outliers
     contents:
@@ -45,10 +45,14 @@ reference:
 
   - title: Fill Functions
     contents:
-      - starts_with("fill")
+      - fill_locf
+      - fill_nocb
+      - fill_linear
+      - fill_spline
 
   - title: Simple Statistics
     contents:
+      - gmean
       - modex
       - skewness
       - kurtosis

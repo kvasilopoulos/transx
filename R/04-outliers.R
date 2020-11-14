@@ -6,47 +6,71 @@ not_between <- function(x, t_low, t_high) {
 }
 
 
-display_outlier <- function(x) {
-
-}
-
-
-# library(glue)
-# x1 <- c(1,2,3,4)
-# x2 <- 5
-# out_min <- x1>x2
-# glue("For min: {x1} to {x2}\n For max: {NULL} to {x2}")
-# glue_if("For max {x1} to {FALSE}", out_min)
 
 # TODO out_grubs_chochran_asdasdad with cutoff
 # TODO outliers function have to print a message for identification reasons
 
 #' Winsorize
 #'
+#' Replace extremely values that are defined by `min` and `max`.
+#'
+#' @template x
+#' @param min `[numeric(1): quantile(x, 0.05)]`
+#'
+#' The lower bound, all values lower than this will be replaced by this value.
+#'
+#' @param max `[numeric(1): quantile(x, 0.95)]`
+#'
+#' The upper bound, all values above than this will be replaced by this value.
+#'
+#' @template return
+#'
+#' @seealso \code{\link[robustHD]{winsorize}} \code{\link[DescTools]{Winsorize}}
 #' @export
-out_winsorise <- function(x, min = quantile(x, 0.05), max = quantile(x, 0.95)) {
-  asserts(x)
-  out_min <- x < min
-  out_max <- x < max
-  x[out_min] <- min
-  x[out_max] <- max
-  x
-}
-
-# End helper --------------------------------------------------------------
-
-#' Detect outliers with upper and lower threshold
-#'
-#' @param x mpla
-#'
 #'
 #' @examples
 #' x <- c(1, 3, -1, 5, 10, 100)
-#' out_trim(x, tlow = 0, fill = 0)
-#' out_trim(x, thigh = 9, fill_fun = function(x) quantile(x, 0.9))
+#' out_winsorise(x)
+#'
+out_winsorise <- function(x, min = quantile(x, 0.05), max = quantile(x, 0.95)) {
+  assert_uni_ts(x)
+  out_min <- x < min
+  out_max <- x > max
+  out <- x
+  out[out_min] <- min
+  out[out_max] <- max
+  disp_outlier(union(out_min, out_max))
+  with_attrs(out, x)
+}
+
+#' @rdname out_winsorise
+#' @export
+out_winsorize <- out_winsorise
+
+
+#' Detect outliers with upper and lower threshold
+#'
+#' @template x
+#' @template fill
+#'
+#' @param tlow `[numeric(1): NULL]`
+#'
+#' The lower threshold.
+#'
+#' @param thigh `[numeric(1): NULL]`
+#'
+#' The upper threshold.
+#'
+#'
+#' @template return
+#'
+#' @examples
+#' x <- c(1, 3, -1, 5, 10, 100)
+#' out_threshold(x, tlow = 0, fill = 0)
+#' out_threshold(x, thigh = 9, fill_fun = function(x) quantile(x, 0.9))
 #'
 #' @export
-out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NULL) {
+out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NULL, ...) {
   # threshold might be a function quantile(0.9)
   if (is.null(tlow) && is.null(thigh)) {
     stop("`threshold` should be specified", call. = FALSE)
@@ -60,59 +84,73 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NU
   if (!is.null(thigh)) {
     idx <- which(x > thigh)
   }
-  body <- x[-idx]
-  out <- fill_(body, idx, fill, fill_fun)
+  # TODO check index ~ I think this is done in fill_
+  # disp_outlier(idx)
+  body <- body_(x, idx)
+  out <- fill_(body, idx, fill, fill_fun, ...)
   with_attrs(out, x)
 }
 
 
 #' Detect outliers with Percentiles
 #'
-#' @param x mpla
-#' @param pt percentile
+#' @template x
+#' @template fill
+#' @param pt_low the lowest quantile
+#' @param pt_high the highest quantile
+#' @param ... further arguments passed to `quantile`.
 #'
 #' @export
+#' @examples
+#' x <- c(1, 3, -1, 5, 10, 100)
+#' out_pt(x)
+#'
 out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, fill_fun = NULL, ...) {
-  tpt <- quantile(x, probs = c(pt_low, pt_high), ...)
-  display(sprintf("Acceptable range (%s, %s)", tpt[1], tpt[2]))
-  out <- out_trim(x, tlow = tpt[1], thigh = tpt[2], fill = fill, fill_fun = fill_fun)
+  tpt <- quantile(x, probs = c(pt_low, pt_high))
+  disp(sprintf("Acceptable range (%s, %s)", tpt[1], tpt[2]))
+  out <- out_threshold(x, tlow = tpt[1], thigh = tpt[2], fill = fill, fill_fun = fill_fun, ...)
   with_attrs(out, x)
 }
 
 
+# TODO consider getting glue out of imports
+
 #' Detect outliers with zscore
 #'
+#' @template x
+#' @template fill
 #' @param cutoff `[numeric(1): 3]`
-#' @param ... further arguments passed to `score_z`.
 #'
 #' @export
 out_score_z <- function(x, cutoff = 3, fill = NA, fill_fun = NULL, ...) {
   scores <- score_z(x, ...)
-  idx <- which(abs(score) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
-  body <- x[-idx]
-  out <- idx_fill(body, idx, fill, fill_fun)
+  idx <- which(abs(scores) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
+  body <- body_(x, idx)
+  out <- fill_(body, idx, fill, fill_fun, ...)
   with_attrs(out, x)
 }
 
 #' Detect outliers Iglewicz and Hoaglin (1993) robust z-score method
 #'
+#' @template x
+#' @template fill
 #' @param cutoff `[numeric(1): 3.5]`
 #' @param ... further arguments passed to `score`.
 #'
 #' @export
 out_score_zrob <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
   score <- 0.6745*score_mad(x, ...) # TODO robust zscore
-  idx <- which(abs(score) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
-  body <- x[-idx]
-  out <- fill_(body, idx, fill, fill_fun)
+  idx <- which(abs(score) > cutoff)
+  body <- body_(x, idx)
+  out <- fill_(body, idx, fill, fill_fun, ...)
   with_attrs(out, x)
 }
 
 out_score_t <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
   score <- score_t(x, ...)
-  idx <- which(abs(score) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
+  idx <- which(abs(score) > cutoff)
   body <- x[-idx]
-  out <- idx_fill(body, idx, fill, fill_fun)
+  out <- fill_(body, idx, fill, fill_fun)
   attributes(out) <- attributes(x)
   out
 }
@@ -127,14 +165,17 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
 
 #' Detect outliers with Tukey's method
 #'
+#' @template x
+#' @template fill
 #' @param cutoff `[numeric(1): 1.5]`
 #' @param ... further arguments passed to `quantile`.
 #'
 #' @export
-#'
+#' @importFrom stats quantile
 out_iqr <- function(x, cutoff = 1.5, fill = NA, fill_fun = NULL, ...) {
   q1 <- quantile(0.25)
   q3 <- quantile(0.75)
+  iqr <- q3 - q1
   idx <- which(x < q1 - cutoff*iqr | x > q3 + cutoff*iqr)
   body <- x[-idx]
   out <- fill_(body, idx, fill, fill_fun)

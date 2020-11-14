@@ -1,50 +1,57 @@
 # https://www.tutorialspoint.com/statistics/continuous_series_arithmetic_mode.htm
 
-# Geometric Mean
+#' Geometric Mean value
+#'
+#' Compute the sample geometric mean.
+#'
+#' @inheritParams demean-demedian
+#' @export
+#' @template return
 gmean <- function(x, na.rm = getOption("transx.na.rm")) {
-  x <- na_rm_if(x, na.rm)
-  exp(mean(log(x)))
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
+  out <- exp(mean(log(x)))
+  out
 }
 
-#' Double
+#' Mode value
 #'
+#' Compute the sample median.
+#'
+#' @inheritParams demean-demedian
+#' @export
+#' @importFrom stats density
 #'
 modex <- function(x, na.rm = getOption("transx.na.rm")) {
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   d <- density(x)
   d$x[which.max(d$y)]
 }
 
 #' @rdname modex
 modex_int <- function(x, na.rm = getOption("transx.na.rm")) {
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   ux <- unique(x)
   ux[which.max(table(match(x, ux)))]
 }
 
-# maybe n - 1
-# mg <- function(x, order = 1) {
-#
-#   n <- length(x)
-#   if(order == 1) { #raw
-#     mean(x)
-#   } else if(order == 2) { #central
-#      sd(x)
-#   }else{ # standarised
-#     sum(x-mean(x))^order/n
-#   }
-#
-# }
+# Moments
+moment <- function(x, order =1) {
+  sum(x^order)/length(x)
+}
 
-#' Title
+#' Skewness/Kurtosis Value
 #'
-#' Descreiption
+#' Compute the sample skewness/kurtosis
 #'
-#'
-#'
+#' @inheritParams demean-demedian
+#' @export
 #'
 skewness <- function(x, na.rm = getOption("transx.na.rm")) {
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   n <- length(x)
   m1 <- mean(x)
   m2 <- sum((x - m1)^2)/n
@@ -54,9 +61,11 @@ skewness <- function(x, na.rm = getOption("transx.na.rm")) {
 
 #' @rdname skewness
 kurtosis <- function(x, na.rm = getOption("transx.na.rm")) {
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   n <- length(x)
-  n * sum((x - mean(x))^4)/(sum((x - mean(x))^2)^2)
+  m1 <- mean(x)
+  n * sum((x - m1)^4)/(sum((x - m1)^2)^2)
 }
 
 # moments:: other measure of kurtosis

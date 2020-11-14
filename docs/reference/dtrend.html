@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deterministic Trends — dtrend • transx</title>
+<title>Deterministic Trend — dtrend • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Deterministic Trends — dtrend" />
-<meta property="og:description" content="Remove global trend information from the series.
+<meta property="og:title" content="Deterministic Trend — dtrend" />
+<meta property="og:description" content="Remove global deterministic trend information from the series.
 dt_lin removes the linear trend.
 dt_quad removes the quadratic trend.
 dt_poly removes the nth-degree polynomial trend.
@@ -139,13 +139,13 @@ dt_poly removes the nth-degree polynomial trend.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Deterministic Trends</h1>
+    <h1>Deterministic Trend</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/02-trends.R'><code>R/02-trends.R</code></a></small>
     <div class="hidden name"><code>dtrend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Remove global trend information from the series.</p><ul>
+    <p>Remove global deterministic trend information from the series.</p><ul>
 <li><p><code>dt_lin</code> removes the linear trend.</p></li>
 <li><p><code>dt_quad</code> removes the quadratic trend.</p></li>
 <li><p><code>dt_poly</code> removes the nth-degree polynomial trend.</p></li>
@@ -153,11 +153,11 @@ dt_poly removes the nth-degree polynomial trend.
 
     </div>
 
-    <pre class="usage"><span class='fu'>dtrend_lin</span>(<span class='kw'>x</span>, bp = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>dtrend_lin</span><span class='op'>(</span><span class='va'>x</span>, bp <span class='op'>=</span> <span class='cn'>NULL</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>dtrend_quad</span>(<span class='kw'>x</span>, bp = <span class='kw'>NULL</span>)
+<span class='fu'>dtrend_quad</span><span class='op'>(</span><span class='va'>x</span>, bp <span class='op'>=</span> <span class='cn'>NULL</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>dtrend_poly</span>(<span class='kw'>x</span>, <span class='kw'>degree</span>, bp = <span class='kw'>NULL</span>, raw = <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>dtrend_poly</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>degree</span>, bp <span class='op'>=</span> <span class='cn'>NULL</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,16 +174,28 @@ dt_poly removes the nth-degree polynomial trend.
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a vector with the same class and attributes as the input vector.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='kw'>vec2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>20</span>), <span class='fl'>1</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>20</span>)))
-<span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span>(<span class='kw'>vec2</span>)
-</div><div class='img'><img src='dtrend-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fu'>dtrend_lin</span>(<span class='kw'>vec2</span>), <span class='fu'>dtrend_lin</span>(<span class='kw'>vec2</span>, bp = <span class='fl'>20</span>)))
-</div><div class='output co'>#&gt; <span class='error'>Error in dtrend_lin(vec2): could not find function "dtrend_lin"</span></div><div class='input'><span class='fu'>dtrend_quad</span>(<span class='kw'>vec2</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in dtrend_quad(vec2): could not find function "dtrend_quad"</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>t</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>
+
+<span class='co'># Linear trend</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span>  <span class='fl'>3</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>t</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'>dtrend_lin</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in plotx(cbind(x, dtrend_lin(x))): could not find function "plotx"</span></div><div class='input'>
+<span class='co'># Quadratic trend</span>
+<span class='va'>x2</span> <span class='op'>&lt;-</span>  <span class='fl'>3</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>t</span> <span class='op'>+</span> <span class='va'>t</span><span class='op'>^</span><span class='fl'>2</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='va'>x2</span>, quad <span class='op'>=</span> <span class='fu'>dtrend_quad</span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in plotx(cbind(raw = x2, quad = dtrend_quad(x2))): could not find function "plotx"</span></div><div class='input'>
+<span class='co'># Introduce a breaking point at point = 10</span>
+<span class='va'>xbp</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>t</span>
+<span class='va'>xbp</span><span class='op'>[</span><span class='fl'>10</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>[</span><span class='fl'>10</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>]</span> <span class='op'>+</span> <span class='fl'>15</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='va'>xbp</span>, lin <span class='op'>=</span> <span class='fu'>dtrend_lin</span><span class='op'>(</span><span class='va'>xbp</span><span class='op'>)</span>, lin_bp <span class='op'>=</span> <span class='fu'>dtrend_lin</span><span class='op'>(</span><span class='va'>xbp</span>, bp <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in plotx(cbind(raw = xbp, lin = dtrend_lin(xbp), lin_bp = dtrend_lin(xbp,     bp = 10))): could not find function "plotx"</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

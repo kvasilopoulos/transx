@@ -4,11 +4,32 @@
 \alias{fill_linear}
 \title{Fill with linear approximation}
 \usage{
-fill_linear(vec, body, idx)
+fill_linear(body, idx, ...)
+}
+\arguments{
+\item{body}{\verb{[numeric vector]}
+
+The body of the vector.}
+
+\item{idx}{\verb{[integer vector]}
+
+the index to replace with.}
+
+\item{...}{Further arguments passed to \verb{\link[stats]\{approx\}}}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 Fill with linear approximation
+}
+\examples{
+x <- c(5,3,2,2,5)
+xlen <- length(x)
+n <- 2
+n <- pmin(n, xlen)
+idx <- 1:n
+body <- x[seq_len(xlen - n)]
+fill_linear(body, idx)
+
 }

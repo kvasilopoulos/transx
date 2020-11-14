@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/transx)](https://CRAN.R-project.org/package=transx)
+[![R build status](https://github.com/kvasilopoulos/transx/workflows/R-CMD-check/badge.svg)](https://github.com/kvasilopoulos/transx/actions)
 <!-- badges: end -->
 
 > **WARNING**: The package is still in early stages of development!
@@ -43,22 +44,19 @@ Additionally,
 
 ``` r
 remotes::install_github("transx")
-```## Motivation
-
+```
 
 
 ### Example 
 
 ```{r example, message = FALSE}
 library(transx)
-```
 
-```{r functionality}
 x <- c(5,3,2,2,5)
 lagx(x)
 lagx(x, fill = 1)
 lagx(x, fill_fun = mean)
-# lagx(x, fill_fun = fill_nocb)
+lagx(x, fill_fun = fill_nocb)
 ```
 
 

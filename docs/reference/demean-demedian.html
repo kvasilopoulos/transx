@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Some title — demean-demedian • transx</title>
+<title>Removes measure of centrality from the series — demean-demedian • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Some title — demean-demedian" />
-<meta property="og:description" content="Some title" />
+<meta property="og:title" content="Removes measure of centrality from the series — demean-demedian" />
+<meta property="og:description" content="Removes the mean, the median or the mode from the series." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,18 +134,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Some title</h1>
+    <h1>Removes measure of centrality from the series</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/01-basic.R'><code>R/01-basic.R</code></a></small>
     <div class="hidden name"><code>demean-demedian.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Some title</p>
+    <p>Removes the mean, the median or the mode from the series.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>demean</span>(<span class='kw'>x</span>, na.rm = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"transx.na.rm"</span>))
+    <pre class="usage"><span class='fu'>demean</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>demedian</span>(<span class='kw'>x</span>, na.rm = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"transx.na.rm"</span>))</pre>
+<span class='fu'>demedian</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>demode</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"transx.na.rm"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

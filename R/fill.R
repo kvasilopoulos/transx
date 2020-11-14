@@ -1,42 +1,83 @@
 
-check_idx <- function(idx) {
-  if(length(idx) == 0) {
-    FALSE
-  }else{
-    TRUE
-  }
+check_idx <- function(x) {
+  !rlang::is_bare_atomic(x, 0)
 }
+
+body_ <- function(x, idx) {
+
+  if(!check_idx(idx)) {
+    return(x)
+  }
+  if(is.numeric(idx)) {
+    out <- x[-idx]
+  }
+  if(is.logical(idx)) {
+    if(length(x)!=length(idx)) {
+      stop("The idx is going to recycle.") # more of an internal check
+    }
+    out <- x[!idx]
+  }
+  out
+}
+
+# TODO we have to rethink it
+# Fill can be nnumeric(1) or numeric(n):
+# Can be a lambda_function or a function
+# if it a lambda then fill_fail = NA
+# remake with new functionality
+# more tests and error-handling
+# 4 cases
 
 #' @importFrom rlang as_function is_formula
 fill_  <- function(body, idx, fill, fill_fun, ...) {
-  idx_ok <- check_idx(idx)
-  if(!idx_ok) {
-    display("transformation is not available")
-    return(seq_along(x))
-  }
-  if(is_formula(fill_fun)) {
-    fill_fun <- as_function(fill_fun)
+
+  # if(!check_idx(idx)) {
+  #   disp_info("fill option is not available")
+  #   return(seq_along(body))
+  # }
+  # if(is_formula(fill_fun)) {
+  #   fill_fun <- as_function(fill_fun)
+  # }
+
+
+  if(is_formula(fill)) {
+    fill <- as_function(fill)
   }
   vec <- new_vec(body, idx)
-  if (!is.null(fill_fun)) {
-    if (is.null(formals(fill_fun)$idx)) {
-      vec[idx] <- fill_fun(body, ...) # user_defined function like mean
-    }else{
-      vec[idx] <- fill_fun(vec, body, idx, ...) #created function
+  if(is_function(fill)) {
+    if(is.null(formals(fill$idx))) {
+      vec[idx] <- fill(body, ...)
+    }else {
+      vec[idx] <- fill(body, idx, fail = fill, ...)
     }
   }else{
     vec[idx] <- fill
   }
-  assert_univariate_output(vec)
+  return(vec)
+
+
+  # vec[idx] <- fill(body, idx, fail = NA, ...)
+  # vec
+  return(list(vec, idx, body, fill, fill(body, idx, fail = 100)))
+
+  # vec <- new_vec(body, idx)
+  # if (!is.null(fill_fun)) {
+  #   if (is.null(formals(fill_fun)$idx)) {
+  #     vec[idx] <- fill_fun(body, ...) # user_defined function like mean
+  #   }else{
+  #     vec[idx] <- fill_fun(body, idx, fail = fill, ...) # created function like fill_nocb
+  #   }
+  # }else{
+  #   vec[idx] <- fill # numeric here
+  # }
+  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame())
   vec
 }
 
-# TODO vec is not necessary to use in fill_fun
-# TODO we can create vec inside the function
-
-new_vec <- function(body, idx) {
+# TODO possibly needs new name
+new_vec <- function(body, idx, default = NA_real_) {
   vec_len <- length(body) + length(idx)
-  vec <- vector("numeric", vec_len)
+  vec <- rep(default, vec_len) # vector("numeric", vec_len)
   vec[-idx] <- body
   vec
 }
@@ -44,123 +85,217 @@ new_vec <- function(body, idx) {
 
 # impute ------------------------------------------------------------------
 
-impute_idx <- function(x, idx) {
+# this will be used latern for roll_mean etc
+# impute_idx <- function(x, idx, fn) {}
 
-}
-
-impute_na <- function(x) {
-  idx <- is.na(x)
-  impute_idx(x, idx)
-
-}
+# impute_na <- function(x) {
+#   idx <- is.na(x)
+#   impute_idx(x, idx)
+# }
 
 # idx functions -----------------------------------------------------------
 
-idx_enc <- function(x) {
-  start <- x[c(TRUE, diff(x) != 1)]
-  end <- x[c(diff(x) != 1, TRUE)]
-  duration <- end - start  + 1
-  list(start = start, end = end, duration = duration)
-}
+# idx_enc <- function(x) {
+#   start <- x[c(TRUE, diff(x) != 1)]
+#   end <- x[c(diff(x) != 1, TRUE)]
+#   duration <- end - start  + 1
+#   list(start = start, end = end, duration = duration)
+# }
+#
+# idx_locf <- function(idx) {
+#   enc <- idx_enc(idx)
+#   rep(enc$start - 1, enc$duration)
+# }
+#
+# idx_nocb <- function(idx) {
+#   enc <- idx_enc(idx)
+#   rep(enc$end + 1, enc$duration)
+# }
 
-idx_locf <- function(idx) {
-  enc <- idx_enc(idx)
-  rep(enc$start - 1, enc$duration)
-}
-
-idx_nocb <- function(idx) {
-  enc <- idx_enc(idx)
-  rep(enc$end + 1, enc$duration)
-}
-
-idx_both <- function(idx) {
-
-}
 
 # fill functions ----------------------------------------------------------
 
 #' Fill with `Last Observation Carried Forward`
 #'
 #'
+#' @param body `[numeric vector]`
+#'
+#' The body of the vector.
+#'
+#' @param idx `[integer vector]`
+#'
+#' the index to replace with.
+#'
+#' @param fail `[numeric(1) or numeric vector: fill]`
+#'
+#' In case it fails to fill some values.
+#'
+#'
 #' @export
-fill_locf <- function(body, idx) {
+#' @template return
+#' @examples
+#' x <- c(5,3,2,2,5)
+#' lagx(x, n = 2, fill_fun = fill_locf)
+#' leadx(x, n = 2, fill_fun = fill_locf)
+#'
+#' lagx(x, n = 2, fill_fun = fill_nocb)
+#' leadx(x, n = 2, fill_fun = fill_nocb)
+#'
+#'
+#' xlen <- length(x)
+#' n <- 2
+#' n <- pmin(n, xlen)
+#' idx <- 1:n
+#' body <- x[seq_len(xlen - n)]
+#' fill_locf(body, idx, NA)
+#'
+#'
+#' xlen <- length(x)
+#' n <- 2
+#' n <- pmin(n, xlen)
+#' body <- x[-seq_len(n)]
+#' idx <- (xlen - n + 1):xlen
+#' fill_locf(body, idx, NA)
+#'
+fill_locf <- function(body, idx, fail = NA) {
   vec <- new_vec(body, idx)
   n <- length(vec)
-  for (i in idx_locf(idx)) {
-    vec[i] <- vec[i - 1]
+  for (i in idx) {
+    # cannot index first obs
+    if(i == 1) {
+      vec[i] <- fail
+    }else {
+      vec[i] <- vec[i - 1]
+    }
   }
-  vec[idx]
+  # vec[idx]
+  vec
+}
+#' @examples
+#' first(c(1,2,3))
+#' first(c(1,2,4))
+#' first(c(2,3,4))
+#'
+first <- function(x) {
+  n1 <-if(x[1] == 1)  1 else 0
+  if(n1 == 0) {}
+    return(vector(length = length(x)))
+  c(n1, diff(x)) == 1
+}
+
+#' @examples
+#' first(c(1,2,3))
+#' first(c(1,2,4))
+#' first(c(2,3,4))
+#'
+last <- function(x) {
+  n <- length(x)
+  nn <- if(x[n] == n) 1 else 0
+  nn
 }
 
 
 
 # TODO does this work??
+
 #' Next observation carried backwards
+#'
+#' @inheritParams fill_locf
+#'
 #' @export
-fill_nocb <- function(body, idx) {
+#' @template return
+#' @examples
+#' x <- c(5,3,2,2,5)
+#' leadx(x, n = 2, fill_fun = fill_locf)
+#'
+#' xlen <- length(x)
+#' n <- 2
+#' n <- pmin(n, xlen)
+#' idx <- (xlen - n + 1):xlen
+#' body <- x[-seq_len(n)]
+#' fill_locf(body, idx, NA)
+#'
+#'
+#'
+fill_nocb <- function(body, idx, fail = NA){
   vec <- new_vec(body, idx)
-  for (i in rev(idx)) {
-    vec[i] <- vec[i + 1]
+  for (i in rev(idx)) { # reverse order
+    # cannot index last observation
+    if(i == length(vec)) {
+      vec[i] <- fail
+    }else{
+      vec[i] <- vec[i + 1]
+    }
   }
-  vec[idx]
+ vec[idx]
 }
 
-fill_both <- function(body, idx) {
-  vec <- fill_locf(body, idx)
-  vec <- fill_nocb(body, idx)
-  vec
-}
+# TODO fill both sides
+# fill_both <- function(body, idx, default = NULL) {
+#   vec <- new_vec(body, idx)
+#   n <- length(vec)
+#   # idx and rev(idx)
+#   for (i in idx) {
+#     if(i == 1) {
+#       vec[i] <- vec[i + 1]
+#     }else {
+#       vec[i] <- vec[i - 1]
+#     }
+#   }
+#   vec[idx]
+# }
 
 
 #' Fill with linear approximation
 #'
+#' @inheritParams fill_locf
+#' @param ...
+#'
+#' Further arguments passed to `\link[stats]{approx}`
+#'
 #' @export
-#' @template return-template
-fill_linear <- function(vec, body, idx) {
-  stats::approx(idx, vec, xout = 1:n, rule = 2, ...)$y
+#' @template return
+#' @examples
+#' x <- c(5,3,2,2,5)
+#' xlen <- length(x)
+#' n <- 2
+#' n <- pmin(n, xlen)
+#' idx <- 1:n
+#' body <- x[seq_len(xlen - n)]
+#' fill_linear(body, idx)
+#'
+fill_linear <- function(body, idx, ...) {
+  vec <- new_vec(body, idx)
+  all_idx <- 1:length(vec)
+  stats::approx(all_idx[-idx], vec[-idx], xout = all_idx, rule = 2, ...)$y[idx]
 }
 
 #' Fill with cubic spline interpolation
 #'
+#' @inheritParams fill_locf
+#' @param ...
+#'
+#' Further arguments passed to `\link[stats]{spline}`
+#'
+#' @template return
 #' @export
-
-fill_spline <- function(vec, body, idx) {
-  stats::spline(idx, vec, n = n, ...)$y
+#' @examples
+#' x <- c(5,3,NA,2,5)
+#' fill_spline(x, 3)
+fill_spline <- function(body, idx, ...) {
+  vec <- new_vec(body, idx)
+  n <- length(vec)
+  all_idx <- 1:n
+  stats::spline(all_idx[-idx], vec[-idx], n = n, ...)$y[idx]
 }
 
 
-# na.approx.vec <- function(x, y, xout = x, ...) {
-#   na <- is.na(y)
-#   if (sum(!na) < 2L) {
-#     yf <- rep.int(NA, length(xout))
-#     mode(yf) <- mode(y)
-#     if (any(!na)) {
-#       if (x[!na] %in% xout) {
-#         yf[xout == x[!na]] <- y[!na]
-#       }
-#     }
-#     return(yf)
-#   }
-#   if (all(!na) && (length(xout) > maxgap) && !all(xout %in%
-#                                                   x)) {
-#     xf <- sort(unique(c(x, xout)))
-#     yf <- rep.int(NA, length(xf))
-#     yf[MATCH(x, xf)] <- y
-#     x <- xf
-#     y <- yf
-#   }
-#   yf <- approx(x[!na], y[!na], xout, ...)$y
-#   if (maxgap < length(y)) {
-#     ygap <- .fill_short_gaps(y, seq_along(y), maxgap = maxgap)
-#     ix <- approx(x, seq_along(y), xout, ...)$y
-#     yx <- ifelse(is.na(ygap[floor(ix)] + ygap[ceiling(ix)]),
-#                  NA, yf)
-#     yx
-#   }
-#   else {
-#     yf
-#   }
-# }
+# Kalman filter -----------------------------------------------------------
 
-
-
+fill_kalman <- function(body, idx, ...) {
+  mod <- stats::StructTS(body)$model0
+  kal <- stats::KalmanSmooth(body, mod)
+  erg <- kal$smooth
+  msidx <- erg[idx, , drop = TRUE] %*% as.matrix(mod$Z)
+  x[idx] <- msidx
+}

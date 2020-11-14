@@ -23,6 +23,19 @@
 
 # c(100, 1600, 14400, 270400)
 
+
+filter_hp2 <- function(x, ...) {
+  need_pkg("mFilter")
+  assert_uni_ts(x)
+  dots <- rlang::dots_list(...)
+  # if(is.null(lambda)) {
+  #   lambda <- 1600
+  #   disp("Using `lambda = 1600`.")
+  # }
+  out <- mFilter::hpfilter(x, freq = lambda)$cycle
+  with_attrs(out)
+}
+
 #' Hodrick Prescot Filter
 #'
 #' This function computes the cyclical component of the Hodrick-Prescot filter.
@@ -33,25 +46,24 @@
 #'
 #' @param lambda `[positive numeric(1): 1600]`
 #'
-#' Smoothing paramter.
+#' Smoothing parameter.
 #'
 #' @template return-template
-#' @export
-#'
+#' @seealso `mFilter::hpfilter`
 filter_hp <- function(x, lambda = NULL) {
+  assert_uni_ts(x)
   if(is.null(lambda)) {
     lambda <- 1600
-    display("Using `lambda = 1600`.")
+    disp("Using `lambda = 1600`.")
   }
-  asserts(environment())
-  filter_hp_(x, lambda)
+  out <- filter_hp_(x, lambda)
+  with_attrs(out, x)
 }
 
 filter_hp_ <- function(x, lambda) {
   xmat <- as.matrix(x)
   nr <- nrow(xmat)
   imat <- diag(nr)
-  x
   Ln <- rbind(matrix(0, 1, nr), diag(1, nr - 1, nr))
   Ln <- (imat - Ln) %*% (imat - Ln)
   Q <- t(Ln[3:nr, ])
@@ -60,7 +72,7 @@ filter_hp_ <- function(x, lambda) {
   g <- t(Q) %*% xmat
   b <- solve(sigma_n + lambda * sigma_r, g)
   cycle <- c(lambda * Q %*% b)
-  with_attrs(cycle, x)
+  cycle
 }
 
 
@@ -68,32 +80,37 @@ filter_hp_ <- function(x, lambda) {
 
 #' Baxter King Filter
 #'
-#' This function computes the cyclical component of the Hodrick-Prescot filter.
+#' This function computes the cyclical component of the Baxter-King filter.
 #'
 #' @inheritParams filter_hp
 #'
 #' @param min `[numeric(1): NULL]`
 #'
+#' Minimum period of oscillation.
+#'
 #' @param max `[numeric(1): NULL]`
+#'
+#' Maximum period of oscillation.
 #'
 #' @param nfix `[numeric(1): NULL]`
 #'
-#' @param nfix `[logical(1): FALSE]`
+#' @param drift `[logical(1): FALSE]`
 #'
 #' @template return-template
-#' @export
+#'
+#' @seealso \code{\link[mFilter::bkfilter]{mFilter::bkfilter}}
 #'
 filter_bk <- function(x, min = NULL, max = NULL, nfix = NULL,
                       type = c("fixed", "variable"), drift = FALSE) {
-  asserts(environment())
+  assert_uni_ts(x)
   if (min <= max) {
-    stop("`max` must be larger than `min`")
+    stop("`max` must be larger than `min`", call. = FALSE)
   }
   if (is.null(nfix)) {
     nfix <- frequency(x) * 3
   }
   if (nfix >= n / 2) {
-    stop("fixed lag length must be < n/2")
+    stop("fixed lag length must be < n/2", call. = FALSE)
   }
   type <- match.arg(type)
   out <- filter_bk_(x, min, max, nfix= nfix, type = type, drift = drift)
@@ -101,6 +118,10 @@ filter_bk <- function(x, min = NULL, max = NULL, nfix = NULL,
 }
 
 filter_bk_ <- function(x, min, max, nfix, type, drift) {
+  if(is.null(min)) {
+
+  }
+
   a <- 2 * pi/max
   b <- 2 * pi/min
   n <- length(x)
@@ -130,6 +151,41 @@ filter_bk_ <- function(x, min, max, nfix, type, drift) {
   cycle
 }
 
+
+# Hamilton ----------------------------------------------------------------
+
+#' Hamilton Filter
+#'
+#' This function computes the cyclical component of the Hamilton filter.
+#'
+#' @inheritParams filter_hp
+#'
+#' @param n `[numeric(1): NULL]`
+#'
+#' @param horizon `[numeric(1): NULL]`
+#'
+#' @param nfix `[numeric(1): NULL]`
+#'
+#' @param nfix `[logical(1): FALSE]`
+#'
+#' @template return-template
+#' @export
+#'
+#' @seealso
+#'
+filter_hamilton <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
+  lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
+  y <- leadx_(x, h)
+  out <- filter_hamilton_(x, )
+  with_attrs(out, x)
+}
+
+filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
+  body <- unname(stats::glm(yt ~ lagmatrix)$residuals)
+  idx <- 1:(h + p - 1)
+  out <- fill_(body, idx, fill = fill, fill_fun = fill_fun)
+  out
+}
 
 #  Butterworth ------------------------------------------------------------
 
@@ -180,40 +236,6 @@ filter_bk_ <- function(x, min, max, nfix, type, drift) {
 
 
 
-# Hamilton ----------------------------------------------------------------
-
-#' Hamilton Filter
-#'
-#' This function computes the cyclical component of the Hodrick-Prescot filter.
-#'
-#' @inheritParams filter_hp
-#'
-#' @param n `[numeric(1): NULL]`
-#'
-#' @param horizon `[numeric(1): NULL]`
-#'
-#' @param nfix `[numeric(1): NULL]`
-#'
-#' @param nfix `[logical(1): FALSE]`
-#'
-#' @template return-template
-#' @export
-#'
-#' @seealso
-#'
-filter_hamilton <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
-  lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
-  y <- leadx_(x, h)
-  out <- filter_hamilton_(x, )
-  with_attrs(out, x)
-}
-
-filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
-  body <- unname(stats::glm(yt ~ lagmatrix)$residuals)
-  idx <- 1:(h + p - 1)
-  out <- fill_(body, idx, fill = fill, fill_fun = fill_fun)
-  out
-}
 
 
 # Other filters -----------------------------------------------------------

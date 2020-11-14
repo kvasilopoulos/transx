@@ -3,15 +3,15 @@
 \name{diffx-rdiffx-ldiffx}
 \alias{diffx-rdiffx-ldiffx}
 \alias{diffx}
-\alias{rdiff}
+\alias{rdiffx}
 \alias{ldiffx}
 \title{Compute lagged differnces}
 \usage{
-diffx(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...)
+diffx(x, n = 1L, order = 1L, rho = 1, fill = NA, fill_fun = NULL, ...)
 
-rdiff(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...)
+rdiffx(x, n = 1L, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...)
 
-ldiffx(x, n = 1L, order = 1L, default = NA, ...)
+ldiffx(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -26,6 +26,11 @@ Value indicating which lag to use.}
 
 Value indicating the order of the difference.}
 
+\item{rho}{\verb{[numeric(1): NULL]}
+
+Value indicating the autocorrelation parameter. The purpose of this parameter is
+to provide  quasi-differencing assuming the value falls within 0 and 1.}
+
 \item{fill}{\verb{[numeric: NA]}
 
 Value used to fill observations.}
@@ -38,5 +43,12 @@ body of the function.}
 \item{...}{Additional arguments passed on to the \code{fill_fun} function.}
 }
 \description{
-Compute lagged differnces
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Returns suitably lagged and iterated differences.
+\itemize{
+\item \code{diffx} computes simple differences.
+\item \code{rdffix} computes percentage differences.
+\item \code{ldiffx} computes logged differences.
+}
 }

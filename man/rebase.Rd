@@ -3,15 +3,40 @@
 \name{rebase}
 \alias{rebase}
 \alias{rebase_origin}
-\title{Change the base year of an index}
+\title{Change the base year}
 \usage{
 rebase(x, n = NULL)
 
 rebase_origin(x)
 }
+\arguments{
+\item{x}{\verb{[univariate vector]}
+
+Univariate vector, numeric or ts object with only one dimension.}
+
+\item{n}{\verb{[numeric(1): NULL]}
+
+The index of the new base year.}
+}
 \value{
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-descriptio goes here
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Change the base year.
+}
+\examples{
+
+x <- 3:10
+
+# New base  would be 5
+rebase(x, 5)
+
+# Or the origin
+rebase_origin(x)
+
+# Fro the base to be 100 or 0 then:
+rebase(x, 5)*100
+rebase(x, 5) - 1
 }

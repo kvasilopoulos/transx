@@ -40,14 +40,22 @@
 #' @importFrom stats lag
 #' @importFrom rlang as_function
 #'
-#' @template return-template
+#' @template return
 #'
 #' @name leadx-lagx
 #' @rdname leadx-lagx
 #' @export
+#' @examples
+#'
+#' x <- c(5,3,2,2,5)
+#' lagx(x)
+#' lagx(x, fill_fun = fill_nocb)
+#'
+#' leadx(x)
+#' leadx(x, fill_fun = fill_locf)
 lagx <- function(x, n = 1L, fill = NA, fill_fun = NULL, ...) {
-  asserts(x, n)
-  asserts_fill(n, fill, fill_fun)
+  # assert_lx(x, n)
+  # asserts_fill(n, fill, fill_fun)
   out <- lagx_(x, n, fill = fill, fill_fun = fill_fun, ...)
   with_attrs(out, x)
 }
@@ -55,6 +63,7 @@ lagx <- function(x, n = 1L, fill = NA, fill_fun = NULL, ...) {
 lagx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
   xlen <- length(x)
   n <- pmin(n, xlen)
+  # here the idx and the subseting do not match
   idx <- 1:n
   body <- x[seq_len(xlen - n)]
   out <- fill_(body, idx, fill, fill_fun, ...)
@@ -64,7 +73,7 @@ lagx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
 #' @rdname leadx-lagx
 #' @export
 leadx <- function(x, n = 1L, fill = NA, fill_fun = NULL, ...) {
-  asserts(x, n)
+  assert_lx(x, n)
   asserts_fill(n, fill, fill_fun)
   out <- leadx_(x, n, fill = fill, fill_fun = fill_fun)
   with_attrs(out, x)
@@ -73,7 +82,7 @@ leadx <- function(x, n = 1L, fill = NA, fill_fun = NULL, ...) {
 leadx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
   xlen <- length(x)
   n <- pmin(n, xlen)
-  body <- x[-seq_len(n)]
+  body <- x[-seq_len(n)] # no need for body_ here
   idx <- (xlen - n + 1):xlen
   fill_(body, idx, fill, fill_fun, ...)
 }
@@ -83,7 +92,11 @@ leadx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
 
 #' Compute lagged differnces
 #'
-#' @description Returns suitably lagged and iterated differences.
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Returns suitably lagged and iterated differences.
 #'
 #' * `diffx` computes simple differences.
 #' * `rdffix` computes percentage differences.
@@ -107,7 +120,7 @@ leadx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
 #' @name diffx-rdiffx-ldiffx
 #' @export
 diffx <- function(x, n = 1L, order = 1L, rho = 1, fill = NA, fill_fun = NULL, ...) {
-  asserts(x, n)
+  asserts_diff(x, n, order = order)
   asserts_fill(n, fill, fill_fun)
   out <- diffx_(x, n, order = order, fill = fill, fill_fun = fill_fun, ...)
   with_attrs(out, x)
@@ -118,20 +131,22 @@ diffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...
   n <- pmin(n, xlen)
   idx <- 1:n
   for (i in seq_len(order))  {
-    body <- x - rho*lagx_(x, n)
+    nx <- x - rho*lagx_(x, n)
   }
-  fill_(body[-idx], idx, fill, fill_fun)
+  body <- body_(nx, idx)
+  fill_(body, idx, fill, fill_fun)
 }
 
 #' @rdname diffx-rdiffx-ldiffx
 #' @export
-rdiff <- function(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...) {
-  asserts(x, n, order = order)
+rdiffx <- function(x, n = 1L, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...) {
+  asserts_diff(x, n, order = order)
   asserts_fill(n, fill, fill_fun)
   out <- rdiffx_(x, n, order = order, fill = fill, fill_fun = fill_fun, ...)
   with_attrs(out, x)
 }
 
+# TODO needs work
 rdiffx_ <- function(x, n, order = 1L, fill = NA, fill_fun = NULL, ...) {
   xlen <- length(x)
   n <- pmin(n, xlen)
@@ -140,19 +155,19 @@ rdiffx_ <- function(x, n, order = 1L, fill = NA, fill_fun = NULL, ...) {
   for (i in seq_len(order))  {
     body <- diffx_(x, n)/lagx_(x, n)
   }
-  idx_fill(body, idx, fill, fill_fun, ...)
+  fill_(body, idx, fill, fill_fun, ...)
 }
 
 #' @rdname diffx-rdiffx-ldiffx
 #' @export
-ldiffx <- function(x, n = 1L, order = 1L, default = NA, ...) {
-  asserts(x, n, order = order)
+ldiffx <- function(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...) {
+  asserts_diff(x, n, order = order)
   asserts_fill(n, fill, fill_fun)
-  out <- ldiff_(x, n, order = order, fill = fill, fill_fun = fill_fun, ...)
+  out <- ldiffx_(x, n, order = order, fill = fill, fill_fun = fill_fun, ...)
   with_attrs(out, x)
 }
 
-ldiff_ <- function(x, n, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...) {
+ldiffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   idx <- 1:n
@@ -166,24 +181,21 @@ ldiff_ <- function(x, n, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...
 # Rescaling ---------------------------------------------------------------
 
 
-#' Remove the measure of centrality from the series
+#' Removes measure of centrality from the series
 #'
-#' @desciption removes the mean or the median from the series.
+#' @description
 #'
-#' @param x `[univariate vector]`
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
 #'
-#' Univariate vector, numeric or ts object with only one dimension.
+#' Removes the mean, the median or the mode from the series.
 #'
-#' @param na.rm `[logical(1): getOption("transx.na.rm")]`
-#'
-#' A value indicating whether NA values should be stripped before the computation proceeds.
-#'
+#' @template x-na
+#' @template return
 #' @name demean-demedian
 #' @export
-#' @template return-template
 demean <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   out <- demean_(x)
   with_attrs(out, x)
 }
@@ -192,33 +204,56 @@ demean_ <- function(x) {
   x - mean(x)
 }
 
-
 #' @rdname demean-demedian
+#' @export
 demedian <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   out <- x - median(x)
   with_attrs(out, x)
 }
 
+#' @rdname demean-demedian
+#' @export
 demode <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- na_rm_if(x, na.rm)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
   out <- x - modex(x)
   with_attrs(out, x)
 }
 
 
-
-#' Change the base year of an index
+#' Change the base year
 #'
-#' @description goes here
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Change the base year.
 #'
 #' @name rebase
+#' @template x
+#' @param n `[numeric(1): NULL]`
+#'
+#' The index of the new base year.
+#'
+#' @template return
 #' @export
-#' @template return-template
+#' @examples
+#'
+#' x <- 3:10
+#'
+#' # New base  would be 5
+#' rebase(x, 5)
+#'
+#' # Or the origin
+#' rebase_origin(x)
+#'
+#' # Fro the base to be 100 or 0 then:
+#' rebase(x, 5)*100
+#' rebase(x, 5) - 1
 rebase <- function(x, n = NULL) {
-  asserts(x, n)
+  assert_lx(x, n)
   out <- rebase_(x, n)
   with_attrs(out, x)
 }
@@ -228,108 +263,122 @@ rebase_ <- function(x, n) {
 }
 
 #' @rdname rebase
+#' @export
 rebase_origin <- function(x) {
-  asserts(x, n)
+  assert_lx(x, 1)
   out <- rebase_(x, n = 1L)
   with_attrs(out, x)
 }
 
 
-#' Normalise
+#' Rescale
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#'
+#' @details To rescale a range between an arbitrary set of values \[a, b\], the formula becomes:
 #'
 #' @inheritParams demean-demedian
+#' @param to `[numeric(2): NULL]`
 #'
-#' @name norm
+#' Values that will determine the output range.
+#'
+#' @template return
+#'
 #' @export
-#' @template return-template
-norm_minmax <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- na_rm_if(x, na.rm)
-  out <- norm_range(x, min = 0, max = 1)
-  with_attrs(out, x)
-}
-
-#' @rdname norm
-norm_logistic <- function(x) {
-  asserts(x)
-  out <- 1/(1 + exp(-x))
-  with_attrs(out, x)
-}
-
-#' @rdname norm
-norm_range <- function(x, min, max) {
-  min + (max - min)/(max(x) - min(x))*(x - min(x))
-}
-
-
-#' Standarize
 #'
-#' @inheritParams demean-demedian
+#' @examples
+#' x <- c(10,5,1,-2)
+#' scale_range(x, c(-1, 2))
+#' scale_minmax(x)
+scale_range <- function(x, to, na.rm = getOption("transx.na.rm")) {
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
+  out <- scale_range_(x, a = to[1], b = to[2])
+  with_attrs(out, x)
+}
+
+#' @rdname scale_range
+#' @export
+scale_minmax <- function(x, na.rm = getOption("transx.na.rm")) {
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
+  out <- scale_range_(x, a = 0, b = 1)
+  with_attrs(out, x)
+}
+
+#' @rdname scale_range
+#' @export
+scale_unit_len <- function(x, na.rm = getOption("transx.na.rm")) {
+  assert_uni_ts(x)
+  out <- x/norm_vec(x)
+  with_attrs(out, x)
+}
+
+norm_vec <- function(x) sqrt(sum(x^2))
+
+scale_range_ <- function(x, a, b) {
+  a + (b - a)/(max(x) - min(x))*(x - min(x))
+}
+
+
+
+
+# experimental ------------------------------------------------------------
+
+
+
+#' Standarization
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#'
+#' Convert number of standard deviations by which the value of a raw score
+#' is above or below the mean value of what is being observed or measured.
+#'
+#' @template x-na
+#' @template return
 #'
 #' @name std
 #' @export
-#' @template return-template
+#'
+#' @examples
+#' x <- c(10,2,5,3)
+#' std_mean(x)
+#' scale(x)
+#'
+#' std_median(x)
 std_mean  <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- na_rm_if(x, na.rm)
-  out <- std_mean_(x)
-  with_attr(out, x)
+  assert_uni_ts(x)
+  x <- with_na_rm(x, na.rm)
+  out <- zscore_(x)
+  with_attrs(out, x)
 }
 
-std_mean_ <- function(x) {
-  (x - meanx(x))/sdx(x)
-}
 
 #' @rdname std
-std_median <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- with_na_rm(x, na.rm)
-  out <- std_median_(x)
-  with_attr(out, x)
-}
-
-std_median_ <- function(x) {
-  (x - median(x) )/ mad(x)
-}
-
-
-#' Score transformation
-#'
-#' @name score
 #' @export
-#' @seealso outlier::scores
-#' @template return-template
-score_z <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
+std_median <- function(x, na.rm = getOption("transx.na.rm")) {
+  assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)
-  out <- std_mean_(x)
-  with_attr(out, x)
+  out <- madscore_(x)
+  with_attrs(out, x)
 }
 
-#' @rdname score
-score_mad <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- with_na_rm(x, na.rm)
-  out <- std_median_(x)
-  with_attr(out, x)
-}
+# std_moment <- function(x) {
+  # https://en.wikipedia.org/wiki/Standardized_moment#:~:text=In%20probability%20theory%20and%20statistics,renders%20the%20moment%20scale%20invariant.
+  #1st = 0
+  #2nd = 1
+  #3rd = skewness
+  #4th = curtosis
+# }
 
-#' @rdname score
-score_t <- function(x, na.rm = getOption("transx.na.rm")) {
-  asserts(x)
-  x <- with_na_rm(x, na.rm)
-  n <- length(x)
-  t <- std_mean_(x)
-  out <- (t * sqrt(n - 2))/sqrt(n - 1 - t^2)
-  with_attr(out, x)
-}
 
-#' @rdname score
-score_chisq <- function(x, na.rm = getOption("transx.na.rm")){
-  asserts(x)
-  x <- with_na_rm(x, na.rm)
-  out <- (x - mean(x))^2/var(x)
-  with_attr(out, x)
-}
+
+
 
 

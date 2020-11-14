@@ -135,7 +135,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Detect outliers with upper and lower threshold</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/03-outliers.R'><code>R/03-outliers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/04-outliers.R'><code>R/04-outliers.R</code></a></small>
     <div class="hidden name"><code>out_threshold.Rd</code></div>
     </div>
 
@@ -143,23 +143,48 @@
     <p>Detect outliers with upper and lower threshold</p>
     </div>
 
-    <pre class="usage"><span class='fu'>out_threshold</span>(<span class='kw'>x</span>, tlow = <span class='kw'>NULL</span>, thigh = <span class='kw'>NULL</span>, fill = <span class='fl'>NA</span>, fill_fun = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>out_threshold</span><span class='op'>(</span><span class='va'>x</span>, tlow <span class='op'>=</span> <span class='cn'>NULL</span>, thigh <span class='op'>=</span> <span class='cn'>NULL</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>mpla</p></td>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
+      <th>tlow</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>The lower threshold.</p></td>
+    </tr>
+    <tr>
+      <th>thigh</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>The upper threshold.</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p><code>[numeric: NA]</code></p>
+<p>Value used to fill observations.</p></td>
+    </tr>
+    <tr>
+      <th>fill_fun</th>
+      <td><p><code>[function: NULL]</code></p>
+<p>Function used to fill observations. Uses the remaining observations as the
+body of the function.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a vector with the same class and attributes as the input vector.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>100</span>)
-<span class='fu'>out_trim</span>(<span class='kw'>x</span>, tlow = <span class='fl'>0</span>, fill = <span class='fl'>0</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in out_trim(x, tlow = 0, fill = 0): could not find function "out_trim"</span></div><div class='input'><span class='fu'>out_trim</span>(<span class='kw'>x</span>, thigh = <span class='fl'>9</span>, fill_fun = <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>x</span>, <span class='fl'>0.9</span>))
-</div><div class='output co'>#&gt; <span class='error'>Error in out_trim(x, thigh = 9, fill_fun = function(x) quantile(x, 0.9)): could not find function "out_trim"</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='fu'>out_threshold</span><span class='op'>(</span><span class='va'>x</span>, tlow <span class='op'>=</span> <span class='fl'>0</span>, fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'>out_threshold</span><span class='op'>(</span><span class='va'>x</span>, thigh <span class='op'>=</span> <span class='fl'>9</span>, fill_fun <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.9</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5 6</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -3,12 +3,21 @@
 \name{modex}
 \alias{modex}
 \alias{modex_int}
-\title{Double}
+\title{Mode value}
 \usage{
 modex(x, na.rm = getOption("transx.na.rm"))
 
 modex_int(x, na.rm = getOption("transx.na.rm"))
 }
+\arguments{
+\item{x}{\verb{[univariate vector]}
+
+Univariate vector, numeric or ts object with only one dimension.}
+
+\item{na.rm}{\verb{[logical(1): getOption("transx.na.rm")]}
+
+A value indicating whether NA values should be stripped before the computation proceeds.}
+}
 \description{
-Double
+Compute the sample median.
 }

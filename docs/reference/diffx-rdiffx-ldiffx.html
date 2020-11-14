@@ -47,7 +47,12 @@
 
 
 <meta property="og:title" content="Compute lagged differnces — diffx-rdiffx-ldiffx" />
-<meta property="og:description" content="Compute lagged differnces" />
+<meta property="og:description" content="Returns suitably lagged and iterated differences.
+diffx computes simple differences.
+rdffix computes percentage differences.
+ldiffx computes logged differences.
+
+" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -140,14 +145,19 @@
     </div>
 
     <div class="ref-description">
-    <p>Compute lagged differnces</p>
+    <p>Returns suitably lagged and iterated differences.</p><ul>
+<li><p><code>diffx</code> computes simple differences.</p></li>
+<li><p><code>rdffix</code> computes percentage differences.</p></li>
+<li><p><code>ldiffx</code> computes logged differences.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>diffx</span>(<span class='kw'>x</span>, n = <span class='fl'>1L</span>, order = <span class='fl'>1L</span>, fill = <span class='fl'>NA</span>, fill_fun = <span class='kw'>NULL</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>diffx</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, rho <span class='op'>=</span> <span class='fl'>1</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>rdiff</span>(<span class='kw'>x</span>, n = <span class='fl'>1L</span>, order = <span class='fl'>1L</span>, fill = <span class='fl'>NA</span>, fill_fun = <span class='kw'>NULL</span>, <span class='kw'>...</span>)
+<span class='fu'>rdiff</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>ldiffx</span>(<span class='kw'>x</span>, n = <span class='fl'>1L</span>, order = <span class='fl'>1L</span>, default = <span class='fl'>NA</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>ldiffx</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,6 +176,12 @@
       <th>order</th>
       <td><p><code>[positive integer(1): 1L]</code></p>
 <p>Value indicating the order of the difference.</p></td>
+    </tr>
+    <tr>
+      <th>rho</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>Value indicating the autocorrelation parameter. The purpose of this parameter is
+to provide  quasi-differencing assuming the value falls within 0 and 1.</p></td>
     </tr>
     <tr>
       <th>fill</th>

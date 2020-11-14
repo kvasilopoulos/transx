@@ -184,19 +184,19 @@
       <tr>
         
         <td>
-          <p><code><a href="demean-demedian.html">demean()</a></code> <code><a href="demean-demedian.html">demedian()</a></code> </p>
+          <p><code><a href="demean-demedian.html">demean()</a></code> <code><a href="demean-demedian.html">demedian()</a></code> <code><a href="demean-demedian.html">demode()</a></code> </p>
         </td>
-        <td><p>Some title</p></td>
+        <td><p>Removes measure of centrality from the series</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="rebase.html">rebase()</a></code> <code><a href="rebase.html">rebase_origin()</a></code> </p>
         </td>
-        <td><p>Change the base year of an index</p></td>
+        <td><p>Change the base year</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="norm.html">norm_minmax()</a></code> <code><a href="norm.html">norm_logistic()</a></code> </p>
+          <p><code><a href="scale_range.html">scale_range()</a></code> <code><a href="scale_range.html">scale_minmax()</a></code> <code><a href="scale_range.html">scale_unit_len()</a></code> </p>
         </td>
         <td><p>Normalise</p></td>
       </tr><tr>
@@ -204,8 +204,21 @@
         <td>
           <p><code><a href="std.html">std_mean()</a></code> <code><a href="std.html">std_median()</a></code> </p>
         </td>
-        <td><p>Standarize</p></td>
-      </tr><tr>
+        <td><p>Standarization</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-score-transformations" class="hasAnchor"><a href="#section-score-transformations" class="anchor"></a>Score Transformations</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="score.html">score_z()</a></code> <code><a href="score.html">score_mad()</a></code> <code><a href="score.html">score_t()</a></code> <code><a href="score.html">score_chisq()</a></code> </p>
@@ -215,7 +228,56 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-deterministic-trend" class="hasAnchor"><a href="#section-deterministic-trend" class="anchor"></a>Deterministic Trend</h2>
+          <h2 id="section-root-power-transformations" class="hasAnchor"><a href="#section-root-power-transformations" class="anchor"></a>Root &amp; Power Transformations</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="root_cubic.html">root_cubic()</a></code> </p>
+        </td>
+        <td><p>Cubic root transformation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="root_sq.html">root_sq()</a></code> </p>
+        </td>
+        <td><p>Square root transformation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pow.html">pow()</a></code> </p>
+        </td>
+        <td><p>Raise in the power</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pow_boxcox.html">pow_boxcox()</a></code> </p>
+        </td>
+        <td><p>Some title</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pow_manly.html">pow_manly()</a></code> </p>
+        </td>
+        <td><p>Manly(1971)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pow_yj.html">pow_yj()</a></code> </p>
+        </td>
+        <td><p>Yeo and Johnson(2000)</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-deterministictrend" class="hasAnchor"><a href="#section-deterministictrend" class="anchor"></a>DeterministicTrend</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -229,38 +291,7 @@
         <td>
           <p><code><a href="dtrend.html">dtrend_lin()</a></code> <code><a href="dtrend.html">dtrend_quad()</a></code> <code><a href="dtrend.html">dtrend_poly()</a></code> </p>
         </td>
-        <td><p>Deterministic Trends</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-cycle-trend-filtering" class="hasAnchor"><a href="#section-cycle-trend-filtering" class="anchor"></a>Cycle Trend Filtering</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="filter_bk.html">filter_bk()</a></code> </p>
-        </td>
-        <td><p>Baxter King Filter</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="filter_hamilton.html">filter_hamilton()</a></code> </p>
-        </td>
-        <td><p>Hamilton Filter</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="filter_hp.html">filter_hp()</a></code> </p>
-        </td>
-        <td><p>Hodrick Prescot Filter</p></td>
+        <td><p>Deterministic Trend</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -289,6 +320,18 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="out_score_z.html">out_score_z()</a></code> </p>
+        </td>
+        <td><p>Detect outliers with zscore</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="out_score_zrob.html">out_score_zrob()</a></code> </p>
+        </td>
+        <td><p>Detect outliers Iglewicz and Hoaglin (1993) robust z-score method</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="out_threshold.html">out_threshold()</a></code> </p>
         </td>
         <td><p>Detect outliers with upper and lower threshold</p></td>
@@ -298,18 +341,6 @@
           <p><code><a href="out_winsorise.html">out_winsorise()</a></code> </p>
         </td>
         <td><p>Winsorize</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="out_zscore.html">out_zscore()</a></code> </p>
-        </td>
-        <td><p>Detect outliers with zscore</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="out_zscore_rob.html">out_zscore_rob()</a></code> </p>
-        </td>
-        <td><p>Detect outliers Iglewicz and Hoaglin (1993) robust z-score method</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -326,15 +357,21 @@
       <tr>
         
         <td>
-          <p><code><a href="fill_linear.html">fill_linear()</a></code> </p>
-        </td>
-        <td><p>Fill with linear approximation</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="fill_locf.html">fill_locf()</a></code> </p>
         </td>
         <td><p>Fill with <code>Last Observation Carried Forward</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fill_nocb.html">fill_nocb()</a></code> </p>
+        </td>
+        <td><p>Next observation carried backwards</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fill_linear.html">fill_linear()</a></code> </p>
+        </td>
+        <td><p>Fill with linear approximation</p></td>
       </tr><tr>
         
         <td>
@@ -357,15 +394,21 @@
       <tr>
         
         <td>
+          <p><code><a href="gmean.html">gmean()</a></code> </p>
+        </td>
+        <td><p>Geometric Mean value</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="modex.html">modex()</a></code> <code><a href="modex.html">modex_int()</a></code> </p>
         </td>
-        <td><p>Double</p></td>
+        <td><p>Mode value</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="skewness.html">skewness()</a></code> <code><a href="skewness.html">kurtosis()</a></code> </p>
         </td>
-        <td><p>Title</p></td>
+        <td><p>Skewness/Kurtosis Value</p></td>
       </tr>
     </tbody>
     </table>

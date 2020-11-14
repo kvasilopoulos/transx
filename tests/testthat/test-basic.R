@@ -1,7 +1,3 @@
-test_that("fill", {
-
-})
-
 
 test_that("fill_fun functionality", {
   vec <- c(1, NA, 2)
@@ -23,6 +19,7 @@ test_that("lag & leadx", {
 
   expect_equal(leadx(vec), c(5, NA, 4, 2, NA))
   expect_equal(leadx(vec, fill = 2), c(5, NA, 4, 2, 2))
-  expect_equal(leadx(vec, fill_fun = fill_nocb))
+  # expect_equal(leadx(vec, fill_fun = fill_locf))
 
 })
+

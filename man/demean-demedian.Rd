@@ -4,11 +4,14 @@
 \alias{demean-demedian}
 \alias{demean}
 \alias{demedian}
-\title{Some title}
+\alias{demode}
+\title{Removes measure of centrality from the series}
 \usage{
 demean(x, na.rm = getOption("transx.na.rm"))
 
 demedian(x, na.rm = getOption("transx.na.rm"))
+
+demode(x, na.rm = getOption("transx.na.rm"))
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -23,5 +26,7 @@ A value indicating whether NA values should be stripped before the computation p
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Some title
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Removes the mean, the median or the mode from the series.
 }

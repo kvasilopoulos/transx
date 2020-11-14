@@ -3,12 +3,21 @@
 \name{skewness}
 \alias{skewness}
 \alias{kurtosis}
-\title{Title}
+\title{Skewness/Kurtosis Value}
 \usage{
 skewness(x, na.rm = getOption("transx.na.rm"))
 
 kurtosis(x, na.rm = getOption("transx.na.rm"))
 }
+\arguments{
+\item{x}{\verb{[univariate vector]}
+
+Univariate vector, numeric or ts object with only one dimension.}
+
+\item{na.rm}{\verb{[logical(1): getOption("transx.na.rm")]}
+
+A value indicating whether NA values should be stripped before the computation proceeds.}
+}
 \description{
-Descreiption
+Compute the sample skewness/kurtosis
 }

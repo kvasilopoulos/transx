@@ -45,7 +45,7 @@ filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
 #'
 #' The frequency of the dataset.
 #'
-#' @oaram type`[character: "rot"]`
+#' @param type `[character: "rot"]`
 #'
 #' The methodology to select lambda.
 #'

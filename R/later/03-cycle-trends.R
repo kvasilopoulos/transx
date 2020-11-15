@@ -160,9 +160,9 @@ filter_bk_ <- function(x, min, max, nfix, type, drift) {
 #'
 #' @inheritParams filter_hp
 #'
-#' @param n `[numeric(1): NULL]`
+#' @param n `[numeric(1): 4]`
 #'
-#' @param horizon `[numeric(1): NULL]`
+#' @param horizon `[numeric(1): 8]`
 #'
 #' @param nfix `[numeric(1): NULL]`
 #'

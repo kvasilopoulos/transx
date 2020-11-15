@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Compute lagged differnces — diffx-rdiffx-ldiffx" />
-<meta property="og:description" content="Returns suitably lagged and iterated differences.
+<meta property="og:description" content="
+Returns suitably lagged and iterated differences.
 diffx computes simple differences.
 rdffix computes percentage differences.
 ldiffx computes logged differences.
@@ -145,7 +146,8 @@ ldiffx computes logged differences.
     </div>
 
     <div class="ref-description">
-    <p>Returns suitably lagged and iterated differences.</p><ul>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Returns suitably lagged and iterated differences.</p><ul>
 <li><p><code>diffx</code> computes simple differences.</p></li>
 <li><p><code>rdffix</code> computes percentage differences.</p></li>
 <li><p><code>ldiffx</code> computes logged differences.</p></li>
@@ -155,7 +157,7 @@ ldiffx computes logged differences.
 
     <pre class="usage"><span class='fu'>diffx</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, rho <span class='op'>=</span> <span class='fl'>1</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>rdiff</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>rdiffx</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, rho <span class='op'>=</span> <span class='cn'>NULL</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>ldiffx</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>1L</span>, order <span class='op'>=</span> <span class='fl'>1L</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 

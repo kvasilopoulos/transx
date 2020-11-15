@@ -27,38 +27,47 @@ body_ <- function(x, idx) {
 # remake with new functionality
 # more tests and error-handling
 # 4 cases
+# 1. numeric(1)
+# 2. numeric(n)
+# 3. mean
+# 4. fill_locf(body, idx fail)
 
-#' @importFrom rlang as_function is_formula
-fill_  <- function(body, idx, fill, fill_fun, ...) {
+#' @importFrom rlang as_function is_formula is_function
+#' @noRd
+#' @examples
+#' fill_(c(2,3,4,5), 1, mean)
+#'
+#'
+fill_  <- function(body, idx, fill) {
 
-  # if(!check_idx(idx)) {
-  #   disp_info("fill option is not available")
-  #   return(seq_along(body))
-  # }
+  if(!check_idx(idx)) {
+    disp_info("fill option is not available")
+    return(seq_along(body))
+  }
   # if(is_formula(fill_fun)) {
   #   fill_fun <- as_function(fill_fun)
   # }
-
 
   if(is_formula(fill)) {
     fill <- as_function(fill)
   }
   vec <- new_vec(body, idx)
   if(is_function(fill)) {
-    if(is.null(formals(fill$idx))) {
-      vec[idx] <- fill(body, ...)
+    if(is.null(formals(fill))) {
+      vec[idx] <- fill(body)
     }else {
-      vec[idx] <- fill(body, idx, fail = fill, ...)
+      vec[idx] <- fill(body, idx, fail = fill)
     }
   }else{
     vec[idx] <- fill
   }
+  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame())
   return(vec)
 
 
   # vec[idx] <- fill(body, idx, fail = NA, ...)
   # vec
-  return(list(vec, idx, body, fill, fill(body, idx, fail = 100)))
+  # return(list(vec, idx, body, fill, fill(body, idx, fail = 100)))
 
   # vec <- new_vec(body, idx)
   # if (!is.null(fill_fun)) {
@@ -70,7 +79,7 @@ fill_  <- function(body, idx, fill, fill_fun, ...) {
   # }else{
   #   vec[idx] <- fill # numeric here
   # }
-  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame())
+
   vec
 }
 
@@ -115,7 +124,7 @@ new_vec <- function(body, idx, default = NA_real_) {
 
 # fill functions ----------------------------------------------------------
 
-#' Fill with `Last Observation Carried Forward`
+#' Fill with "Last Observation Carried Forward"
 #'
 #'
 #' @param body `[numeric vector]`
@@ -196,9 +205,7 @@ last <- function(x) {
 
 
 
-# TODO does this work??
-
-#' Next observation carried backwards
+#' Fill with "Next observation carried backwards"
 #'
 #' @inheritParams fill_locf
 #'
@@ -246,7 +253,7 @@ fill_nocb <- function(body, idx, fail = NA){
 # }
 
 
-#' Fill with linear approximation
+#' Fill with "linear approximation"
 #'
 #' @inheritParams fill_locf
 #' @param ...
@@ -270,7 +277,7 @@ fill_linear <- function(body, idx, ...) {
   stats::approx(all_idx[-idx], vec[-idx], xout = all_idx, rule = 2, ...)$y[idx]
 }
 
-#' Fill with cubic spline interpolation
+#' Fill with "cubic spline interpolation"
 #'
 #' @inheritParams fill_locf
 #' @param ...

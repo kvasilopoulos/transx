@@ -150,15 +150,40 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>mpla</p></td>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
     </tr>
     <tr>
-      <th>pt</th>
-      <td><p>percentile</p></td>
+      <th>pt_low</th>
+      <td><p>the lowest quantile</p></td>
+    </tr>
+    <tr>
+      <th>pt_high</th>
+      <td><p>the highest quantile</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p><code>[numeric: NA]</code></p>
+<p>Value used to fill observations.</p></td>
+    </tr>
+    <tr>
+      <th>fill_fun</th>
+      <td><p><code>[function: NULL]</code></p>
+<p>Function used to fill observations. Uses the remaining observations as the
+body of the function.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments passed to <code>quantile</code>.</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='fu'>out_pt</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in fill_(body, idx, fill, fill_fun, ...): unused argument (fill_fun)</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

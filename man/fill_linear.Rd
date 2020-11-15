@@ -2,7 +2,7 @@
 % Please edit documentation in R/fill.R
 \name{fill_linear}
 \alias{fill_linear}
-\title{Fill with linear approximation}
+\title{Fill with "linear approximation"}
 \usage{
 fill_linear(body, idx, ...)
 }
@@ -21,7 +21,7 @@ the index to replace with.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with linear approximation
+Fill with "linear approximation"
 }
 \examples{
 x <- c(5,3,2,2,5)

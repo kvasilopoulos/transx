@@ -2,9 +2,9 @@
 % Please edit documentation in R/fill.R
 \name{fill_locf}
 \alias{fill_locf}
-\title{Fill with \verb{Last Observation Carried Forward}}
+\title{Fill with "Last Observation Carried Forward"}
 \usage{
-fill_locf(body, idx, fail = fill)
+fill_locf(body, idx, fail = NA)
 }
 \arguments{
 \item{body}{\verb{[numeric vector]}
@@ -15,7 +15,7 @@ The body of the vector.}
 
 the index to replace with.}
 
-\item{default}{\verb{[numeric(1) or numeric vector: fill]}
+\item{fail}{\verb{[numeric(1) or numeric vector: fill]}
 
 In case it fails to fill some values.}
 }
@@ -23,7 +23,7 @@ In case it fails to fill some values.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with \verb{Last Observation Carried Forward}
+Fill with "Last Observation Carried Forward"
 }
 \examples{
 x <- c(5,3,2,2,5)

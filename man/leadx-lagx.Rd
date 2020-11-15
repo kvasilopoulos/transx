@@ -6,7 +6,7 @@
 \alias{leadx}
 \title{Compute lagged or leading values}
 \usage{
-lagx(x, n = 1L, fill = NA, fill_fun = NULL, ...)
+lagx(x, n = 1L, fill = NA, ...)
 
 leadx(x, n = 1L, fill = NA, fill_fun = NULL, ...)
 }
@@ -23,12 +23,12 @@ Value indicating the number of positions to lead or lag by.}
 
 Value used to fill observations.}
 
+\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
+
 \item{fill_fun}{\verb{[function: NULL]}
 
 Function used to fill observations. Uses the remaining observations as the
 body of the function.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
@@ -45,10 +45,10 @@ however, to reduce dependecies they are not imported.
 }
 \examples{
 
-vec <- c(5,3,2,2,5)
-lagx(vec)
-lagx(vec, fill_fun = fill_nocb)
+x <- c(5,3,2,2,5)
+lagx(x)
+lagx(x, fill_fun = fill_nocb)
 
-leadx(vec)
-leadx(vec, fill_fun = fill_locf)
+leadx(x)
+leadx(x, fill_fun = fill_locf)
 }

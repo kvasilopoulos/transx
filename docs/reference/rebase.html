@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Change the base year — rebase" />
-<meta property="og:description" content="Change the" />
+<meta property="og:description" content="
+Change the base year." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -140,7 +141,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Change the</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Change the base year.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
@@ -176,7 +178,7 @@
 #&gt; [8] 1.4285714</div><div class='input'>
 <span class='co'># Or the origin</span>
 <span class='fu'>rebase_origin</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in assert_lx(x, n): object 'n' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; [1] 1.000000 1.333333 1.666667 2.000000 2.333333 2.666667 3.000000 3.333333</div><div class='input'>
 <span class='co'># Fro the base to be 100 or 0 then:</span>
 <span class='fu'>rebase</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>
 </div><div class='output co'>#&gt; [1]  42.85714  57.14286  71.42857  85.71429 100.00000 114.28571 128.57143

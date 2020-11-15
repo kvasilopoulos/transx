@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Winsorize — out_winsorise • transx</title>
+<title>Selecting lambda — select_lambda • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Winsorize — out_winsorise" />
-<meta property="og:description" content="Replace extremely values that are defined by min and max." />
+<meta property="og:title" content="Selecting lambda — select_lambda" />
+<meta property="og:description" content="Approaches to selecting lambda." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,51 +134,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Winsorize</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/04-outliers.R'><code>R/04-outliers.R</code></a></small>
-    <div class="hidden name"><code>out_winsorise.Rd</code></div>
+    <h1>Selecting lambda</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/07-filter.R'><code>R/07-filter.R</code></a></small>
+    <div class="hidden name"><code>select_lambda.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Replace extremely values that are defined by <code>min</code> and <code>max</code>.</p>
+    <p>Approaches to selecting lambda.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>out_winsorise</span><span class='op'>(</span><span class='va'>x</span>, min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.05</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>select_lambda</span><span class='op'>(</span>
+  freq <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"quarterly"</span>, <span class='st'>"annual"</span>, <span class='st'>"monthly"</span>, <span class='st'>"weekly"</span><span class='op'>)</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"rot"</span>, <span class='st'>"ru2002"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
-<span class='fu'>out_winsorize</span><span class='op'>(</span><span class='va'>x</span>, min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.05</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p><code>[univariate vector]</code></p>
-<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td><p><code>[numeric(1): quantile(x, 0.05)]</code></p>
-<p>The lower bound, all values lower than this will be replaced by this value.</p></td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td><p><code>[numeric(1): quantile(x, 0.95)]</code></p>
-<p>The upper bound, all values above than this will be replaced by this value.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <p>Rule of thumb is from Hodrick and Prescot (1997):</p><ul>
+<li><p>Lambda = 100*(number of periods in a year)^2</p></li>
+</ul>
+<ul>
+<li><p>Annual data = 100 x 1^2 = 100</p></li>
+<li><p>Quarterly data = 100 x 4^2 = 1,600</p></li>
+<li><p>Monthly data = 100 x 12^2 = 14,400</p></li>
+<li><p>Weekly data = 100 x 52^2 = 270,400</p></li>
+<li><p>Daily data = 100 x 365^2 = 13,322,500</p></li>
+</ul>
 
-    <p>Returns a vector with the same class and attributes as the input vector.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+<p>Ravn and Uhlig (2002) state that lambda  should vary by the fourth power of the frequency observation ratio;</p><ul>
+<li><p>Lambda = 6.25 x (number of periods in a year)^4</p></li>
+</ul>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/robustHD/man/winsorize.html'>winsorize</a></code> <code><a href='https://andrisignorell.github.io/DescTools/reference/Winsorize.html'>Winsorize</a></code></p></div>
+<p>Thus, the rescaled default values for lambda are:</p><ul>
+<li><p>Annual data = 1600 x 1^4 = 6.25</p></li>
+<li><p>Quarterly data = 1600 x 4^4= 1600</p></li>
+<li><p>Monthly data = 1600 x 12^4= 129,600</p></li>
+<li><p>Weekly data = 1600 x 12^4 = 33,177,600</p></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>100</span><span class='op'>)</span>
-<span class='fu'>out_winsorise</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1]  1.0  3.0 -0.5  5.0 10.0 77.5</div><div class='input'>
-</div></pre>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Hodrick, R. J., &amp; Prescott, E. C. (1997). Postwar US business cycles:
+an empirical investigation. Journal of Money, credit, and Banking, 1-16.</p>
+<p>Ravn, M. O., &amp; Uhlig, H. (2002). On adjusting the Hodrick-Prescott
+filter for the frequency of observations. Review of economics and statistics, 84(2), 371-376.</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

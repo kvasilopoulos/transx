@@ -27,13 +27,16 @@ the remaining observations as the body of the argument.
 
 -   The input and the output will always be a numeric vector
 -   The output retains the same length as the input
--   Uses a filling logic, where `fill` and `fill_fun` are used to keep
-    the length of vector identical
+-   Uses a filling logic, where `fill` is used to keep the length of
+    vector identical
 
-Additionally,
+Optional,
 
--   `na.rm  = TRUE` is the default when needed
--   Display informative message for the transformation procedure.
+-   `na.rm`: Which sets`na.rm  = TRUE` by default when needed to.
+-   `keep.attrs`: Which after manipulations the new series would retain
+    the same attributes.
+-   `display`: Display informative message for the transformation
+    procedure.
 
 ## Installation
 
@@ -54,8 +57,8 @@ lagx(x)
 #> [1] NA  5  3  2  2
 lagx(x, fill = 1)
 #> [1] 1 5 3 2 2
-lagx(x, fill_fun = mean)
-#> [1] 3 5 3 2 2
-lagx(x, fill_fun = fill_nocb)
-#> Error in fill_fun(vec, body, idx, ...): unused argument (idx)
+lagx(x, fill = mean)
+#> Error: object of type 'closure' is not subsettable
+lagx(x, fill = fill_nocb)
+#> Error: object of type 'closure' is not subsettable
 ```

@@ -149,12 +149,28 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>x</th>
+      <td><p><code>[univariate vector]</code></p>
+<p>Univariate vector, numeric or ts object with only one dimension.</p></td>
+    </tr>
+    <tr>
       <th>cutoff</th>
       <td><p><code>[numeric(1): 3]</code></p></td>
     </tr>
     <tr>
+      <th>fill</th>
+      <td><p><code>[numeric: NA]</code></p>
+<p>Value used to fill observations.</p></td>
+    </tr>
+    <tr>
+      <th>fill_fun</th>
+      <td><p><code>[function: NULL]</code></p>
+<p>Function used to fill observations. Uses the remaining observations as the
+body of the function.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>further arguments passed to <code>score_z</code>.</p></td>
+      <td><p>Additional arguments passed on to the <code>fill_fun</code> function.</p></td>
     </tr>
     </table>
 

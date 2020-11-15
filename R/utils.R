@@ -8,7 +8,7 @@ has_pkg <- function(pkg) {
 
 need_pkg <- function(pkg) {
   if (!has_pkg(pkg)) {
-    stop(glue::glue("Package {pkg} needs to be installed."))
+    stop(sprintf("Package %s needs to be installed.", pkg))
   }
 }
 
@@ -33,11 +33,11 @@ with_disp <- function(x) {
   }
 }
 
-na_opt <- function(x) {
+na_opt <- function() {
   getOption("transx.na.rm")
 }
 
-with_na_rm <- function(x, na.rm = getOption("transx.na.rm")) {
+with_na_rm <- function(x, na.rm = na_opt()) {
   assert_na(na.rm)
   disp_na(x, na.rm)
   if(na.rm)

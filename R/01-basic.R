@@ -49,24 +49,25 @@
 #'
 #' x <- c(5,3,2,2,5)
 #' lagx(x)
-#' lagx(x, fill_fun = fill_nocb)
+#' lagx(x, fill = mean)
+#' lagx(x, fill = fill_nocb)
 #'
 #' leadx(x)
-#' leadx(x, fill_fun = fill_locf)
-lagx <- function(x, n = 1L, fill = NA, fill_fun = NULL, ...) {
+#' leadx(x, fill = fill_locf)
+lagx <- function(x, n = 1L, fill = NA, ...) {
   # assert_lx(x, n)
   # asserts_fill(n, fill, fill_fun)
-  out <- lagx_(x, n, fill = fill, fill_fun = fill_fun, ...)
+  out <- lagx_(x, n, fill = fill, ...)
   with_attrs(out, x)
 }
 
-lagx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
+lagx_ <- function(x, n, fill = NA, ...) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   # here the idx and the subseting do not match
   idx <- 1:n
   body <- x[seq_len(xlen - n)]
-  out <- fill_(body, idx, fill, fill_fun, ...)
+  out <- fill_(body, idx, fill, ...)
 }
 
 
@@ -84,7 +85,7 @@ leadx_ <- function(x, n, fill = NA, fill_fun = NULL, ...) {
   n <- pmin(n, xlen)
   body <- x[-seq_len(n)] # no need for body_ here
   idx <- (xlen - n + 1):xlen
-  fill_(body, idx, fill, fill_fun, ...)
+  fill_(body, idx, fill...)
 }
 
 

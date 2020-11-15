@@ -2,7 +2,7 @@
 % Please edit documentation in R/fill.R
 \name{fill_spline}
 \alias{fill_spline}
-\title{Fill with cubic spline interpolation}
+\title{Fill with "cubic spline interpolation"}
 \usage{
 fill_spline(body, idx, ...)
 }
@@ -21,7 +21,7 @@ the index to replace with.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with cubic spline interpolation
+Fill with "cubic spline interpolation"
 }
 \examples{
 x <- c(5,3,NA,2,5)

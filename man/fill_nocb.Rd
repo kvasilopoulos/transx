@@ -2,9 +2,9 @@
 % Please edit documentation in R/fill.R
 \name{fill_nocb}
 \alias{fill_nocb}
-\title{Next observation carried backwards}
+\title{Fill with "Next observation carried backwards"}
 \usage{
-fill_nocb(body, idx, fail = fill)
+fill_nocb(body, idx, fail = NA)
 }
 \arguments{
 \item{body}{\verb{[numeric vector]}
@@ -14,12 +14,16 @@ The body of the vector.}
 \item{idx}{\verb{[integer vector]}
 
 the index to replace with.}
+
+\item{fail}{\verb{[numeric(1) or numeric vector: fill]}
+
+In case it fails to fill some values.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Next observation carried backwards
+Fill with "Next observation carried backwards"
 }
 \examples{
 x <- c(5,3,2,2,5)

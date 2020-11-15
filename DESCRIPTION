@@ -29,6 +29,7 @@ Suggests:
     cli,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    mFilter
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

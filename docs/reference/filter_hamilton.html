@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Hamilton Filter — filter_hamilton" />
-<meta property="og:description" content="This function computes the cyclical component of the Hodrick-Prescot filter." />
+<meta property="og:description" content="This function computes the cyclical component of the Hamilton filter." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -135,15 +135,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Hamilton Filter</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/02-cycle-trends.R'><code>R/02-cycle-trends.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/07-filter.R'><code>R/07-filter.R</code></a></small>
     <div class="hidden name"><code>filter_hamilton.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function computes the cyclical component of the Hodrick-Prescot filter.</p>
+    <p>This function computes the cyclical component of the Hamilton filter.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_hamilton</span>(<span class='kw'>x</span>, n = <span class='fl'>4</span>, horizon = <span class='fl'>8</span>, fill = <span class='fl'>NA</span>, fill_fun = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_hamilton</span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>4</span>, horizon <span class='op'>=</span> <span class='fl'>8</span>, fill <span class='op'>=</span> <span class='cn'>NA</span>, fill_fun <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,15 +155,28 @@
     </tr>
     <tr>
       <th>n</th>
-      <td><p><code>[numeric(1): NULL]</code></p></td>
+      <td><p><code>[integer(1): 4]</code></p>
+<p>A value indicating the number of lags</p></td>
     </tr>
     <tr>
       <th>horizon</th>
-      <td><p><code>[numeric(1): NULL]</code></p></td>
+      <td><p><code>[integer(1): 8]</code></p>
+<p>A value indicationg the number of periods to look ahead.</p></td>
     </tr>
     <tr>
-      <th>nfix</th>
-      <td><p><code>[logical(1): FALSE]</code></p></td>
+      <th>fill</th>
+      <td><p><code>[numeric: NA]</code></p>
+<p>Value used to fill observations.</p></td>
+    </tr>
+    <tr>
+      <th>fill_fun</th>
+      <td><p><code>[function: NULL]</code></p>
+<p>Function used to fill observations. Uses the remaining observations as the
+body of the function.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed on to the <code>fill_fun</code> function.</p></td>
     </tr>
     </table>
 

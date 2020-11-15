@@ -6,7 +6,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+#' `r rlang:::lifecycle("stable")`
 #'
 #' Find the "previous" (`lagx()`) or "next" (`leadx()`) values in a vector.
 #' Useful for comparing values behind of or ahead of the current values.

@@ -13,6 +13,10 @@ select_lambda(
 \item{freq}{\verb{[character: "quarterly"]}
 
 The frequency of the dataset.}
+
+\item{type}{\verb{[character: "rot"]}
+
+The methodology to select lambda.}
 }
 \description{
 Approaches to selecting lambda.

@@ -27,7 +27,7 @@ Value(s) of function used to fill observations.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("stable")}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>}}{\strong{Experimental}}
 
 Find the "previous" (\code{lagx()}) or "next" (\code{leadx()}) values in a vector.
 Useful for comparing values behind of or ahead of the current values.

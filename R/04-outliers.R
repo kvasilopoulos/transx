@@ -69,7 +69,7 @@ out_winsorize <- out_winsorise
 #' out_threshold(x, thigh = 9, fill = function(x) quantile(x, 0.9))
 #'
 #' @export
-out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, ...) {
+out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA) {
   # threshold might be a function quantile(0.9)
   if (is.null(tlow) && is.null(thigh)) {
     stop("`threshold` should be specified", call. = FALSE)
@@ -86,7 +86,7 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, ...) {
   # TODO check index ~ I think this is done in fill_
   # disp_outlier(idx)
   body <- body_(x, idx)
-  out <- fill_(body, idx, fill, ...)
+  out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
 
@@ -104,10 +104,10 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, ...) {
 #' x <- c(1, 3, -1, 5, 10, 100)
 #' out_pt(x)
 #'
-out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, ...) {
+out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
   tpt <- quantile(x, probs = c(pt_low, pt_high))
   disp(sprintf("Acceptable range (%s, %s)", tpt[1], tpt[2]))
-  out <- out_threshold(x, tlow = tpt[1], thigh = tpt[2], fill = fill, ...)
+  out <- out_threshold(x, tlow = tpt[1], thigh = tpt[2], fill = fill)
   with_attrs(out, x)
 }
 
@@ -118,6 +118,7 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, ...) {
 #'
 #' @template x
 #' @template fill
+#' @param ... Further arguments passed to `score`.
 #' @param cutoff `[numeric(1): 3]`
 #'
 #' @export

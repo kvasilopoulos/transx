@@ -4,14 +4,14 @@
 \alias{filter_hamilton}
 \title{Hamilton Filter}
 \usage{
-filter_hamilton(x, n = 4, horizon = 8, fill = NA)
+filter_hamilton(x, p = 4, horizon = 8, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{n}{\verb{[integer(1): 4]}
+\item{p}{\verb{[integer(1): 4]}
 
 A value indicating the number of lags}
 
@@ -28,4 +28,8 @@ Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 This function computes the cyclical component of the Hamilton filter.
+}
+\examples{
+x <- cumsum(rnorm(100))
+filter_hamilton(x)
 }

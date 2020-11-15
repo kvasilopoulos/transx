@@ -151,7 +151,7 @@ fill_locf <- function(body, idx, fail = NA) {
 first <- function(x) {
   n1 <-if(x[1] == 1)  1 else 0
   if(n1 == 0) {}
-    return(vector(length = length(x)))/f
+    return(vector(length = length(x)))
   c(n1, diff(x)) == 1
 }
 
@@ -161,8 +161,7 @@ first <- function(x) {
 #' first(c(1,2,4))
 #' first(c(2,3,4))
 #'
-last <- function(x) {
-  n <- length(x)
+last <- function(x, n) {
   nn <- if(x[n] == n) 1 else 0
   nn
 }

@@ -5,7 +5,7 @@
 #'
 #' @template x
 #'
-#' @param n `[integer(1): 4]`
+#' @param p `[integer(1): 4]`
 #'
 #' A value indicating the number of lags
 #'
@@ -16,23 +16,21 @@
 #' @template fill
 #' @template return
 #'
+#'
+#' @importFrom stats embed
 #' @export
 #'
-#'
-filter_hamilton <- function(x, n = 4, horizon = 8, fill = NA) {
+#' @examples
+#' x <- cumsum(rnorm(100))
+#' filter_hamilton(x)
+filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
   lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
-  y <- leadx_(x, h)
-  out <- filter_hamilton_(x, n = n, horizon = horizon, fill = fill)
+  y <- leadx_(x, horizon)
+  idx <- 1:(horizon + p - 1)
+  body <- unname(stats::glm(y ~ lagmatrix)$residuals)
+  out <- fill_(body, idx, fill = fill)
   with_attrs(out, x)
 }
-
-filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA) {
-  idx <- 1:(h + p - 1)
-  body <- unname(stats::glm(yt ~ lagmatrix)$residuals)
-  out <- fill_(body, idx, fill = fill)
-  out
-}
-
 
 # Hodirck-Prescot ---------------------------------------------------------
 
@@ -42,6 +40,14 @@ filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA) {
 #' @description
 #'
 #' Approaches to selecting lambda.
+#'
+#' @param freq `[character: "quarterly"]`
+#'
+#' The frequency of the dataset.
+#'
+#' @oaram type`[character: "rot"]`
+#'
+#' The methodology to select lambda.
 #'
 #' @details
 #'
@@ -98,9 +104,7 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #'
 #'
 #' @template x
-#' @param ...
-#'
-#' Further arguments passed to \code{\link[mFilter]{hpfilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter]{hpfilter}}.
 #'
 #'
 #'
@@ -143,9 +147,7 @@ filter_hp <- function(x, ...) {
 #'
 #' @template x
 #' @template fill
-#' @param ...
-#'
-#' Further arguments passed to \code{\link[mFilter]{bkfilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter]{bkfilter}}.
 #'
 #' @export
 #' @examples
@@ -168,9 +170,7 @@ filter_bk <- function(x, fill = NA, ...) {
 #' This function computes the cyclical component of the Christiano-Fitzgerald filter.
 #'
 #' @template x
-#' @param ...
-#'
-#' Further arguments passed to \code{\link[mFilter]{cffilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter]{cffilter}}.
 #'
 #' @export
 #' @examples
@@ -190,9 +190,7 @@ filter_cf <- function(x) {
 #' This function computes the cyclical component of the Butterworth  filter.
 #'
 #' @template x
-#' @param ...
-#'
-#' Further arguments passed to \code{\link[mFilter]{bwfilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter]{bwfilter}}.
 #'
 #' @export
 #' @examples
@@ -213,9 +211,7 @@ filter_bw <- function(x) {
 #'
 
 #' @template x
-#' @param ...
-#'
-#' Further arguments passed to \code{\link[mFilter]{trfilter}}.
+#' @param ...  Further arguments passed to \code{\link[mFilter]{trfilter}}.
 #'
 #' @export
 #' @examples

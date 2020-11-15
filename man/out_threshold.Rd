@@ -4,7 +4,7 @@
 \alias{out_threshold}
 \title{Detect outliers with upper and lower threshold}
 \usage{
-out_threshold(x, tlow = NULL, thigh = NULL, fill = NA, ...)
+out_threshold(x, tlow = NULL, thigh = NULL, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}

@@ -4,7 +4,7 @@
 \alias{out_pt}
 \title{Detect outliers with Percentiles}
 \usage{
-out_pt(x, pt_low = 0.1, pt_high = 0.9, fill = NA, ...)
+out_pt(x, pt_low = 0.1, pt_high = 0.9, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}

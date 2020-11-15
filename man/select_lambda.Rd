@@ -9,6 +9,11 @@ select_lambda(
   type = c("rot", "ru2002")
 )
 }
+\arguments{
+\item{freq}{\verb{[character: "quarterly"]}
+
+The frequency of the dataset.}
+}
 \description{
 Approaches to selecting lambda.
 }

@@ -27,7 +27,7 @@ Fill with "Next observation carried backwards"
 }
 \examples{
 x <- c(5,3,2,2,5)
-leadx(x, n = 2, fill_fun = fill_locf)
+leadx(x, n = 2, fill = fill_locf)
 
 xlen <- length(x)
 n <- 2

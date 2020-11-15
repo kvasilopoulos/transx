@@ -6,7 +6,6 @@ not_between <- function(x, t_low, t_high) {
 }
 
 
-
 # TODO out_grubs_chochran_asdasdad with cutoff
 # TODO outliers function have to print a message for identification reasons
 
@@ -39,7 +38,7 @@ out_winsorise <- function(x, min = quantile(x, 0.05), max = quantile(x, 0.95)) {
   out <- x
   out[out_min] <- min
   out[out_max] <- max
-  disp_outlier(union(out_min, out_max))
+  # disp_outlier(union(out_min, out_max))
   with_attrs(out, x)
 }
 
@@ -67,10 +66,10 @@ out_winsorize <- out_winsorise
 #' @examples
 #' x <- c(1, 3, -1, 5, 10, 100)
 #' out_threshold(x, tlow = 0, fill = 0)
-#' out_threshold(x, thigh = 9, fill_fun = function(x) quantile(x, 0.9))
+#' out_threshold(x, thigh = 9, fill = function(x) quantile(x, 0.9))
 #'
 #' @export
-out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NULL, ...) {
+out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, ...) {
   # threshold might be a function quantile(0.9)
   if (is.null(tlow) && is.null(thigh)) {
     stop("`threshold` should be specified", call. = FALSE)
@@ -87,7 +86,7 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NU
   # TODO check index ~ I think this is done in fill_
   # disp_outlier(idx)
   body <- body_(x, idx)
-  out <- fill_(body, idx, fill, fill_fun, ...)
+  out <- fill_(body, idx, fill, ...)
   with_attrs(out, x)
 }
 
@@ -105,10 +104,10 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NU
 #' x <- c(1, 3, -1, 5, 10, 100)
 #' out_pt(x)
 #'
-out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, fill_fun = NULL, ...) {
+out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, ...) {
   tpt <- quantile(x, probs = c(pt_low, pt_high))
   disp(sprintf("Acceptable range (%s, %s)", tpt[1], tpt[2]))
-  out <- out_threshold(x, tlow = tpt[1], thigh = tpt[2], fill = fill, fill_fun = fill_fun, ...)
+  out <- out_threshold(x, tlow = tpt[1], thigh = tpt[2], fill = fill, ...)
   with_attrs(out, x)
 }
 
@@ -122,11 +121,11 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA, fill_fun = NULL, .
 #' @param cutoff `[numeric(1): 3]`
 #'
 #' @export
-out_score_z <- function(x, cutoff = 3, fill = NA, fill_fun = NULL, ...) {
+out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
   scores <- score_z(x, ...)
   idx <- which(abs(scores) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
   body <- body_(x, idx)
-  out <- fill_(body, idx, fill, fill_fun, ...)
+  out <- fill_(body, idx, fill, ...)
   with_attrs(out, x)
 }
 
@@ -138,28 +137,28 @@ out_score_z <- function(x, cutoff = 3, fill = NA, fill_fun = NULL, ...) {
 #' @param ... further arguments passed to `score`.
 #'
 #' @export
-out_score_zrob <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
+out_score_zrob <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- 0.6745*score_mad(x, ...) # TODO robust zscore
   idx <- which(abs(score) > cutoff)
   body <- body_(x, idx)
-  out <- fill_(body, idx, fill, fill_fun, ...)
+  out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
 
-out_score_t <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
+out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- score_t(x, ...)
   idx <- which(abs(score) > cutoff)
   body <- x[-idx]
-  out <- fill_(body, idx, fill, fill_fun)
+  out <- fill_(body, idx, fill)
   attributes(out) <- attributes(x)
   out
 }
 
-out_score_chisq <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
+out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- score_chisq(x, ...)
   idx <- which(abs(score) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
   body <- x[-idx]
-  out <- fill_(body, idx, fill, fill_fun)
+  out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
 
@@ -172,12 +171,12 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...) {
 #'
 #' @export
 #' @importFrom stats quantile
-out_iqr <- function(x, cutoff = 1.5, fill = NA, fill_fun = NULL, ...) {
+out_iqr <- function(x, cutoff = 1.5, fill = NA, ...) {
   q1 <- quantile(0.25)
   q3 <- quantile(0.75)
   iqr <- q3 - q1
   idx <- which(x < q1 - cutoff*iqr | x > q3 + cutoff*iqr)
   body <- x[-idx]
-  out <- fill_(body, idx, fill, fill_fun)
+  out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }

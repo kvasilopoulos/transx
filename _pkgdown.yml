@@ -39,6 +39,10 @@ reference:
     contents:
       - contains("trend")
 
+  - title: Cycle Filters
+    contents:
+      - contains("filter")
+
   - title: Outliers
     contents:
       - starts_with("out")

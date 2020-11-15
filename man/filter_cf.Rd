@@ -11,13 +11,14 @@ filter_cf(x)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{mFilter::cffilter}}}
+\item{...}{Further arguments passed to \code{\link[mFilter]{cffilter}}.}
 }
 \description{
 This function computes the cyclical component of the Christiano-Fitzgerald filter.
 }
 \examples{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_cf(x)
-
+}
 }

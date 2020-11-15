@@ -1,11 +1,11 @@
 
-test_that("fill_fun functionality", {
+test_that("fill functionality", {
   vec <- c(1, NA, 2)
-  expect_equal(lagx(vec, fill_fun = mean), c(NA, 1, NA))
-  expect_error(lagx(vec, fill_fun = ~ mean(.x)), NA) # purrr-style functions
-  expect_error(lagx(vec, fill_fun = function(x) mean(x)), NA)
-  expect_equal(lagx(vec, fill_fun = mean, na.rm = TRUE), c(1, 1, NA))
-  expect_error(lagx(vec, fill_fun = function(x) mean(x, na.rm = TRUE)), NA)
+  expect_equal(lagx(vec, fill = mean), c(NA, 1, NA))
+  expect_error(lagx(vec, fill = ~ mean(.x)), NA) # purrr-style functions
+  expect_error(lagx(vec, fill = function(x) mean(x)), NA)
+  expect_equal(lagx(vec, fill = ~ mean(.x, na.rm = TRUE)), c(1, 1, NA))
+  expect_error(lagx(vec, fill = function(x) mean(x, na.rm = TRUE)), NA)
 })
 
 
@@ -15,11 +15,11 @@ test_that("lag & leadx", {
 
   expect_equal(lagx(vec), c(NA, 3, 5, NA, 4))
   expect_equal(lagx(vec, fill = 2), c(2, 3, 5, NA, 4))
-  expect_equal(lagx(vec, fill_fun = mean_na), c(4, 3, 5, NA, 4))
+  expect_equal(lagx(vec, fill = mean_na), c(4, 3, 5, NA, 4))
 
   expect_equal(leadx(vec), c(5, NA, 4, 2, NA))
   expect_equal(leadx(vec, fill = 2), c(5, NA, 4, 2, 2))
-  # expect_equal(leadx(vec, fill_fun = fill_locf))
+  # expect_equal(leadx(vec, fill = fill_locf))
 
 })
 

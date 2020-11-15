@@ -45,37 +45,20 @@ assert_na <- function(x) {
   }
 }
 
-
 # fill --------------------------------------------------------------------
 
-asserts_fill <- function(n, fill, fill_fun) {
-  assert_fill_lenth(n, fill)
-  assert_fill_opts(fill, fill_fun)
-}
-
-
-assert_fill_lenth <- function(n, fill) {
-  if (length(fill) > 1 && length(fill) != n)
+#' @importFrom rlang is_function is_na is_formula as_function
+asserts_fill <- function(n, fill) {
+  if (is.numeric(fill) && length(fill) > 1 && length(fill) != n) {
     stop("`fill` exceeds replacement length", call. = FALSE)
-}
-
-assert_fill_opts <- function(fill, fill_fun) {
-  if (length(fill) == 1 && !is.na(fill)) {
-    assert_numeric(fill)
   }
-  if(!is.na(fill) && !is.null(fill_fun)) {
-    fn_names <- rlang::fn_fmls_names(fill_fun)
-    if(!all(fn_names %in% c("body", "idx", "default","..."))) {
-      stop("`fill` or `fill_fun` should be specified together unless for fill_* function.",
-           call. = FALSE)
-    }
+  if(is_formula(fill)) {
+    fill <- as_function(fill)
   }
-
-  if(!is.null(fill_fun) && !rlang::is_function(fill_fun) && !rlang::is_formula(fill_fun)) {
-    stop("`fill_fun` should be a function.", call. = FALSE)
+  if(!is_function(fill) && !is.numeric(fill) && !rlang::is_na(fill)) { # is.na because some times it assu
+    stop("fill should be numeric vector or a function")
   }
 }
-
 
 # individual --------------------------------------------------------------
 
@@ -84,13 +67,6 @@ assert_fill_opts <- function(fill, fill_fun) {
 assert_uni_ts <- function(x) {
   if (!is_uni_ts(x))  {
     stop(paste(deparse(substitute(x, env = parent.frame())), "must be a univariate series"), call. = FALSE)
-  }
-}
-
-
-assert_uni_ts_output <- function(x) {
-  if (!is.numeric(x) && !typeof(x) %in% c("double", "integer"))  {
-    stop(paste0("`fill_fun` coerces to ", typeof(x), ", output not a numeric vector."), call. = FALSE)
   }
 }
 

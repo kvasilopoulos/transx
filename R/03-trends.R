@@ -25,7 +25,7 @@ dtrend_ <- function(x, degree = 1, bp = NULL) {
   }
   na_obs <- is.na(x)
   if(any(na_obs)) {
-    out <- fill_(x, which(na_obs), fill = NA, fill_fun = NULL)
+    out <- fill_(x, which(na_obs), fill = NA)
   }else {
     out <- res
   }

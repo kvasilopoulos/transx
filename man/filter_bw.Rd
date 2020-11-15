@@ -11,13 +11,14 @@ filter_bw(x)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{mFilter::bwfilter}}}
+\item{...}{Further arguments passed to \code{\link[mFilter]{bwfilter}}.}
 }
 \description{
 This function computes the cyclical component of the Butterworth  filter.
 }
 \examples{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_bw(x)
-
+}
 }

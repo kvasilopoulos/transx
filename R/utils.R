@@ -37,7 +37,7 @@ na_opt <- function() {
   getOption("transx.na.rm")
 }
 
-with_na_rm <- function(x, na.rm = na_opt()) {
+with_na_rm <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_na(na.rm)
   disp_na(x, na.rm)
   if(na.rm)

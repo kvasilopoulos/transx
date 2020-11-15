@@ -4,7 +4,7 @@
 \alias{out_score_zrob}
 \title{Detect outliers Iglewicz and Hoaglin (1993) robust z-score method}
 \usage{
-out_score_zrob(x, cutoff = 3.5, fill = NA, fill_fun = NULL, ...)
+out_score_zrob(x, cutoff = 3.5, fill = NA, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -13,14 +13,9 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 \item{cutoff}{\verb{[numeric(1): 3.5]}}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
+Value(s) of function used to fill observations.}
 
 \item{...}{further arguments passed to \code{score}.}
 }

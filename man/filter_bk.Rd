@@ -11,22 +11,18 @@ filter_bk(x, fill = NA, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
+Value(s) of function used to fill observations.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{mFilter::bkfilter}}}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
+\item{...}{Further arguments passed to \code{\link[mFilter]{bkfilter}}.}
 }
 \description{
 This function computes the cyclical component of the Baxter-King filter.
 }
 \examples{
-
+\donttest{
 x <- cumsum(rnorm(100))
 filter_bk(x)
+}
 }

@@ -4,7 +4,7 @@
 \alias{out_score_z}
 \title{Detect outliers with zscore}
 \usage{
-out_score_z(x, cutoff = 3, fill = NA, fill_fun = NULL, ...)
+out_score_z(x, cutoff = 3, fill = NA, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -13,16 +13,9 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 \item{cutoff}{\verb{[numeric(1): 3]}}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
+Value(s) of function used to fill observations.}
 }
 \description{
 Detect outliers with zscore

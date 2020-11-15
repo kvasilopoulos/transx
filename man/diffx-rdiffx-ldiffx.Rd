@@ -7,11 +7,11 @@
 \alias{ldiffx}
 \title{Compute lagged differnces}
 \usage{
-diffx(x, n = 1L, order = 1L, rho = 1, fill = NA, fill_fun = NULL, ...)
+diffx(x, n = 1L, order = 1L, rho = 1, fill = NA)
 
-rdiffx(x, n = 1L, order = 1L, rho = NULL, fill = NA, fill_fun = NULL, ...)
+rdiffx(x, n = 1L, order = 1L, rho = NULL, fill = NA)
 
-ldiffx(x, n = 1L, order = 1L, fill = NA, fill_fun = NULL, ...)
+ldiffx(x, n = 1L, order = 1L, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -31,16 +31,9 @@ Value indicating the order of the difference.}
 Value indicating the autocorrelation parameter. The purpose of this parameter is
 to provide  quasi-differencing assuming the value falls within 0 and 1.}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
+Value(s) of function used to fill observations.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}

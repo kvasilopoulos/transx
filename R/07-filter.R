@@ -19,14 +19,14 @@
 #' @export
 #'
 #'
-filter_hamilton <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
+filter_hamilton <- function(x, n = 4, horizon = 8, fill = NA) {
   lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
   y <- leadx_(x, h)
-  out <- filter_hamilton_(x, )
+  out <- filter_hamilton_(x, n = n, horizon = horizon, fill = fill)
   with_attrs(out, x)
 }
 
-filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL) {
+filter_hamilton_ <- function(x, n = 4, horizon = 8, fill = NA) {
   idx <- 1:(h + p - 1)
   body <- unname(stats::glm(yt ~ lagmatrix)$residuals)
   out <- fill_(body, idx, fill = fill)
@@ -100,18 +100,19 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[mFilter]{mFilter::hpfilter}}
+#' Further arguments passed to \code{\link[mFilter]{hpfilter}}.
 #'
 #'
 #'
 #' @seealso select_lambda
 #' @export
 #' @examples
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_hp(x)
 #' select_lambda("monthly")
 #' filter_hp(x, freq = 100)
-#'
+#'}
 filter_hp <- function(x, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)
@@ -144,12 +145,14 @@ filter_hp <- function(x, ...) {
 #' @template fill
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[mFilter]{mFilter::bkfilter}}
+#' Further arguments passed to \code{\link[mFilter]{bkfilter}}.
 #'
+#' @export
 #' @examples
-#'
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_bk(x)
+#'}
 filter_bk <- function(x, fill = NA, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)
@@ -167,12 +170,14 @@ filter_bk <- function(x, fill = NA, ...) {
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[mFilter]{mFilter::cffilter}}
+#' Further arguments passed to \code{\link[mFilter]{cffilter}}.
 #'
+#' @export
 #' @examples
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_cf(x)
-#'
+#'}
 filter_cf <- function(x) {
   need_pkg("mFilter")
   assert_uni_ts(x)
@@ -187,12 +192,14 @@ filter_cf <- function(x) {
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[mFilter]{mFilter::bwfilter}}
+#' Further arguments passed to \code{\link[mFilter]{bwfilter}}.
 #'
+#' @export
 #' @examples
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_bw(x)
-#'
+#'}
 filter_bw <- function(x) {
   need_pkg("mFilter")
   assert_uni_ts(x)
@@ -204,15 +211,18 @@ filter_bw <- function(x) {
 #'
 #' This function computes the cyclical component of the trigonometric regression filter.
 #'
+
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[mFilter]{mFilter::trfilter}}
+#' Further arguments passed to \code{\link[mFilter]{trfilter}}.
 #'
+#' @export
 #' @examples
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_tr(x)
-#'
+#'}
 filter_tr <- function(x, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)

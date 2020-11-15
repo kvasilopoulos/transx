@@ -44,42 +44,21 @@ fill_  <- function(body, idx, fill) {
     disp_info("fill option is not available")
     return(seq_along(body))
   }
-  # if(is_formula(fill_fun)) {
-  #   fill_fun <- as_function(fill_fun)
-  # }
-
   if(is_formula(fill)) {
     fill <- as_function(fill)
   }
   vec <- new_vec(body, idx)
   if(is_function(fill)) {
-    if(is.null(formals(fill))) {
-      vec[idx] <- fill(body)
+    if(any(rlang::fn_fmls_names(fill) %in% c("idx", ".y"))) {
+      vec[idx] <- fill(body, idx)
+      # print("hooray")
     }else {
-      vec[idx] <- fill(body, idx, fail = fill)
+      vec[idx] <- fill(body)
     }
   }else{
     vec[idx] <- fill
   }
   disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame())
-  return(vec)
-
-
-  # vec[idx] <- fill(body, idx, fail = NA, ...)
-  # vec
-  # return(list(vec, idx, body, fill, fill(body, idx, fail = 100)))
-
-  # vec <- new_vec(body, idx)
-  # if (!is.null(fill_fun)) {
-  #   if (is.null(formals(fill_fun)$idx)) {
-  #     vec[idx] <- fill_fun(body, ...) # user_defined function like mean
-  #   }else{
-  #     vec[idx] <- fill_fun(body, idx, fail = fill, ...) # created function like fill_nocb
-  #   }
-  # }else{
-  #   vec[idx] <- fill # numeric here
-  # }
-
   vec
 }
 
@@ -139,32 +118,15 @@ new_vec <- function(body, idx, default = NA_real_) {
 #'
 #' In case it fails to fill some values.
 #'
-#'
 #' @export
 #' @template return
 #' @examples
 #' x <- c(5,3,2,2,5)
-#' lagx(x, n = 2, fill_fun = fill_locf)
-#' leadx(x, n = 2, fill_fun = fill_locf)
+#' lagx(x, n = 2, fill = fill_locf)
+#' leadx(x, n = 2, fill = fill_locf)
 #'
-#' lagx(x, n = 2, fill_fun = fill_nocb)
-#' leadx(x, n = 2, fill_fun = fill_nocb)
-#'
-#'
-#' xlen <- length(x)
-#' n <- 2
-#' n <- pmin(n, xlen)
-#' idx <- 1:n
-#' body <- x[seq_len(xlen - n)]
-#' fill_locf(body, idx, NA)
-#'
-#'
-#' xlen <- length(x)
-#' n <- 2
-#' n <- pmin(n, xlen)
-#' body <- x[-seq_len(n)]
-#' idx <- (xlen - n + 1):xlen
-#' fill_locf(body, idx, NA)
+#' lagx(x, n = 2, fill = fill_nocb)
+#' leadx(x, n = 2, fill = fill_nocb)
 #'
 fill_locf <- function(body, idx, fail = NA) {
   vec <- new_vec(body, idx)
@@ -177,9 +139,10 @@ fill_locf <- function(body, idx, fail = NA) {
       vec[i] <- vec[i - 1]
     }
   }
-  # vec[idx]
-  vec
+  vec[idx]
+  # vec
 }
+#' @noRd
 #' @examples
 #' first(c(1,2,3))
 #' first(c(1,2,4))
@@ -188,10 +151,11 @@ fill_locf <- function(body, idx, fail = NA) {
 first <- function(x) {
   n1 <-if(x[1] == 1)  1 else 0
   if(n1 == 0) {}
-    return(vector(length = length(x)))
+    return(vector(length = length(x)))/f
   c(n1, diff(x)) == 1
 }
 
+#' @noRd
 #' @examples
 #' first(c(1,2,3))
 #' first(c(1,2,4))
@@ -213,7 +177,7 @@ last <- function(x) {
 #' @template return
 #' @examples
 #' x <- c(5,3,2,2,5)
-#' leadx(x, n = 2, fill_fun = fill_locf)
+#' leadx(x, n = 2, fill = fill_locf)
 #'
 #' xlen <- length(x)
 #' n <- 2

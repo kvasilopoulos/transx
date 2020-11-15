@@ -4,7 +4,7 @@
 \alias{out_pt}
 \title{Detect outliers with Percentiles}
 \usage{
-out_pt(x, pt_low = 0.1, pt_high = 0.9, fill = NA, fill_fun = NULL, ...)
+out_pt(x, pt_low = 0.1, pt_high = 0.9, fill = NA, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -15,14 +15,9 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 \item{pt_high}{the highest quantile}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
+Value(s) of function used to fill observations.}
 
 \item{...}{further arguments passed to \code{quantile}.}
 }

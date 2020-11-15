@@ -11,17 +11,18 @@ filter_hp(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{mFilter::hpfilter}}}
+\item{...}{Further arguments passed to \code{\link[mFilter]{hpfilter}}.}
 }
 \description{
 This function computes the cyclical component of the Hodrick-Prescot filter.
 }
 \examples{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_hp(x)
 select_lambda("monthly")
 filter_hp(x, freq = 100)
-
+}
 }
 \seealso{
 select_lambda

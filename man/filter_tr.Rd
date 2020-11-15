@@ -11,13 +11,14 @@ filter_tr(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{mFilter::trfilter}}}
+\item{...}{Further arguments passed to \code{\link[mFilter]{trfilter}}.}
 }
 \description{
 This function computes the cyclical component of the trigonometric regression filter.
 }
 \examples{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_tr(x)
-
+}
 }

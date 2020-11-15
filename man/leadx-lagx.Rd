@@ -6,9 +6,9 @@
 \alias{leadx}
 \title{Compute lagged or leading values}
 \usage{
-lagx(x, n = 1L, fill = NA, ...)
+lagx(x, n = 1L, fill = NA)
 
-leadx(x, n = 1L, fill = NA, fill_fun = NULL, ...)
+leadx(x, n = 1L, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -19,16 +19,9 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 Value indicating the number of positions to lead or lag by.}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
+Value(s) of function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
@@ -47,8 +40,9 @@ however, to reduce dependecies they are not imported.
 
 x <- c(5,3,2,2,5)
 lagx(x)
-lagx(x, fill_fun = fill_nocb)
+lagx(x, fill = mean)
+lagx(x, fill = fill_nocb)
 
 leadx(x)
-leadx(x, fill_fun = fill_locf)
+leadx(x, fill = fill_locf)
 }

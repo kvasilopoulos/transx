@@ -4,7 +4,7 @@
 \alias{filter_hamilton}
 \title{Hamilton Filter}
 \usage{
-filter_hamilton(x, n = 4, horizon = 8, fill = NA, fill_fun = NULL)
+filter_hamilton(x, n = 4, horizon = 8, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -19,16 +19,9 @@ A value indicating the number of lags}
 
 A value indicationg the number of periods to look ahead.}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
+Value(s) of function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.

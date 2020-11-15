@@ -4,7 +4,7 @@
 \alias{out_threshold}
 \title{Detect outliers with upper and lower threshold}
 \usage{
-out_threshold(x, tlow = NULL, thigh = NULL, fill = NA, fill_fun = NULL, ...)
+out_threshold(x, tlow = NULL, thigh = NULL, fill = NA, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -19,16 +19,9 @@ The lower threshold.}
 
 The upper threshold.}
 
-\item{fill}{\verb{[numeric: NA]}
+\item{fill}{\verb{[numeric or function: NA]}
 
-Value used to fill observations.}
-
-\item{fill_fun}{\verb{[function: NULL]}
-
-Function used to fill observations. Uses the remaining observations as the
-body of the function.}
-
-\item{...}{Additional arguments passed on to the \code{fill_fun} function.}
+Value(s) of function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
@@ -39,6 +32,6 @@ Detect outliers with upper and lower threshold
 \examples{
 x <- c(1, 3, -1, 5, 10, 100)
 out_threshold(x, tlow = 0, fill = 0)
-out_threshold(x, thigh = 9, fill_fun = function(x) quantile(x, 0.9))
+out_threshold(x, thigh = 9, fill = function(x) quantile(x, 0.9))
 
 }

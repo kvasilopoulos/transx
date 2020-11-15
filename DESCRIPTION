@@ -1,6 +1,6 @@
 Package: transx
 Title: Transform Univariate Time Series
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Kostas",
            family = "Vasilopoulos",
@@ -8,8 +8,8 @@ Authors@R:
            email = "k.vasilopoulo@gmail.com",
            comment = c(ORCID = "0000-0002-9769-6395"))
 Description: `transx` implements several time series
-    operations that follow an opiniated design. We abstract from the
-    common `ts` object and we focus on numeric series.
+    operations that follow an opiniated design. The package is based on 
+    numeric vectors, rather than ts objects.
 License: GPL-3
 Imports: 
     Rcpp,
@@ -29,6 +29,8 @@ Suggests:
     cli,
     testthat,
     knitr,
+    robustHD, 
+    outliers,
     rmarkdown,
     mFilter
 Roxygen: list(markdown = TRUE)

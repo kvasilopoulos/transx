@@ -24,7 +24,7 @@ not_between <- function(x, t_low, t_high) {
 #'
 #' @template return
 #'
-#' @seealso \code{\link[robustHD]{winsorize}} \code{\link[DescTools]{Winsorize}}
+#' @seealso \code{\link[robustHD]{winsorize}}
 #' @export
 #'
 #' @examples

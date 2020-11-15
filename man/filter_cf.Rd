@@ -4,7 +4,7 @@
 \alias{filter_cf}
 \title{Christiano-Fitzgerald Filter}
 \usage{
-filter_cf(x)
+filter_cf(x, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -17,7 +17,7 @@ Univariate vector, numeric or ts object with only one dimension.}
 This function computes the cyclical component of the Christiano-Fitzgerald filter.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- cumsum(rnorm(100))
 filter_cf(x)
 }

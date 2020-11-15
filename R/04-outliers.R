@@ -97,7 +97,6 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA) {
 #' @template fill
 #' @param pt_low the lowest quantile
 #' @param pt_high the highest quantile
-#' @param ... further arguments passed to `quantile`.
 #'
 #' @export
 #' @examples

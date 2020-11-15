@@ -4,7 +4,7 @@
 \alias{filter_bw}
 \title{Butterworth  Filter}
 \usage{
-filter_bw(x)
+filter_bw(x, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -17,7 +17,7 @@ Univariate vector, numeric or ts object with only one dimension.}
 This function computes the cyclical component of the Butterworth  filter.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- cumsum(rnorm(100))
 filter_bw(x)
 }

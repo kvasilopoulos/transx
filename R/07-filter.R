@@ -111,7 +111,7 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #' @seealso select_lambda
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- cumsum(rnorm(100))
 #' filter_hp(x)
 #' select_lambda("monthly")
@@ -151,7 +151,7 @@ filter_hp <- function(x, ...) {
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- cumsum(rnorm(100))
 #' filter_bk(x)
 #'}
@@ -174,14 +174,14 @@ filter_bk <- function(x, fill = NA, ...) {
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- cumsum(rnorm(100))
 #' filter_cf(x)
 #'}
-filter_cf <- function(x) {
+filter_cf <- function(x, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)
-  out <- mFilter::cffilter(x)$cycle[,1]
+  out <- mFilter::cffilter(x, ...)$cycle[,1]
   with_attrs(out, x)
 }
 
@@ -194,14 +194,14 @@ filter_cf <- function(x) {
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- cumsum(rnorm(100))
 #' filter_bw(x)
 #'}
-filter_bw <- function(x) {
+filter_bw <- function(x, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)
-  out <- mFilter::bwfilter(x)$cycle
+  out <- mFilter::bwfilter(x, ...)$cycle
   with_attrs(out, x)
 }
 
@@ -215,13 +215,13 @@ filter_bw <- function(x) {
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- cumsum(rnorm(100))
 #' filter_tr(x)
 #'}
 filter_tr <- function(x, ...) {
   need_pkg("mFilter")
   assert_uni_ts(x)
-  out <- mFilter::trfilter(x)$cycle[,1]
+  out <- mFilter::trfilter(x, ...)$cycle[,1]
   with_attrs(out, x)
 }

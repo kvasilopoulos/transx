@@ -18,8 +18,6 @@ Univariate vector, numeric or ts object with only one dimension.}
 \item{fill}{\verb{[numeric or function: NA]}
 
 Value(s) of function used to fill observations.}
-
-\item{...}{further arguments passed to \code{quantile}.}
 }
 \description{
 Detect outliers with Percentiles

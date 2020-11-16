@@ -11,6 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/transx)](https://CRAN.R-project.org/package=transx)
 [![R build
 status](https://github.com/kvasilopoulos/transx/workflows/R-CMD-check/badge.svg)](https://github.com/kvasilopoulos/transx/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/kvasilopoulos/transx/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/transx?branch=master)
 <!-- badges: end -->
 
 > **WARNING**: The package is still in early stages of development!

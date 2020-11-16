@@ -111,7 +111,9 @@
 <li>The output retains the same length as the input</li>
 <li>Uses a filling logic, where <code>fill</code> is used to keep the length of vector identical</li>
 </ul>
-<p>Optional,</p>
+<div id="optional" class="section level3">
+<h3 class="hasAnchor">
+<a href="#optional" class="anchor"></a>Optional:</h3>
 <ul>
 <li>
 <code>na.rm</code>: Which sets<code>na.rm  = TRUE</code> by default when needed to.</li>
@@ -120,6 +122,7 @@
 <li>
 <code>display</code>: Display informative message for the transformation procedure.</li>
 </ul>
+</div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -139,9 +142,9 @@
 <span class="fu"><a href="reference/leadx-lagx.html">lagx</a></span><span class="op">(</span><span class="va">x</span>, fill <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1 5 3 2 2</span>
 <span class="fu"><a href="reference/leadx-lagx.html">lagx</a></span><span class="op">(</span><span class="va">x</span>, fill <span class="op">=</span> <span class="va">mean</span><span class="op">)</span>
-<span class="co">#&gt; Error: object of type 'closure' is not subsettable</span>
+<span class="co">#&gt; [1] 3 5 3 2 2</span>
 <span class="fu"><a href="reference/leadx-lagx.html">lagx</a></span><span class="op">(</span><span class="va">x</span>, fill <span class="op">=</span> <span class="va">fill_nocb</span><span class="op">)</span>
-<span class="co">#&gt; Error: object of type 'closure' is not subsettable</span></code></pre></div>
+<span class="co">#&gt; [1] 5 5 3 2 2</span></code></pre></div>
 </div>
 </div>
 </div>

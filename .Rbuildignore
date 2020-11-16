@@ -11,3 +11,4 @@
 ^TODO\.txt$
 ^\.github$
 ^doc$
+^codecov\.yml$

@@ -2,16 +2,18 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow}
 \alias{pow}
-\title{Raise in the power}
+\title{Exponent or the nth Power}
 \usage{
-pow(x, pow, modulus = FALSE)
+pow(x, pow = NA, modulus = FALSE)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{pow}{power to raise to}
+\item{pow}{\verb{[numeric(1): NA]}
+
+The nth power}
 
 \item{modulus}{positive}
 }
@@ -19,5 +21,5 @@ Univariate vector, numeric or ts object with only one dimension.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Raise in the power
+Exponent or the nth Power
 }

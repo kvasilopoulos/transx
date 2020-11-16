@@ -7,11 +7,11 @@
 #' @importFrom stats plot.ts
 #' @export
 #' @keywords internal
-plotx <- function(x, ...) {
+plotx <- function(x) {
   nc <- NCOL(x)
 
   if(nc == 1) {
-    return(plot_one(x, ...))
+    return(plot_one(x))
   }
 
   dots <- rlang::dots_list(...)
@@ -22,7 +22,7 @@ plotx <- function(x, ...) {
   if(!is.null(dots$ylab) ) {
     stop("ylab is not available", call. = TRUE)
   }
-  plot.ts(x, xlab = "", mar.multi = c(0, 5.1, 0, 2.1), oma.multi = c(3, 0, oma_top, 0), ...)
+  plot.ts(x, xlab = "", mar.multi = c(0, 5.1, 0, 2.1), oma.multi = c(3, 0, oma_top, 0))
   graphics::grid(lty = "dashed")
 }
 

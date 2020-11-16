@@ -1,39 +1,49 @@
 
 
-
-
 # Basic Root --------------------------------------------------------------
 
 
-#' Root transformation
+#' nth Root Transformation
+#'
+#' @description
+#'
+#' * `root`: nth root
+#' * `root_sqrt`: square root
+#' * `root_cubic`: cubic root
 #'
 #' @template x
-#' @param root `[numeric(1): NULL]`
+#' @param root `[numeric(1): NA]`
+#'
+#' The nth root.
+#'
+#' @param modulus `[logical(1): FALSE]`
+#'
+#' Transformation will work for data with both positive and negative `root`.
 #'
 #' @name root
 root <- function(x, root = NULL, modulus = FALSE) {
+  assert_uni_ts(x)
   if(modulus) {
     sign(x) * abs(x)^(1/root)
   }else{
     x^(1/root)
   }
+  with_attrs(out, x)
 }
 
 
 #' @rdname root
-#' @inheritParams root
+#' @export
+#' @param ... Further arguments passed to `root`.
 root_sq <- function(x, ...) {
   root(x , 2, ...)
 }
 
-#' Cubic root transformation
-#'
-#' @inheritParams root_sq
-#'
+#' @rdname root
+#' @export
 root_cubic <- function(x, ...) {
   root(x, 3, ...)
 }
-
 
 
 
@@ -44,29 +54,45 @@ root_cubic <- function(x, ...) {
 # pow_box_cox(x, lam)
 
 
-#' Raise in the power
+#' Exponent or the nth Power
 #'
 #' @template x
-#' @param pow power to raise to
+#' @param pow `[numeric(1): NA]`
+#'
+#' The nth power
+#'
 #' @param modulus positive
 #' @template return
 #'
-pow <- function(x, pow, modulus = FALSE) {
+pow <- function(x, pow = NA, modulus = FALSE) {
+  assert_uni_ts(x)
+  out <- pow_(x, pow, modulus = modulus)
+  with_attrs(out, x)
+}
+
+pow_ <- function(x, pow = NA, modulus = FALSE) {
   if(modulus) {
-    sign(x) * abs(x)^pow
+    out <- sign(x) * abs(x)^pow
   }else{
-    x^pow
+    out <- x^pow
   }
+  out
 }
 
 
 
-
-#' Some title
+#' Tukey Transformations
 #'
 #' @template x
-#' @param lam1 lambda1
-#' @param lam2 lambda2
+#'
+#' @param lambda `[numeric(1): NULL]`
+#'
+#' Transformation exponent, \eqn{\lambda}.
+#'
+#' @param ...
+#'
+#' Further arguments passed to `pow`.
+#'
 #' @template return
 #' @export
 #'
@@ -74,43 +100,88 @@ pow <- function(x, pow, modulus = FALSE) {
 #' set.seed(123)
 #' x <- rnorm(100)
 #'
-pow_boxcox <- function(x, lam1, lam2 = NULL) {
-
-  lam2 <- ifelse(is.null(lam2), 0, lam2)
-  if (lam1 == 0L) {
-    log(x + lam2)
-  } else {
-    (pow(x, lam1) - 1) / lam1
+pow_tukey <- function(x, lambda = NULL, ...) {
+  assert_uni_ts(x)
+  if (lambda >  0){
+    out <- pow_(x, lambda, ...)
+  } else if(abs(lambda) <= 1e-06){
+    out <- log(x)
+  }else {
+    out <- -1 * pow_(x, lambda)
   }
-
-}
-
-pow_tukey <- function(x, lambda = NULL) {
-  out <- pow_tukey_(x, lambda)
   with_attrs(out, x)
 }
 
-pow_tukey_ <- function(x, lambda = NULL) {
-  if (lambda >  0){
-    out <- pow(x, lambda)
-  } else if(lambda == 0){
-    out <- log(x)
-  }else {
-    out <- -1 * pow(x, lambda)
-  }
-  out
-}
+#' Box-Cox Transformations
+#'
+#' @template x
+#'
+#' @param lambda `[numeric(1): NULL]`
+#'
+#' Transformation exponent, \eqn{\lambda}.
+#'
+#' @param lambda2 `[numeric(1): NULL]`
+#'
+#' Transformation exponent, \eqn{\lambda_2}.
+#'
+#' @param ...
+#'
+#' Further arguments passed to `pow`.
+#'
+#' @template return
+#' @export
+#'
+#' @references Box, G. E., & Cox, D. R. (1964). An analysis of transformations.
+#' Journal of the Royal Statistical Society. Series B (Methodological), 211-252.
+#' \url{https://www.jstor.org/stable/2984418}
+#'
+#' @examples
+#' set.seed(123)
+#' x <- rnorm(100)
+#'
+pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 
+  assert_uni_ts(x)
+  lambda2 <- ifelse(is.null(lambda2), 0, lambda2)
+  if (abs(lambda) <= 1e-06) {
+    out <- log(x + lambda2)
+  } else {
+    out <- (pow_(x + lambda2, lambda, ...) - 1) / lambda
+  }
+  with_attrs(out, x)
+}
 
 #' Yeo and Johnson(2000)
 #'
-#' @template x
-#' @param lam lambda
+#' @param lambda `[numeric(1): NULL]`
+#'
+#' Transformation exponent, \eqn{\lambda}.
+#'
+#' @param ...
+#'
+#' Further arguments passed to `pow`.
 #' @template return
 #'
+#' @references Yeo, I., & Johnson, R. (2000).
+#' A New Family of Power Transformations to Improve Normality or Symmetry. Biometrika, 87(4), 954-959.
+#' \url{http://www.jstor.org/stable/2673623}
+#'
 #' @export
-pow_yj <- function(x, lam = NULL) {
+pow_yj <- function(x, lambda = NULL, ...) {
 
+  assert_uni_ts(x)
+  eps <- 1e-06
+  if (abs(lambda) < eps) {
+    out <- log(x + 1)
+  } else {
+    out <- (pow_(x + 1, lamda, ...) - 1)/lamda
+  }
+  if (abs(2 - lamda) < eps) {
+    out <-  -log(-x + 1)
+  }  else {
+    out <- -(pow_(-x + 1, 2 - lamda, ...) - 1)/(2 -lamda)
+  }
+  with_attrs(out, x)
 }
 
 
@@ -121,23 +192,25 @@ pow_yj <- function(x, lam = NULL) {
 #' not quite useful for bimodal or U-shaped distribution.
 #'
 #' @template x
-#' @param lam lambda
+#' @param lambda `[numeric(1): NULL]`
+#'
+#' Transformation exponent, \eqn{\lambda}.
+#'
 #' @template return
 #' @export
-pow_manly <- function(x, lam) {
-  if(lam == 0) {
+pow_manly <- function(x, lambda) {
+  assert_uni_ts(x)
+  if(abs(lambda) < 1e-06) {
     out <- x
   }else{
-    out <- (exp(lam*x) - 1)/lam
+    out <- (exp(lambda*x) - 1)/lambda
   }
-  out
+  with_attrs(out, x)
 }
 
 
 
 # more power transformations ----------------------------------------------
-
-
 
 # pow_box_cox_scaled <- function(x, lam1, lam2) {}
 

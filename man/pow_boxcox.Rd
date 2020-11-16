@@ -2,24 +2,30 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow_boxcox}
 \alias{pow_boxcox}
-\title{Some title}
+\title{Box-Cox Transformations}
 \usage{
-pow_boxcox(x, lam1, lam2 = NULL)
+pow_boxcox(x, lambda = NULL, lambda2 = NULL, ...)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{lam1}{lambda1}
+\item{lambda}{\verb{[numeric(1): NULL]}
 
-\item{lam2}{lambda2}
+Transformation exponent, \eqn{\lambda}.}
+
+\item{lambda2}{\verb{[numeric(1): NULL]}
+
+Transformation exponent, \eqn{\lambda_2}.}
+
+\item{...}{Further arguments passed to \code{pow}.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Some title
+Box-Cox Transformations
 }
 \examples{
 set.seed(123)

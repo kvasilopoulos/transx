@@ -12,12 +12,7 @@ Description: `transx` implements several time series
     numeric vectors, rather than ts objects.
 License: GPL-3
 Imports: 
-    Rcpp,
-    rlang,
-    glue
-LinkingTo:
-    Rcpp,
-    RcppArmadillo
+    rlang
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
@@ -29,9 +24,10 @@ Suggests:
     cli,
     testthat,
     knitr,
-    robustHD, 
+    robustHD,
     outliers,
     rmarkdown,
-    mFilter
+    mFilter,
+    covr
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Some title — pow_boxcox • transx</title>
+<title>Box-Cox Transformations — pow_boxcox • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Some title — pow_boxcox" />
-<meta property="og:description" content="Some title" />
+<meta property="og:title" content="Box-Cox Transformations — pow_boxcox" />
+<meta property="og:description" content="Box-Cox Transformations" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,16 +134,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Some title</h1>
+    <h1>Box-Cox Transformations</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/05-root-power.R'><code>R/05-root-power.R</code></a></small>
     <div class="hidden name"><code>pow_boxcox.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Some title</p>
+    <p>Box-Cox Transformations</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pow_boxcox</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>lam1</span>, lam2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pow_boxcox</span><span class='op'>(</span><span class='va'>x</span>, lambda <span class='op'>=</span> <span class='cn'>NULL</span>, lambda2 <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,12 +154,18 @@
 <p>Univariate vector, numeric or ts object with only one dimension.</p></td>
     </tr>
     <tr>
-      <th>lam1</th>
-      <td><p>lambda1</p></td>
+      <th>lambda</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>Transformation exponent, \(\lambda\).</p></td>
     </tr>
     <tr>
-      <th>lam2</th>
-      <td><p>lambda2</p></td>
+      <th>lambda2</th>
+      <td><p><code>[numeric(1): NULL]</code></p>
+<p>Transformation exponent, \(\lambda_2\).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further arguments passed to <code>pow</code>.</p></td>
     </tr>
     </table>
 

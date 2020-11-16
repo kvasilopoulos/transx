@@ -20,18 +20,6 @@ body_ <- function(x, idx) {
   out
 }
 
-# TODO we have to rethink it
-# Fill can be nnumeric(1) or numeric(n):
-# Can be a lambda_function or a function
-# if it a lambda then fill_fail = NA
-# remake with new functionality
-# more tests and error-handling
-# 4 cases
-# 1. numeric(1)
-# 2. numeric(n)
-# 3. mean
-# 4. fill_locf(body, idx fail)
-
 #' @importFrom rlang as_function is_formula is_function
 #' @noRd
 #' @examples
@@ -62,7 +50,6 @@ fill_  <- function(body, idx, fill) {
   vec
 }
 
-# TODO possibly needs new name
 new_vec <- function(body, idx, default = NA_real_) {
   vec_len <- length(body) + length(idx)
   vec <- rep(default, vec_len) # vector("numeric", vec_len)

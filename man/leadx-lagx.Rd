@@ -21,13 +21,13 @@ Value indicating the number of positions to lead or lag by.}
 
 \item{fill}{\verb{[numeric or function: NA]}
 
-Value(s) of function used to fill observations.}
+Numeric value(s) or function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>}}{\strong{Experimental}}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
 
 Find the "previous" (\code{lagx()}) or "next" (\code{leadx()}) values in a vector.
 Useful for comparing values behind of or ahead of the current values.

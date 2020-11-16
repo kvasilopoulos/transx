@@ -1,21 +1,5 @@
 filter_*
-
-- [ ] filter_hp(): Hodrick Prescot
-- [ ] filter_bk(): Baxter King
-- [ ] filter_cf(): Chirstiano Fitzgerlard
-- [ ] filter_bw(): Buttersword
-- [ ] filter_tr(): Trigonometric
 - [ ] decomp_bn(): Beveridge-Nelson decomposition
-- [ ] filter_ham: Hamilton
-
-## Outliers
-
-out_*
-
-- [ ] out_drop()
-- [ ] out_trim()
-- [ ] out_trim_qt()
-- [ ] out_winsorize()
 
 ## Smoothers
 

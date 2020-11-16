@@ -4,14 +4,16 @@
 \alias{pow_manly}
 \title{Manly(1971)}
 \usage{
-pow_manly(x, lam)
+pow_manly(x, lambda)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{lam}{lambda}
+\item{lambda}{\verb{[numeric(1): NULL]}
+
+Transformation exponent, \eqn{\lambda}.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.

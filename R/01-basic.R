@@ -133,7 +133,6 @@ rdiffx <- function(x, n = 1L, order = 1L, rho = NULL, fill = NA) {
   with_attrs(out, x)
 }
 
-# TODO needs work
 rdiffx_ <- function(x, n, order = 1L, fill = NA) {
   xlen <- length(x)
   n <- pmin(n, xlen)

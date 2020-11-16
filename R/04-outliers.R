@@ -83,8 +83,6 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA) {
   if (!is.null(thigh)) {
     idx <- which(x > thigh)
   }
-  # TODO check index ~ I think this is done in fill_
-  # disp_outlier(idx)
   body <- body_(x, idx)
   out <- fill_(body, idx, fill)
   with_attrs(out, x)
@@ -110,9 +108,6 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
   with_attrs(out, x)
 }
 
-
-# TODO consider getting glue out of imports
-
 #' Detect outliers with zscore
 #'
 #' @template x
@@ -123,7 +118,7 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
 #' @export
 out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
   scores <- score_z(x, ...)
-  idx <- which(abs(scores) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
+  idx <- which(abs(scores) > cutoff)
   body <- body_(x, idx)
   out <- fill_(body, idx, fill, ...)
   with_attrs(out, x)
@@ -138,7 +133,7 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
 #'
 #' @export
 out_score_zrob <- function(x, cutoff = 3.5, fill = NA, ...) {
-  score <- 0.6745*score_mad(x, ...) # TODO robust zscore
+  score <- 0.6745*score_mad(x, ...)
   idx <- which(abs(score) > cutoff)
   body <- body_(x, idx)
   out <- fill_(body, idx, fill)
@@ -156,7 +151,7 @@ out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
 
 out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- score_chisq(x, ...)
-  idx <- which(abs(score) > cutoff) # TODO integer[0] creates a problem (I can't think of better alternative)
+  idx <- which(abs(score) > cutoff)
   body <- x[-idx]
   out <- fill_(body, idx, fill)
   with_attrs(out, x)

@@ -21,7 +21,7 @@ A value indicationg the number of periods to look ahead.}
 
 \item{fill}{\verb{[numeric or function: NA]}
 
-Value(s) of function used to fill observations.}
+Numeric value(s) or function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.

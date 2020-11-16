@@ -33,7 +33,7 @@ to provide  quasi-differencing assuming the value falls within 0 and 1.}
 
 \item{fill}{\verb{[numeric or function: NA]}
 
-Value(s) of function used to fill observations.}
+Numeric value(s) or function used to fill observations.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}

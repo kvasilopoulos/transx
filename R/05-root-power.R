@@ -5,8 +5,13 @@
 # Basic Root --------------------------------------------------------------
 
 
-
-root <- function(x, root, modulus = FALSE) {
+#' Root transformation
+#'
+#' @template x
+#' @param root `[numeric(1): NULL]`
+#'
+#' @name root
+root <- function(x, root = NULL, modulus = FALSE) {
   if(modulus) {
     sign(x) * abs(x)^(1/root)
   }else{
@@ -14,13 +19,9 @@ root <- function(x, root, modulus = FALSE) {
   }
 }
 
-#' Square root transformation
-#'
-#' @template x
-#' @param ...
-#'
-#' Further arguments passed to `root`.
-#'
+
+#' @rdname root
+#' @inheritParams root
 root_sq <- function(x, ...) {
   root(x , 2, ...)
 }

@@ -1,4 +1,4 @@
 #' @param fill `[numeric or function: NA]`
 #'
-#' Value(s) of function used to fill observations.
+#' Numeric value(s) or function used to fill observations.
 #'

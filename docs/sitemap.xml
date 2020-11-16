@@ -25,10 +25,22 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/fill_spline.html</loc>
   </url>
   <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_bk.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_bw.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_cf.html</loc>
+  </url>
+  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/filter_hamilton.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/filter_hp.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_tr.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/gmean.html</loc>

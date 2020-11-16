@@ -30,7 +30,7 @@ the remaining observations as the body of the argument.
 -   Uses a filling logic, where `fill` is used to keep the length of
     vector identical
 
-Optional,
+### Optional:
 
 -   `na.rm`: Which sets`na.rm  = TRUE` by default when needed to.
 -   `keep.attrs`: Which after manipulations the new series would retain
@@ -58,7 +58,7 @@ lagx(x)
 lagx(x, fill = 1)
 #> [1] 1 5 3 2 2
 lagx(x, fill = mean)
-#> Error: object of type 'closure' is not subsettable
+#> [1] 3 5 3 2 2
 lagx(x, fill = fill_nocb)
-#> Error: object of type 'closure' is not subsettable
+#> [1] 5 5 3 2 2
 ```

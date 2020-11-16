@@ -6,9 +6,13 @@ has_pkg <- function(pkg) {
   pkg %in% loadedNamespaces()
 }
 
+is_installed <- function(pkg) {
+  system.file(package = pkg) != ""
+}
+
 need_pkg <- function(pkg) {
   if (!has_pkg(pkg)) {
-    stop(sprintf("Package %s needs to be installed.", pkg))
+    stop("Please install ", pkg, " package", call. = FALSE)
   }
 }
 

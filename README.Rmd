@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 * The output retains the same length as the input
 * Uses a filling logic, where `fill` is used to keep the length of vector identical
 
-Optional, 
+### Optional:
 
 * `na.rm`: Which sets`na.rm  = TRUE` by default when needed to.
 * `keep.attrs`: Which after manipulations the new series would retain the same attributes.

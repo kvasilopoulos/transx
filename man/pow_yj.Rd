@@ -7,6 +7,10 @@
 pow_yj(x, lambda = NULL, ...)
 }
 \arguments{
+\item{x}{\verb{[univariate vector]}
+
+Univariate vector, numeric or ts object with only one dimension.}
+
 \item{lambda}{\verb{[numeric(1): NULL]}
 
 Transformation exponent, \eqn{\lambda}.}
@@ -18,4 +22,9 @@ Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 Yeo and Johnson(2000)
+}
+\references{
+Yeo, I., & Johnson, R. (2000).
+A New Family of Power Transformations to Improve Normality or Symmetry. Biometrika, 87(4), 954-959.
+\url{http://www.jstor.org/stable/2673623}
 }

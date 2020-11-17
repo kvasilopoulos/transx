@@ -24,7 +24,7 @@ not_between <- function(x, t_low, t_high) {
 #'
 #' @template return
 #'
-#' @seealso \code{\link[robustHD]{winsorize}}
+#' @seealso \code{\link[DescTools]{Winsorize}}
 #' @export
 #'
 #' @examples
@@ -76,11 +76,9 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA) {
   }
   if (!is.null(tlow) && !is.null(thigh)) {
     idx <- not_between(x, tlow, thigh)
-  }
-  if (!is.null(tlow)) {
+  }else if (!is.null(tlow)) {
     idx <- which(x < tlow)
-  }
-  if (!is.null(thigh)) {
+  } else if (!is.null(thigh)) {
     idx <- which(x > thigh)
   }
   body <- body_(x, idx)
@@ -120,7 +118,7 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
   scores <- score_z(x, ...)
   idx <- which(abs(scores) > cutoff)
   body <- body_(x, idx)
-  out <- fill_(body, idx, fill, ...)
+  out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
 
@@ -143,7 +141,7 @@ out_score_zrob <- function(x, cutoff = 3.5, fill = NA, ...) {
 out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- score_t(x, ...)
   idx <- which(abs(score) > cutoff)
-  body <- x[-idx]
+  body <- body_(x, -idx)
   out <- fill_(body, idx, fill)
   attributes(out) <- attributes(x)
   out
@@ -152,7 +150,7 @@ out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
 out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
   score <- score_chisq(x, ...)
   idx <- which(abs(score) > cutoff)
-  body <- x[-idx]
+  body <- body_(x, -idx)
   out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
@@ -167,11 +165,11 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
 #' @export
 #' @importFrom stats quantile
 out_iqr <- function(x, cutoff = 1.5, fill = NA, ...) {
-  q1 <- quantile(0.25)
-  q3 <- quantile(0.75)
+  q1 <- quantile(x, 0.25, ...)
+  q3 <- quantile(x, 0.75, ...)
   iqr <- q3 - q1
   idx <- which(x < q1 - cutoff*iqr | x > q3 + cutoff*iqr)
-  body <- x[-idx]
+  body <- body_(x, idx)
   out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }

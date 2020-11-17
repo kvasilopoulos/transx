@@ -32,3 +32,8 @@ set.seed(123)
 x <- rnorm(100)
 
 }
+\references{
+Box, G. E., & Cox, D. R. (1964). An analysis of transformations.
+Journal of the Royal Statistical Society. Series B (Methodological), 211-252.
+\url{https://www.jstor.org/stable/2984418}
+}

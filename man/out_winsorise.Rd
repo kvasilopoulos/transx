@@ -34,5 +34,5 @@ out_winsorise(x)
 
 }
 \seealso{
-\code{\link[robustHD]{winsorize}}
+\code{\link[DescTools]{Winsorize}}
 }

@@ -24,10 +24,12 @@ Suggests:
     cli,
     testthat,
     knitr,
-    robustHD,
+    DescTools,
     outliers,
     rmarkdown,
     mFilter,
     covr
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

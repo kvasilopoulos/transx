@@ -34,6 +34,8 @@ Value indicating the degree of polynomial}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
+
 Remove global deterministic trend information from the series.
 \itemize{
 \item \code{dt_lin} removes the linear trend.

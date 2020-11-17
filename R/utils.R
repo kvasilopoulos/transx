@@ -11,7 +11,7 @@ is_installed <- function(pkg) {
 }
 
 need_pkg <- function(pkg) {
-  if (!has_pkg(pkg)) {
+  if (!is_installed(pkg)) {
     stop("Please install ", pkg, " package", call. = FALSE)
   }
 }

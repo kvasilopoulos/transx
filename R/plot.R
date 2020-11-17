@@ -4,10 +4,11 @@
 #' Helper function to only plot x as a line plot.
 #'
 #' @template x
+#' @param ... Further arguments used in `plot`.
 #' @importFrom stats plot.ts
 #' @export
 #' @keywords internal
-plotx <- function(x) {
+plotx <- function(x, ...) {
   nc <- NCOL(x)
 
   if(nc == 1) {

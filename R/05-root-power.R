@@ -24,9 +24,9 @@
 root <- function(x, root = NULL, modulus = FALSE) {
   assert_uni_ts(x)
   if(modulus) {
-    sign(x) * abs(x)^(1/root)
+    out <- sign(x) * abs(x)^(1/root)
   }else{
-    x^(1/root)
+    out <- x^(1/root)
   }
   with_attrs(out, x)
 }
@@ -153,6 +153,8 @@ pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 
 #' Yeo and Johnson(2000)
 #'
+#'
+#' @template x
 #' @param lambda `[numeric(1): NULL]`
 #'
 #' Transformation exponent, \eqn{\lambda}.
@@ -174,12 +176,12 @@ pow_yj <- function(x, lambda = NULL, ...) {
   if (abs(lambda) < eps) {
     out <- log(x + 1)
   } else {
-    out <- (pow_(x + 1, lamda, ...) - 1)/lamda
+    out <- (pow_(x + 1, lambda, ...) - 1)/lambda
   }
-  if (abs(2 - lamda) < eps) {
+  if (abs(2 - lambda) < eps) {
     out <-  -log(-x + 1)
   }  else {
-    out <- -(pow_(-x + 1, 2 - lamda, ...) - 1)/(2 -lamda)
+    out <- -(pow_(-x + 1, 2 - lambda, ...) - 1)/(2 -lambda)
   }
   with_attrs(out, x)
 }

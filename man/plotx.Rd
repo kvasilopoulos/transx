@@ -10,6 +10,8 @@ plotx(x, ...)
 \item{x}{\verb{[univariate vector]}
 
 Univariate vector, numeric or ts object with only one dimension.}
+
+\item{...}{Further arguments used in \code{plot}.}
 }
 \description{
 Helper function to only plot x as a line plot.

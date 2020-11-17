@@ -34,7 +34,11 @@ dtrend_ <- function(x, degree = 1, bp = NULL) {
 
 #' Deterministic Trend
 #'
-#' @description Remove global deterministic trend information from the series.
+#' @description
+#'
+#' `r rlang:::lifecycle("stable")`
+#'
+#' Remove global deterministic trend information from the series.
 #'
 #' * `dt_lin` removes the linear trend.
 #' * `dt_quad` removes the quadratic trend.

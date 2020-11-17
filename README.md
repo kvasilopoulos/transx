@@ -64,3 +64,10 @@ lagx(x, fill = mean)
 lagx(x, fill = fill_nocb)
 #> [1] 5 5 3 2 2
 ```
+
+## Code of Conduct
+
+Please note that the transx project is released with a [Contributor Code
+of
+Conduct](https://kvasilopoulos.github.io/transx//CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

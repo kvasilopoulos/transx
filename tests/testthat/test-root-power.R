@@ -17,8 +17,8 @@ test_that("pow", {
 
 test_that("pow transx", {
   x <- rnorm(10)
-  expect_error(pow_boxcox(x), NA)
-  expect_error(pow_yj(x), NA)
-  expect_error(pow_tukey(x), NA)
-  expect_error(pow_manly(x), NA)
+  expect_error(pow_boxcox(x, 0.4), NA)
+  expect_error(pow_yj(x, 0.4), NA)
+  expect_error(pow_tukey(x, 0.4), NA)
+  expect_error(pow_manly(x, 0.4), NA)
 })

@@ -195,8 +195,8 @@ filter_cf <- function(x, ...) {
 #' @export
 #' @examples
 #' \donttest{
-#' x <- cumsum(rnorm(100))
-#' filter_bw(x)
+#' unemp_cycle <- filter_bw(unemp)
+#' plotx(unemp, unemp_cycle)
 #'}
 filter_bw <- function(x, ...) {
   need_pkg("mFilter")
@@ -216,10 +216,8 @@ filter_bw <- function(x, ...) {
 #' @export
 #' @examples
 #' \donttest{
-#' x <- cumsum(rnorm(100))
-#' fx <- filter_tr(x)
-#' fx
-#' plotx(cbind(x, fx))
+#' unemp_cycle <- filter_tr(unemp)
+#' plotx(unemp, unemp_cycle)
 #'}
 filter_tr <- function(x, ...) {
   need_pkg("mFilter")

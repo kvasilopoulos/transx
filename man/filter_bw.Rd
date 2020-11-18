@@ -18,7 +18,7 @@ This function computes the cyclical component of the Butterworth  filter.
 }
 \examples{
 \donttest{
-x <- cumsum(rnorm(100))
-filter_bw(x)
+unemp_cycle <- filter_bw(unemp)
+plotx(unemp, unemp_cycle)
 }
 }

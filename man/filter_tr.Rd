@@ -18,9 +18,7 @@ This function computes the cyclical component of the trigonometric regression fi
 }
 \examples{
 \donttest{
-x <- cumsum(rnorm(100))
-fx <- filter_tr(x)
-fx
-plotx(cbind(x, fx))
+unemp_cycle <- filter_tr(unemp)
+plotx(unemp, unemp_cycle)
 }
 }

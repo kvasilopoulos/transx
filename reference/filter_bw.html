@@ -159,28 +159,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>filter_bw</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1] -4.353726e-66  9.449909e-66 -7.466827e-66  6.901505e-66  2.155915e-66
-#&gt;   [6] -2.395819e-65  5.616164e-65 -7.595136e-65  7.763838e-65 -9.758987e-65
-#&gt;  [11]  1.385488e-64 -1.961428e-64  2.850277e-64 -3.958757e-64  4.986408e-64
-#&gt;  [16] -5.983377e-64  7.007826e-64 -7.927348e-64  8.876252e-64 -9.800635e-64
-#&gt;  [21]  1.056451e-63 -1.117864e-63  1.172855e-63 -1.231141e-63  1.259907e-63
-#&gt;  [26] -1.253586e-63  1.234791e-63 -1.213783e-63  1.207393e-63 -1.213522e-63
-#&gt;  [31]  1.198341e-63 -1.169200e-63  1.145826e-63 -1.115934e-63  1.108966e-63
-#&gt;  [36] -1.146768e-63  1.221007e-63 -1.326182e-63  1.414921e-63 -1.456524e-63
-#&gt;  [41]  1.467963e-63 -1.465850e-63  1.482153e-63 -1.499263e-63  1.517595e-63
-#&gt;  [46] -1.550977e-63  1.597446e-63 -1.674134e-63  1.730970e-63 -1.740189e-63
-#&gt;  [51]  1.720242e-63 -1.700031e-63  1.685962e-63 -1.653047e-63  1.607635e-63
-#&gt;  [56] -1.559961e-63  1.500430e-63 -1.427750e-63  1.336099e-63 -1.225448e-63
-#&gt;  [61]  1.094732e-63 -9.344680e-64  7.771698e-64 -6.831493e-64  6.405516e-64
-#&gt;  [66] -6.080066e-64  5.707051e-64 -5.176537e-64  4.505353e-64 -3.813378e-64
-#&gt;  [71]  3.203550e-64 -2.633179e-64  2.076776e-64 -1.824380e-64  1.975419e-64
-#&gt;  [76] -2.076599e-64  2.018392e-64 -1.998520e-64  1.960930e-64 -1.797535e-64
-#&gt;  [81]  1.719186e-64 -1.967898e-64  2.443342e-64 -2.846267e-64  3.160734e-64
-#&gt;  [86] -3.480697e-64  3.616910e-64 -3.609002e-64  3.507002e-64 -3.228806e-64
-#&gt;  [91]  2.850273e-64 -2.395950e-64  1.882685e-64 -1.230254e-64  6.362246e-65
-#&gt;  [96] -5.072361e-65  5.745682e-65 -3.815490e-65  9.854377e-66  0.000000e+00</div><div class='input'><span class='co'># }</span>
+<span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_bw</span><span class='op'>(</span><span class='va'>unemp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in is_uni_ts(x): object 'unemp' not found</span></div><div class='input'><span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in NCOL(x): object 'unemp' not found</span></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

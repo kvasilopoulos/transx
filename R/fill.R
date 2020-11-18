@@ -138,29 +138,6 @@ fill_locf <- function(body, idx, fail = NA) {
   vec[idx]
   # vec
 }
-#' @noRd
-#' @examples
-#' first(c(1,2,3))
-#' first(c(1,2,4))
-#' first(c(2,3,4))
-#'
-first <- function(x) {
-  n1 <-if(x[1] == 1)  1 else 0
-  if(n1 == 0) {}
-    return(vector(length = length(x)))
-  c(n1, diff(x)) == 1
-}
-
-#' @noRd
-#' @examples
-#' first(c(1,2,3))
-#' first(c(1,2,4))
-#' first(c(2,3,4))
-#'
-last <- function(x, n) {
-  nn <- if(x[n] == n) 1 else 0
-  nn
-}
 
 
 
@@ -258,10 +235,35 @@ fill_spline <- function(body, idx, ...) {
 
 # Kalman filter -----------------------------------------------------------
 
-fill_kalman <- function(body, idx, ...) {
-  mod <- stats::StructTS(body)$model0
-  kal <- stats::KalmanSmooth(body, mod)
-  erg <- kal$smooth
-  msidx <- erg[idx, , drop = TRUE] %*% as.matrix(mod$Z)
-  x[idx] <- msidx
-}
+# @noRd
+# @examples
+# first(c(1,2,3))
+# first(c(1,2,4))
+# first(c(2,3,4))
+#
+# first <- function(x) {
+#   n1 <-if(x[1] == 1)  1 else 0
+#   if(n1 == 0) {}
+#   return(vector(length = length(x)))
+#   c(n1, diff(x)) == 1
+# }
+
+# @noRd
+# @examples
+# first(c(1,2,3))
+# first(c(1,2,4))
+# first(c(2,3,4))
+#
+# last <- function(x, n) {
+#   nn <- if(x[n] == n) 1 else 0
+#   nn
+# }
+
+
+# fill_kalman <- function(body, idx, ...) {
+#   mod <- stats::StructTS(body)$model0
+#   kal <- stats::KalmanSmooth(body, mod)
+#   erg <- kal$smooth
+#   msidx <- erg[idx, , drop = TRUE] %*% as.matrix(mod$Z)
+#   x[idx] <- msidx
+# }

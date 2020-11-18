@@ -4,7 +4,7 @@
 \alias{pow_manly}
 \title{Manly(1971)}
 \usage{
-pow_manly(x, lambda)
+pow_manly(x, lambda = NULL)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}

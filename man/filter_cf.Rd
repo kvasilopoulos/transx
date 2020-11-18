@@ -17,7 +17,7 @@ Univariate vector, numeric or ts object with only one dimension.}
 This function computes the cyclical component of the Christiano-Fitzgerald filter.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_cf(x)
 }

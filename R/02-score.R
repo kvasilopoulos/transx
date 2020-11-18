@@ -1,6 +1,10 @@
 #' Score transformation
 #'
-#' @description These functions calculater the scores according to:
+#' @description
+#'
+#' `r rlang:::lifecycle("stable")`
+#'
+#' These functions calculater the scores according to:
 #'
 #' * `score_z`: Normal(z) distribution
 #' * `score_mad`: Mean absolute deviation

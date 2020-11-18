@@ -111,7 +111,7 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #' @seealso select_lambda
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_hp(x)
 #' select_lambda("monthly")
@@ -151,7 +151,7 @@ filter_hp <- function(x, ...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_bk(x)
 #'}
@@ -174,7 +174,7 @@ filter_bk <- function(x, fill = NA, ...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_cf(x)
 #'}
@@ -194,7 +194,7 @@ filter_cf <- function(x, ...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- cumsum(rnorm(100))
 #' filter_bw(x)
 #'}
@@ -215,9 +215,11 @@ filter_bw <- function(x, ...) {
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- cumsum(rnorm(100))
-#' filter_tr(x)
+#' fx <- filter_tr(x)
+#' fx
+#' plotx(cbind(x, fx))
 #'}
 filter_tr <- function(x, ...) {
   need_pkg("mFilter")

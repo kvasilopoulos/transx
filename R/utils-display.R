@@ -16,7 +16,8 @@ disp_outlier <- function(x) {
   if(rlang::is_bare_atomic(x, 0)) {
     disp_info("no outlier has been identified")
   } else {
-    disp_sucess("{length(x)} outlier{?s} ha{?s/ve} been identified")
+    disp_sucess("{length(x)} outlier{?s} ha{?s/ve} been identified",
+                .envir = parent.frame())
   }
 }
 
@@ -36,7 +37,7 @@ disp_info <- function(..., internal = FALSE) {
   )
 }
 
-disp_sucess <- function(..., internal = FALSE) {
+disp_success <- function(..., internal = FALSE) {
   with_disp(
     cli::cli_alert_success(...),
     internal

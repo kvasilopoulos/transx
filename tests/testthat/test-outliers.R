@@ -10,6 +10,7 @@ test_that("winsorize", {
 
 test_that("threshold", {
   x <- c(-5, -1, 0, 1, 2, 10)
+  expect_error(out_threshold(x), "should be specified")
   expect_equal(out_threshold(x, tlow = -3), c(NA, -1, 0, 1, 2, 10))
   expect_equal(out_threshold(x, thigh = 7), c(-5, -1, 0, 1, 2, NA))
   expect_equal(out_threshold(x, tlow = -3, thigh = 7), c(NA, -1, 0, 1, 2, NA))
@@ -25,4 +26,14 @@ test_that("pt", {
 test_that("iqr", {
   x <- 1:10
   expect_equal(out_iqr(c(0, 4, 5, 6, 10)), c(NA, 4, 5, 6, NA))
+})
+
+
+
+test_that("scores",{
+  x <- c(-5, -1, 0, 1, 2, 10)
+  expect_error(out_score_z(x), NA)
+  expect_error(out_score_zrob(x), NA)
+  expect_error(out_score_t(x), NA)
+  expect_error(out_score_chisq(x), NA)
 })

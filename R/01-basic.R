@@ -371,7 +371,8 @@ std_median <- function(x, na.rm = getOption("transx.na.rm")) {
 # }
 
 
-
+# TODO revisit documentation and lifecycle
+# TODO write examples to all functions
 
 
 

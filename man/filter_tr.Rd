@@ -17,8 +17,10 @@ Univariate vector, numeric or ts object with only one dimension.}
 This function computes the cyclical component of the trigonometric regression filter.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- cumsum(rnorm(100))
-filter_tr(x)
+fx <- filter_tr(x)
+fx
+plotx(cbind(x, fx))
 }
 }

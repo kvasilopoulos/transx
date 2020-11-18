@@ -6,6 +6,9 @@ test_that("hamilton", {
 
 test_that("filter works", {
   expect_equal(filter_hp(unemp), mFilter::hpfilter(unemp)$cycle)
+  expect_equal(select_lambda(), 1600)
+  expect_equal(select_lambda("annual", type = "ru2002"), 6.25)
+
   expect_equal(filter_cf(unemp), mFilter::cffilter(unemp)$cycle[,1])
   expect_equal(filter_bw(unemp), mFilter::bwfilter(unemp)$cycle)
   expect_equal(filter_tr(unemp), mFilter::trfilter(unemp)$cycle[,1])

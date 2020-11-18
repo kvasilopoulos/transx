@@ -11,7 +11,7 @@ diffx(x, n = 1L, order = 1L, rho = 1, fill = NA)
 
 rdiffx(x, n = 1L, order = 1L, rho = NULL, fill = NA)
 
-ldiffx(x, n = 1L, order = 1L, fill = NA)
+ldiffx(x, n = 1L, order = 1L, rho = 1, fill = NA)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -44,4 +44,11 @@ Returns suitably lagged and iterated differences.
 \item \code{rdffix} computes percentage differences.
 \item \code{ldiffx} computes logged differences.
 }
+}
+\examples{
+x <- c(2, 4, 8, 20)
+diffx(x)
+rdiffx(x)
+ldiffx(x)
+
 }

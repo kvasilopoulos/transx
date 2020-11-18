@@ -21,7 +21,7 @@ Numeric value(s) or function used to fill observations.}
 This function computes the cyclical component of the Baxter-King filter.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- cumsum(rnorm(100))
 filter_bk(x)
 }

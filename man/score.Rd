@@ -29,6 +29,8 @@ A value indicating whether NA values should be stripped before the computation p
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
+
 These functions calculater the scores according to:
 \itemize{
 \item \code{score_z}: Normal(z) distribution

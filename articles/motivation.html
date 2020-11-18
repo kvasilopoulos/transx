@@ -61,9 +61,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/create-fill_fun.html">create-fill_fun</a>
-    </li>
-    <li>
       <a href="../articles/motivation.html">motivation</a>
     </li>
   </ul>
@@ -131,8 +128,14 @@
 <span class="co">#&gt; # … with 571 more rows</span></code></pre></div>
 <p>Then, we are going to use some <code>stats</code> functions:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">econ</span>, pop_lag <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lag.html">lag</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in split_decimal(x, sigfig): invalid time series parameters specified</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">econ</span>, pop_lag <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lag.html">lag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ts.html">as.ts</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 574 x 7</span>
+<span class="co">#&gt;   date         pce    pop psavert uempmed unemploy pop_lag</span>
+<span class="co">#&gt;   &lt;date&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 1967-07-01  507. 198712    12.6     4.5     2944  198712</span>
+<span class="co">#&gt; 2 1967-08-01  510. 198911    12.6     4.7     2945  198911</span>
+<span class="co">#&gt; 3 1967-09-01  516. 199113    11.9     4.6     2958  199113</span>
+<span class="co">#&gt; # … with 571 more rows</span></code></pre></div>
 <p><code>base::lag</code> only works on <code>ts</code> objects. However, dplyr has thought about this problem</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">econ</span>, pop_lag <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">pop</span><span class="op">)</span><span class="op">)</span>

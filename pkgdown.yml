@@ -2,9 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  create-fill_fun: create-fill_fun.html
   motivation: motivation.html
-last_built: 2020-11-18T15:16Z
+last_built: 2020-11-18T15:33Z
 urls:
   reference: https://kvasilopoulos.github.io/transx//reference
   article: https://kvasilopoulos.github.io/transx//articles

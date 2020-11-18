@@ -18,6 +18,7 @@ This function computes the cyclical component of the trigonometric regression fi
 }
 \examples{
 \donttest{
+unemp <- ggplot2::economics$unemploy
 unemp_cycle <- filter_tr(unemp)
 plotx(unemp, unemp_cycle)
 }

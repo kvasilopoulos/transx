@@ -18,6 +18,7 @@ This function computes the cyclical component of the Butterworth  filter.
 }
 \examples{
 \donttest{
+unemp <- ggplot2::economics$unemploy
 unemp_cycle <- filter_bw(unemp)
 plotx(unemp, unemp_cycle)
 }

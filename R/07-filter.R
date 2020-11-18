@@ -21,8 +21,10 @@
 #' @export
 #'
 #' @examples
-#' x <- cumsum(rnorm(100))
-#' filter_hamilton(x)
+#' unemp <- ggplot2::economics$unemploy
+#' select_lambda("monthly")
+#' unemp_cycle <- filter_hamilton(unemp)
+#' plotx(unemp, unemp_cycle)
 filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
   lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
   y <- leadx_(x, horizon)
@@ -112,10 +114,10 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #' @export
 #' @examples
 #' \donttest{
-#' x <- cumsum(rnorm(100))
-#' filter_hp(x)
+#' unemp <- ggplot2::economics$unemploy
 #' select_lambda("monthly")
-#' filter_hp(x, freq = 100)
+#' unemp_cycle <- filter_hp(unemp)
+#' plotx(unemp, unemp_cycle)
 #'}
 filter_hp <- function(x, ...) {
   need_pkg("mFilter")
@@ -152,8 +154,9 @@ filter_hp <- function(x, ...) {
 #' @export
 #' @examples
 #' \donttest{
-#' x <- cumsum(rnorm(100))
-#' filter_bk(x)
+#' unemp <- ggplot2::economics$unemploy
+#' unemp_cycle <- filter_bk(unemp)
+#' plotx(unemp, unemp_cycle)
 #'}
 filter_bk <- function(x, fill = NA, ...) {
   need_pkg("mFilter")
@@ -175,8 +178,9 @@ filter_bk <- function(x, fill = NA, ...) {
 #' @export
 #' @examples
 #' \donttest{
-#' x <- cumsum(rnorm(100))
-#' filter_cf(x)
+#' unemp <- ggplot2::economics$unemploy
+#' unemp_cycle <- filter_cf(unemp)
+#' plotx(unemp, unemp_cycle)
 #'}
 filter_cf <- function(x, ...) {
   need_pkg("mFilter")
@@ -195,6 +199,7 @@ filter_cf <- function(x, ...) {
 #' @export
 #' @examples
 #' \donttest{
+#' unemp <- ggplot2::economics$unemploy
 #' unemp_cycle <- filter_bw(unemp)
 #' plotx(unemp, unemp_cycle)
 #'}
@@ -216,6 +221,7 @@ filter_bw <- function(x, ...) {
 #' @export
 #' @examples
 #' \donttest{
+#' unemp <- ggplot2::economics$unemploy
 #' unemp_cycle <- filter_tr(unemp)
 #' plotx(unemp, unemp_cycle)
 #'}

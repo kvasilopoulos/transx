@@ -18,10 +18,10 @@ This function computes the cyclical component of the Hodrick-Prescot filter.
 }
 \examples{
 \donttest{
-x <- cumsum(rnorm(100))
-filter_hp(x)
+unemp <- ggplot2::economics$unemploy
 select_lambda("monthly")
-filter_hp(x, freq = 100)
+unemp_cycle <- filter_hp(unemp)
+plotx(unemp, unemp_cycle)
 }
 }
 \seealso{

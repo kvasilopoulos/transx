@@ -18,7 +18,8 @@ This function computes the cyclical component of the Christiano-Fitzgerald filte
 }
 \examples{
 \donttest{
-x <- cumsum(rnorm(100))
-filter_cf(x)
+unemp <- ggplot2::economics$unemploy
+unemp_cycle <- filter_cf(unemp)
+plotx(unemp, unemp_cycle)
 }
 }

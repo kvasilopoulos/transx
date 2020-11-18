@@ -30,6 +30,8 @@ Returns a vector with the same class and attributes as the input vector.
 This function computes the cyclical component of the Hamilton filter.
 }
 \examples{
-x <- cumsum(rnorm(100))
-filter_hamilton(x)
+unemp <- ggplot2::economics$unemploy
+select_lambda("monthly")
+unemp_cycle <- filter_hamilton(unemp)
+plotx(unemp, unemp_cycle)
 }

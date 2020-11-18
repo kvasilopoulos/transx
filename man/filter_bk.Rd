@@ -22,7 +22,8 @@ This function computes the cyclical component of the Baxter-King filter.
 }
 \examples{
 \donttest{
-x <- cumsum(rnorm(100))
-filter_bk(x)
+unemp <- ggplot2::economics$unemploy
+unemp_cycle <- filter_bk(unemp)
+plotx(unemp, unemp_cycle)
 }
 }

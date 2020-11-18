@@ -7,8 +7,8 @@
 disp_na <- function(x, na.rm) {
   n_na <- is.na(x)
   if(any(n_na)) {
-    n_na <- sum(n_na)
-    disp_info("The vector contains {n_na} NA value{?s}, `na.rm` is set to {na.rm}.")
+    disp_info("The vector contains {sum(is.na(x))} NA value{?s}, `na.rm` is set to {na.rm}.",
+              .envir = parent.frame())
   }
 }
 
@@ -45,7 +45,7 @@ disp_sucess <- function(..., internal = FALSE) {
 
 disp_warning <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert_warning(..., internal = FALSE),
+    cli::cli_alert_warning(...),
     internal
   )
 }

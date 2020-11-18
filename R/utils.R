@@ -43,9 +43,10 @@ na_opt <- function() {
 
 with_na_rm <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_na(na.rm)
-  disp_na(x, na.rm)
-  if(na.rm)
+  if(na.rm) {
+    disp_na(x, na.rm)
     x <- x[!is.na(x)]
+  }
   x
 }
 

@@ -23,6 +23,7 @@
 #' @name root
 root <- function(x, root = NULL, modulus = FALSE) {
   assert_uni_ts(x)
+  stopifnot(!is.null(root))
   if(modulus) {
     out <- sign(x) * abs(x)^(1/root)
   }else{
@@ -102,6 +103,7 @@ pow_ <- function(x, pow = NA, modulus = FALSE) {
 #'
 pow_tukey <- function(x, lambda = NULL, ...) {
   assert_uni_ts(x)
+  stopifnot(!is.null(lambda))
   if (lambda >  0){
     out <- pow_(x, lambda, ...)
   } else if(abs(lambda) <= 1e-06){
@@ -142,6 +144,7 @@ pow_tukey <- function(x, lambda = NULL, ...) {
 pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 
   assert_uni_ts(x)
+  stopifnot(!is.null(lambda))
   lambda2 <- ifelse(is.null(lambda2), 0, lambda2)
   if (abs(lambda) <= 1e-06) {
     out <- log(x + lambda2)
@@ -172,6 +175,7 @@ pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 pow_yj <- function(x, lambda = NULL, ...) {
 
   assert_uni_ts(x)
+  stopifnot(!is.null(lambda))
   eps <- 1e-06
   if (abs(lambda) < eps) {
     out <- log(x + 1)
@@ -200,8 +204,9 @@ pow_yj <- function(x, lambda = NULL, ...) {
 #'
 #' @template return
 #' @export
-pow_manly <- function(x, lambda) {
+pow_manly <- function(x, lambda = NULL) {
   assert_uni_ts(x)
+  stopifnot(!is.null(lambda))
   if(abs(lambda) < 1e-06) {
     out <- x
   }else{

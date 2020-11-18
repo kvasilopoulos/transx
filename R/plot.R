@@ -11,19 +11,19 @@
 plotx <- function(x, ...) {
   nc <- NCOL(x)
 
-  if(nc == 1) {
-    return(plot_one(x))
-  }
 
   dots <- rlang::dots_list(...)
-  oma_top <- if(!is.null(dots$main)) 5 else 2
   if(!is.null(dots$xlab) ) {
     stop("xlab is not available", call. = TRUE)
   }
   if(!is.null(dots$ylab) ) {
     stop("ylab is not available", call. = TRUE)
   }
-  plot.ts(x, xlab = "", mar.multi = c(0, 5.1, 0, 2.1), oma.multi = c(3, 0, oma_top, 0))
+  if(nc == 1) {
+    return(plot_one(x, ...))
+  }
+  oma_top <- if(!is.null(dots$main)) 5 else 2
+  plot.ts(x, xlab = "", mar.multi = c(0, 5.1, 0, 2.1), oma.multi = c(3, 0, oma_top, 0), ...)
   graphics::grid(lty = "dashed")
 }
 

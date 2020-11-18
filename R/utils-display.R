@@ -16,7 +16,7 @@ disp_outlier <- function(x) {
   if(rlang::is_bare_atomic(x, 0)) {
     disp_info("no outlier has been identified")
   } else {
-    disp_sucess("{length(x)} outlier{?s} ha{?s/ve} been identified",
+    disp_success("{length(x)} outlier{?s} ha{?s/ve} been identified",
                 .envir = parent.frame())
   }
 }

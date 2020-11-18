@@ -43,7 +43,7 @@ econ
 Then, we are going to use some `stats` functions:
 
 ```{r exist-already, error=TRUE}
-mutate(econ, pop_lag = stats::lag(pop))
+mutate(econ, pop_lag = stats::lag(as.ts(pop)))
 ```
 
 `base::lag` only works on `ts` objects. However, dplyr has thought about this problem

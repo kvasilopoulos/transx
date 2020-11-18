@@ -43,17 +43,17 @@
 lagx <- function(x, n = 1L, fill = NA) {
   assert_lx(x, n)
   asserts_fill(n, fill)
-  out <- lagx_(x, n, fill = fill)
+  out <- lagx_(x, n, fill = fill, internal = FALSE)
   with_attrs(out, x)
 }
 
-lagx_ <- function(x, n, fill = NA) {
+lagx_ <- function(x, n, fill = NA, internal = TRUE) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   # here the idx and the subseting do not match
   idx <- 1:n
   body <- x[seq_len(xlen - n)]
-  out <- fill_(body, idx, fill)
+  fill_(body, idx, fill, internal = internal)
 }
 
 
@@ -62,16 +62,16 @@ lagx_ <- function(x, n, fill = NA) {
 leadx <- function(x, n = 1L, fill = NA) {
   assert_lx(x, n)
   asserts_fill(n, fill)
-  out <- leadx_(x, n, fill = fill)
+  out <- leadx_(x, n, fill = fill, internal = FALSE)
   with_attrs(out, x)
 }
 
-leadx_ <- function(x, n, fill = NA) {
+leadx_ <- function(x, n, fill = NA, internal = TRUE) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   body <- x[-seq_len(n)] # no need for body_ here
   idx <- (xlen - n + 1):xlen
-  fill_(body, idx, fill)
+  fill_(body, idx, fill, internal = internal)
 }
 
 
@@ -106,14 +106,20 @@ leadx_ <- function(x, n, fill = NA) {
 #'
 #' @name diffx-rdiffx-ldiffx
 #' @export
+#' @examples
+#' x <- c(2, 4, 8, 20)
+#' diffx(x)
+#' rdiffx(x)
+#' ldiffx(x)
+#'
 diffx <- function(x, n = 1L, order = 1L, rho = 1, fill = NA) {
   asserts_diff(x, n, order = order)
   asserts_fill(n, fill)
-  out <- diffx_(x, n, order = order, fill = fill)
+  out <- diffx_(x, n, order = order, rho = rho, fill = fill, internal = FALSE)
   with_attrs(out, x)
 }
 
-diffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA) {
+diffx_ <- function(x, n, order = 1L, rho = 1, fill = NA, internal = TRUE) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   idx <- 1:n
@@ -121,7 +127,7 @@ diffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA) {
     nx <- x - rho*lagx_(x, n)
   }
   body <- body_(nx, idx)
-  fill_(body, idx, fill)
+  fill_(body, idx, fill, internal = internal)
 }
 
 #' @rdname diffx-rdiffx-ldiffx
@@ -129,39 +135,40 @@ diffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA) {
 rdiffx <- function(x, n = 1L, order = 1L, rho = NULL, fill = NA) {
   asserts_diff(x, n, order = order)
   asserts_fill(n, fill)
-  out <- rdiffx_(x, n, order = order, fill = fill)
+  out <- rdiffx_(x, n, order = order, fill = fill, internal = FALSE)
   with_attrs(out, x)
 }
 
-rdiffx_ <- function(x, n, order = 1L, fill = NA) {
+rdiffx_ <- function(x, n, order = 1L, fill = NA, internal = TRUE) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   idx <- 1:n
   len <- length(x)
   for (i in seq_len(order))  {
-    body <- diffx_(x, n)/lagx_(x, n)
+    nx <- diffx_(x, n)/lagx_(x, n)
   }
-  fill_(body, idx, fill)
+  body <- body_(nx, idx)
+  fill_(body, idx, fill, internal = internal)
 }
 
 #' @rdname diffx-rdiffx-ldiffx
 #' @export
-ldiffx <- function(x, n = 1L, order = 1L, fill = NA) {
+ldiffx <- function(x, n = 1L, order = 1L, rho = 1, fill = NA) {
   asserts_diff(x, n, order = order)
   asserts_fill(n, fill)
-  out <- ldiffx_(x, n, order = order, fill = fill)
+  out <- ldiffx_(x, n, order = order, rho = rho, fill = fill, internal = FALSE)
   with_attrs(out, x)
 }
 
-ldiffx_ <- function(x, n, order = 1L, rho = NULL, fill = NA) {
+ldiffx_ <- function(x, n, order = 1L, rho = 1, fill = NA, internal = TRUE) {
   xlen <- length(x)
   n <- pmin(n, xlen)
   idx <- 1:n
-  len <- length(x)
   for (i in seq_len(order))  {
-    body <- diffx_(log(x), n, rho = rho)
+    nx <- diffx_(log(x), n, rho = rho)
   }
-  fill_(body, idx, fill)
+  body <- body_(nx, idx)
+  fill_(body, idx, fill, internal = internal)
 }
 
 # Rescaling ---------------------------------------------------------------

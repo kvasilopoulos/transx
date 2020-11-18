@@ -22,9 +22,7 @@ asserts_diff <- function(x, n, order, rho = NULL) {
   assert_uni_ts(x)
   assert_positive_scalar(n)
   assert_positive_scalar(order)
-  # Optional arguments
-  # seed %||% assert_positive_scalar(seed)
-  rho %||% assert_numeric(rho)
+  rho %!||% assert_numeric(rho)
 }
 
 # asserts_dtrend ----------------------------------------------------------
@@ -66,19 +64,22 @@ asserts_fill <- function(n, fill) {
 
 assert_uni_ts <- function(x) {
   if (!is_uni_ts(x))  {
-    stop(paste(deparse(substitute(x, env = parent.frame())), "must be a univariate series"), call. = FALSE)
+    stop(paste(deparse(substitute(x, env = parent.frame())),
+               "must be a univariate series"), call. = FALSE)
   }
 }
 
 assert_logical <- function(x) {
   if(!is.logical(x)) {
-    stop(paste(deparse(substitute(x, env = parent.frame())), "must be logical"), call. = FALSE)
+    stop(paste(deparse(substitute(x, env = parent.frame())),
+               "must be logical"), call. = FALSE)
   }
 }
 
 assert_numeric <- function(x) {
   if (!is.numeric(x))  {
-    stop(paste(deparse(substitute(x, env = parent.frame())), "must be a numeric vector"), call. = FALSE)
+    stop(paste(deparse(substitute(x, env = parent.frame())),
+               "must be a numeric vector"), call. = FALSE)
   }
 }
 

@@ -20,16 +20,21 @@ body_ <- function(x, idx) {
   out
 }
 
+is_identity <- function(fn) {
+  x <- c(-10,2,4,10) # random numnbers
+  all(fn(x) == x)
+}
+
 #' @importFrom rlang as_function is_formula is_function
 #' @noRd
 #' @examples
 #' fill_(c(2,3,4,5), 1, mean)
 #'
 #'
-fill_  <- function(body, idx, fill) {
+fill_  <- function(body, idx, fill, internal = FALSE) {
 
   if(!check_idx(idx)) {
-    disp_info("fill option is not available")
+    disp_info("fill option is not available", internal = internal)
     return(seq_along(body))
   }
   if(is_formula(fill)) {
@@ -37,16 +42,20 @@ fill_  <- function(body, idx, fill) {
   }
   vec <- new_vec(body, idx)
   if(is_function(fill)) {
+
     if(any(rlang::fn_fmls_names(fill) %in% c("idx", ".y"))) {
       vec[idx] <- fill(body, idx)
-      # print("hooray")
     }else {
+      if(is_identity(fill)) { # not in the specs but whatever
+        return(vec[-idx])
+      }
       vec[idx] <- fill(body)
     }
   }else{
     vec[idx] <- fill
   }
-  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame())
+  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame(),
+            internal = internal)
   vec
 }
 

@@ -22,33 +22,38 @@ disp_outlier <- function(x) {
 
 # disp -----------------------------------------------------------------
 
-disp <- function(...) {
+disp <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert(...)
+    cli::cli_alert(...),
+    internal
   )
 }
 
-disp_info <- function(...) {
+disp_info <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert_info(...)
+    cli::cli_alert_info(...),
+    internal
   )
 }
 
-disp_sucess <- function(...) {
+disp_sucess <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert_success(...)
+    cli::cli_alert_success(...),
+    internal
   )
 }
 
-disp_warning <- function(...) {
+disp_warning <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert_warning(...)
+    cli::cli_alert_warning(..., internal = FALSE),
+    internal
   )
 }
 
-disp_danger <- function(...) {
+disp_danger <- function(..., internal = FALSE) {
   with_disp(
-    cli::cli_alert_danger(...)
+    cli::cli_alert_danger(...),
+    internal
   )
 }
 

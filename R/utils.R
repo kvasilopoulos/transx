@@ -31,8 +31,8 @@ with_attrs <- function(out, x, seed = NULL) {
   }
 }
 
-with_disp <- function(x) {
-  if(has_pkg(c("cli")) && getOption("transx.display")) {
+with_disp <- function(x, internal = FALSE) {
+  if(has_pkg(c("cli")) && getOption("transx.display") && !isTRUE(internal)) {
     x
   }
 }
@@ -87,8 +87,6 @@ set_seed_attr <- function(x, seed) {
   else y
 }
 
-
-# freq --------------------------------------------------------------------
 
 
 

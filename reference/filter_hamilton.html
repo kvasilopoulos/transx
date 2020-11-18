@@ -172,25 +172,11 @@
     <p>Returns a vector with the same class and attributes as the input vector.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>filter_hamilton</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1]          NA          NA          NA          NA          NA          NA
-#&gt;   [7]          NA          NA          NA          NA          NA -0.92184307
-#&gt;  [13]  0.41226244  0.47928108  0.12507633  2.45580995  0.38216799 -0.13465884
-#&gt;  [19] -1.22673170 -3.14353124 -4.94453219 -3.79991097 -1.64794810 -2.97550936
-#&gt;  [25] -2.83365123 -1.68438542 -1.56243333 -0.94124990  0.58519001 -0.87706791
-#&gt;  [31]  0.20976778 -0.40780518  0.12581597 -0.87830674 -0.92875946 -1.43557738
-#&gt;  [37] -2.59169393 -1.02647294 -2.46179363 -3.41694185 -4.03746116 -4.24703232
-#&gt;  [43] -2.13722706 -2.04998277 -1.92947581 -0.42366731 -0.55971380 -1.04839391
-#&gt;  [49] -0.99156027 -0.13934679 -1.91882123 -1.16911362 -1.10947997 -3.38587742
-#&gt;  [55] -1.41824418  0.06179873  1.35716826  1.40665818  1.94147055  1.16682250
-#&gt;  [61]  0.84818546  0.30643095 -1.16500359  0.32644829  1.62492149  2.16586476
-#&gt;  [67]  2.25837278  1.85595705  1.82729401  2.31607161  3.42253723  3.14811462
-#&gt;  [73]  1.63376077 -1.22101398 -0.34423778  0.58113732  0.76619783  0.64087807
-#&gt;  [79]  0.58796634 -0.25974788 -2.56787521 -0.52928368 -1.18796234 -1.25906438
-#&gt;  [85] -0.93393329 -1.10505711 -1.20115130  0.38400261  1.87381372  1.18176909
-#&gt;  [91]  1.82985996  3.59996701  4.48258779  3.66027820  5.51024477  3.89653509
-#&gt;  [97]  5.98713940  4.54002268  2.98025099  3.23463291</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>unemp</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/economics.html'>economics</a></span><span class='op'>$</span><span class='va'>unemploy</span>
+<span class='fu'><a href='select_lambda.html'>select_lambda</a></span><span class='op'>(</span><span class='st'>"monthly"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 14400</div><div class='input'><span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_hamilton</span><span class='op'>(</span><span class='va'>unemp</span><span class='op'>)</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span>
+</div><div class='img'><img src='filter_hamilton-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

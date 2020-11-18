@@ -162,43 +162,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>filter_hp</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1]  2.49230508  1.69716276  0.71461301 -0.38608742 -0.87867526 -0.61298930
-#&gt;   [7] -2.70503250 -2.58511569 -1.45493601  0.46312578  1.63409690  2.25200894
-#&gt;  [13]  0.37877140 -0.37728090 -0.89254219 -0.36129733 -0.64814907 -2.09649078
-#&gt;  [19] -0.60946708  0.09889735  0.13017090  1.14141609 -0.40258647  0.05626911
-#&gt;  [25] -0.66346436 -0.16955143 -0.41095793  0.05303181  1.23381438  1.10319458
-#&gt;  [31]  2.00148656  0.71355772 -0.08789204  1.37056153  1.70575318 -0.37146815
-#&gt;  [37] -1.74574236 -1.94420229 -1.06465678 -1.14122660 -0.47941065  0.53101924
-#&gt;  [43]  2.26907522  2.40911849  2.45821905  0.82164495  1.05020506  0.61663172
-#&gt;  [49] -0.21423837 -0.25070918  0.90353243 -0.95833085 -1.26797911 -1.05120696
-#&gt;  [55] -1.86522533 -1.47587135 -1.03435530 -1.06337453 -3.55138284 -1.02755509
-#&gt;  [61] -1.30317864 -0.74153495 -0.57226024  0.33772556  1.03560614  0.70583580
-#&gt;  [67]  0.96807399 -0.08541211  0.67448564  0.13072711  2.48191687  0.78517079
-#&gt;  [73]  0.29657137  1.11913197  1.64876067  1.10091428  0.16669928  0.39277634
-#&gt;  [79]  0.47710622 -1.19974693 -1.03952033 -0.71316052 -0.39299449 -1.29395982
-#&gt;  [85] -0.65561521  0.89368215  1.52992770  0.58383778  0.34643153  0.89840143
-#&gt;  [91]  0.46351899 -1.47755888 -0.37451568 -0.98423487 -1.33809445  0.38504045
-#&gt;  [97] -0.16990892  0.89516644 -0.14573113 -0.28031304</div><div class='input'><span class='fu'><a href='select_lambda.html'>select_lambda</a></span><span class='op'>(</span><span class='st'>"monthly"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 14400</div><div class='input'><span class='fu'>filter_hp</span><span class='op'>(</span><span class='va'>x</span>, freq <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1]  1.31514302  0.89057551  0.26700683 -0.50574504 -0.72307903 -0.25167999
-#&gt;   [7] -2.21771530 -2.05952658 -0.96635521  0.87085338  1.95731596  2.51883453
-#&gt;  [13]  0.63053724 -0.10980335 -0.59521233 -0.03574321 -0.30637308 -1.76073806
-#&gt;  [19] -0.30956686  0.34182882  0.30644508  1.24941573 -0.35939052  0.03143966
-#&gt;  [25] -0.76289128 -0.35377743 -0.68659994 -0.31362663  0.79016474  0.61337401
-#&gt;  [31]  1.50597991  0.25707010 -0.47024406  1.08574838  1.53481637 -0.42925779
-#&gt;  [37] -1.72246277 -1.89921972 -1.06849227 -1.25777892 -0.75593676  0.07576869
-#&gt;  [43]  1.65211564  1.68280552  1.69514562  0.09931889  0.43563406  0.16584364
-#&gt;  [49] -0.45989546 -0.26584000  1.13283536 -0.47967274 -0.55479409 -0.13387523
-#&gt;  [55] -0.78492358 -0.28389101  0.21458097  0.18628020 -2.36155415  0.03506858
-#&gt;  [61] -0.42057751 -0.07820529 -0.15049119  0.51292334  0.97764765  0.44164359
-#&gt;  [67]  0.52894890 -0.66776621 -0.02367503 -0.65347482  1.64444013 -0.06319668
-#&gt;  [73] -0.52557834  0.35615560  0.97920149  0.55744228 -0.22835094  0.15326076
-#&gt;  [79]  0.38740411 -1.15947793 -0.90681957 -0.53241946 -0.20703815 -1.13916834
-#&gt;  [85] -0.56009908  0.92066504  1.50316329  0.53350776  0.30403790  0.89179630
-#&gt;  [91]  0.51408076 -1.36328202 -0.20965682 -0.78889905 -1.13749619  0.56785103
-#&gt;  [97] -0.01523312  1.01862557 -0.04925927 -0.20891450</div><div class='input'><span class='co'># }</span>
+<span class='va'>unemp</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/economics.html'>economics</a></span><span class='op'>$</span><span class='va'>unemploy</span>
+<span class='fu'><a href='select_lambda.html'>select_lambda</a></span><span class='op'>(</span><span class='st'>"monthly"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 14400</div><div class='input'><span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_hp</span><span class='op'>(</span><span class='va'>unemp</span><span class='op'>)</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span>
+</div><div class='img'><img src='filter_hp-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

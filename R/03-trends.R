@@ -76,7 +76,7 @@ dtrend_ <- function(x, degree = 1, bp = NULL) {
 #' plotx(cbind(raw = xbp, lin = dtrend_lin(xbp), lin_bp = dtrend_lin(xbp, bp = 10)))
 #'
 dtrend_lin <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
-  asserts_dtrend(x, bp = bp)
+  asserts_dtrend(x, 1, bp = bp)
   x <- with_na_rm(x, na.rm)
   out <- dtrend_(x, 1, bp = bp)
   with_attrs(out, x)
@@ -86,7 +86,7 @@ dtrend_lin <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
 #' @rdname dtrend
 #' @export
 dtrend_quad <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
-  asserts_dtrend(x, bp = bp)
+  asserts_dtrend(x, 2, bp = bp)
   x <- with_na_rm(x, na.rm)
   out <- dtrend_(x, 2, bp = bp)
   with_attrs(out, x)
@@ -95,7 +95,7 @@ dtrend_quad <- function(x, bp = NULL, na.rm = getOption("transx.na.rm")) {
 #' @rdname dtrend
 #' @export
 dtrend_poly <- function(x, degree, bp = NULL, na.rm = getOption("transx.na.rm")) {
-  asserts_dtrend(x, degree, bp = bp, raw = raw)
+  asserts_dtrend(x, degree, bp = bp, raw = TRUE)
   x <- with_na_rm(x, na.rm)
   out <- dtrend_(x, degree,  bp = bp)
   with_attrs(out, x)

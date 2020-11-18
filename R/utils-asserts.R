@@ -29,7 +29,7 @@ asserts_diff <- function(x, n, order, rho = NULL) {
 
 asserts_dtrend <- function(x, degree = NULL, bp = NULL, raw = NULL) {
   assert_uni_ts(x)
-  degree %!||% assert_positive_scalar(degree)
+  assert_positive_scalar(degree)
   bp %!||% assert_positive_scalar(bp)
   raw %!||% assert_logical(raw)
 }
@@ -86,7 +86,8 @@ assert_numeric <- function(x) {
 
 assert_positive_scalar <- function(n) {
   if (length(n) != 1L || !is.numeric(n) || n < 0L)  {
-    stop("`n` must be a nonnegative integer scalar", call. = FALSE)
+    stop(paste(deparse(substitute(n, env = parent.frame())),
+              "must be a nonnegative integer scalar"), call. = FALSE)
   }
 }
 

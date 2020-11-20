@@ -8,8 +8,7 @@ Authors@R:
            email = "k.vasilopoulo@gmail.com",
            comment = c(ORCID = "0000-0002-9769-6395"))
 Description: `transx` implements several time series
-    operations that follow an opiniated design. The package is based on 
-    numeric vectors, rather than ts objects.
+    operations that follow an opiniated design.
 License: GPL-3
 Imports: 
     rlang

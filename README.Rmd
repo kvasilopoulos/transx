@@ -25,8 +25,7 @@ knitr::opts_chunk$set(
 
 > **WARNING**: The package is still in early stages of development!
 
-`transx` implements several time series operations that follow an opiniated design. The main principle of `transx` is to keep the number of observations the same. Functions that reduce this number have as a default to `fill` the observation gap  (default: NA). However, the user may choose to choose anothe value to fill or even provide a function through
-`fill_fun` to achieve the replacement. The `fill_fun` will use the remaining observations as the body of the argument.
+`transx` implements several time series operations that follow an opiniated design. The main principle of `transx` is to keep the number of observations the same. Functions that reduce this number have as a default to `fill` the observation gap  (default: NA).
 
 ## Design Principles
 
@@ -48,7 +47,7 @@ knitr::opts_chunk$set(
 remotes::install_github("transx")
 ```
 
-### Example 
+### Basic Example 
 
 ```{r example, message = FALSE}
 library(transx)
@@ -58,6 +57,28 @@ lagx(x)
 lagx(x, fill = 1)
 lagx(x, fill = mean)
 lagx(x, fill = fill_nocb)
+```
+
+### Outliers
+
+```{r outlier}
+x <- c(-2,0,3, 50)
+out_iqr(x)
+# Identify outlier and give a value with fill option
+out_iqr(x, fill = 0)
+
+x2 <- rnorm(20)
+x2[10] <- 12
+out_score_z(x2)
+```
+
+### Filters
+
+
+```{r filtered}
+unemp <- ggplot2::economics$unemploy
+filtered <- cbind(filter_hamilton(unemp), filter_hp(unemp, select_lambda("monthly")))
+plotx(filtered)
 ```
 
 ## Code of Conduct

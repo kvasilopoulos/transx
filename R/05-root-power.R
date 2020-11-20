@@ -7,6 +7,8 @@
 #'
 #' @description
 #'
+#' `r rlang:::lifecycle("stable")`
+#'
 #' * `root`: nth root
 #' * `root_sqrt`: square root
 #' * `root_cubic`: cubic root
@@ -55,7 +57,9 @@ root_cubic <- function(x, ...) {
 # pow_box_cox(x, lam)
 
 
-#' Exponent or the nth Power
+#' nth Power Transformation
+#'
+#' `r rlang:::lifecycle("stable")`
 #'
 #' @template x
 #' @param pow `[numeric(1): NA]`
@@ -82,7 +86,11 @@ pow_ <- function(x, pow = NA, modulus = FALSE) {
 
 
 
-#' Tukey Transformations
+#' Tukey Transformations Transformations
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #'
@@ -115,6 +123,10 @@ pow_tukey <- function(x, lambda = NULL, ...) {
 }
 
 #' Box-Cox Transformations
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #'
@@ -154,8 +166,11 @@ pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
   with_attrs(out, x)
 }
 
-#' Yeo and Johnson(2000)
+#' Yeo and Johnson(2000) Transformations
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #' @param lambda `[numeric(1): NULL]`
@@ -191,7 +206,11 @@ pow_yj <- function(x, lambda = NULL, ...) {
 }
 
 
-#' Manly(1971)
+#' Manly(1971) Transformations
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' The transformation was reported to be successful in transform
 #' unimodal skewed distribution into normal distribution, but is

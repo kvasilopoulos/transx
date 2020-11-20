@@ -49,7 +49,7 @@ You can install the development version from
 remotes::install_github("transx")
 ```
 
-### Example
+### Basic Example
 
 ``` r
 library(transx)
@@ -64,6 +64,34 @@ lagx(x, fill = mean)
 lagx(x, fill = fill_nocb)
 #> [1] 5 5 3 2 2
 ```
+
+### Outliers
+
+``` r
+x <- c(-2,0,3, 50)
+out_iqr(x)
+#> [1] -2  0  3 NA
+# Identify outlier and give a value with fill option
+out_iqr(x, fill = 0)
+#> [1] -2  0  3  0
+
+x2 <- rnorm(20)
+x2[10] <- 12
+out_score_z(x2)
+#>  [1] -0.89889 -0.75576  0.72596  0.86864 -1.34219 -0.58945 -0.31021 -2.28387  0.99317
+#> [10]       NA -0.07489 -1.41920  0.36181  0.51493 -0.45579  0.12874  0.39123  0.66809
+#> [19]  1.02677 -0.02443
+```
+
+### Filters
+
+``` r
+unemp <- ggplot2::economics$unemploy
+filtered <- cbind(filter_hamilton(unemp), filter_hp(unemp, select_lambda("monthly")))
+plotx(filtered)
+```
+
+<img src="man/figures/README-filtered-1.png" width="100%" />
 
 ## Code of Conduct
 

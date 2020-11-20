@@ -31,11 +31,16 @@ is_identity <- function(fn) {
 #' fill_(c(2,3,4,5), 1, mean)
 #'
 #'
-fill_  <- function(body, idx, fill, internal = FALSE) {
+fill_  <- function(body, idx, fill, msg_on_na = NULL, msg_on_success = NULL, internal = FALSE) {
 
   if(!check_idx(idx)) {
-    disp_info("fill option is not available", internal = internal)
-    return(seq_along(body))
+    if(is.null(msg_on_na)) {
+      disp_info("fill option is not available", internal = internal)
+    }else{
+      stopifnot(is.character(msg_on_na))
+      disp_info(msg_on_na, internal = internal)
+    }
+    return(body)
   }
   if(is_formula(fill)) {
     fill <- as_function(fill)
@@ -54,8 +59,13 @@ fill_  <- function(body, idx, fill, internal = FALSE) {
   }else{
     vec[idx] <- fill
   }
-  disp_info("Filling {length(idx)} value{?s}.", .envir = parent.frame(),
-            internal = internal)
+  if(is.null(msg_on_success)) {
+    disp_info("Filling {length(idx)} value{?s}.", internal = internal,
+              .envir = parent.frame())
+  }else{
+    stopifnot(msg_on_success)
+    disp_info(msg_on_success, internal = internal)
+  }
   vec
 }
 

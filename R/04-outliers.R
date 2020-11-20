@@ -133,8 +133,8 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
 out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
   scores <- score_z(x, ...)
   idx <- which(abs(scores) > cutoff)
-  body <- body_(x, idx)
-  out <- fill_(body, idx, fill)
+  body <- body_(scores, idx)
+  out <- fill_(body, idx, fill, msg_on_na = "No outliers detected.")
   with_attrs(out, x)
 }
 
@@ -151,16 +151,16 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
 #'
 #' @export
 out_score_zrob <- function(x, cutoff = 3.5, fill = NA, ...) {
-  score <- 0.6745*score_mad(x, ...)
-  idx <- which(abs(score) > cutoff)
-  body <- body_(x, idx)
+  scores <- 0.6745*score_mad(x, ...)
+  idx <- which(abs(scores) > cutoff)
+  body <- body_(scores, idx)
   out <- fill_(body, idx, fill)
   with_attrs(out, x)
 }
 
 out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
-  score <- score_t(x, ...)
-  idx <- which(abs(score) > cutoff)
+  scores <- score_t(x, ...)
+  idx <- which(abs(scores) > cutoff)
   body <- body_(x, -idx)
   out <- fill_(body, idx, fill)
   attributes(out) <- attributes(x)
@@ -168,8 +168,8 @@ out_score_t <- function(x, cutoff = 3.5, fill = NA, ...) {
 }
 
 out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
-  score <- score_chisq(x, ...)
-  idx <- which(abs(score) > cutoff)
+  scores <- score_chisq(x, ...)
+  idx <- which(abs(scores) > cutoff)
   body <- body_(x, -idx)
   out <- fill_(body, idx, fill)
   with_attrs(out, x)

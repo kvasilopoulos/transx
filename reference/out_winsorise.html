@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Winsorize — out_winsorise" />
-<meta property="og:description" content="Replace extremely values that are defined by min and max." />
+<meta property="og:description" content="
+Replace extremely values that are defined by min and max." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -137,7 +138,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Replace extremely values that are defined by <code>min</code> and <code>max</code>.</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Replace extremely values that are defined by <code>min</code> and <code>max</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>out_winsorise</span><span class='op'>(</span><span class='va'>x</span>, min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.05</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>0.95</span><span class='op'>)</span><span class='op'>)</span>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Butterworth  Filter — filter_bw • transx</title>
+<title>Butterworth Filter — filter_bw • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Butterworth  Filter — filter_bw" />
-<meta property="og:description" content="This function computes the cyclical component of the Butterworth  filter." />
+<meta property="og:title" content="Butterworth Filter — filter_bw" />
+<meta property="og:description" content="
+This function computes the cyclical component of the Butterworth  filter." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -131,13 +132,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Butterworth  Filter</h1>
+    <h1>Butterworth Filter</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/07-filter.R'><code>R/07-filter.R</code></a></small>
     <div class="hidden name"><code>filter_bw.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function computes the cyclical component of the Butterworth  filter.</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>This function computes the cyclical component of the Butterworth  filter.</p>
     </div>
 
     <pre class="usage"><span class='fu'>filter_bw</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -160,8 +162,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='va'>unemp</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/economics.html'>economics</a></span><span class='op'>$</span><span class='va'>unemploy</span>
-<span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_bw</span><span class='op'>(</span><span class='va'>unemp</span><span class='op'>)</span>
-<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span>
+<span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_bw</span><span class='op'>(</span><span class='va'>unemp</span>, freq <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='filter_bw-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

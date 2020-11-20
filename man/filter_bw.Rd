@@ -2,7 +2,7 @@
 % Please edit documentation in R/07-filter.R
 \name{filter_bw}
 \alias{filter_bw}
-\title{Butterworth  Filter}
+\title{Butterworth Filter}
 \usage{
 filter_bw(x, ...)
 }
@@ -14,12 +14,14 @@ Univariate vector, numeric or ts object with only one dimension.}
 \item{...}{Further arguments passed to \code{\link[mFilter]{bwfilter}}.}
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 This function computes the cyclical component of the Butterworth  filter.
 }
 \examples{
 \donttest{
 unemp <- ggplot2::economics$unemploy
-unemp_cycle <- filter_bw(unemp)
-plotx(unemp, unemp_cycle)
+unemp_cycle <- filter_bw(unemp, freq = 10)
+plotx(cbind(unemp, unemp_cycle))
 }
 }

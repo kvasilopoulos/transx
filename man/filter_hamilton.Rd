@@ -27,11 +27,12 @@ Numeric value(s) or function used to fill observations.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 This function computes the cyclical component of the Hamilton filter.
 }
 \examples{
 unemp <- ggplot2::economics$unemploy
-select_lambda("monthly")
 unemp_cycle <- filter_hamilton(unemp)
-plotx(unemp, unemp_cycle)
+plotx(cbind(unemp, unemp_cycle))
 }

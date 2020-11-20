@@ -27,7 +27,7 @@ Numeric value(s) or function used to fill observations.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Detect outliers with upper and lower threshold
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 x <- c(1, 3, -1, 5, 10, 100)

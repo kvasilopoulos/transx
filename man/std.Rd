@@ -23,7 +23,7 @@ A value indicating whether NA values should be stripped before the computation p
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 
 Convert number of standard deviations by which the value of a raw score
 is above or below the mean value of what is being observed or measured.

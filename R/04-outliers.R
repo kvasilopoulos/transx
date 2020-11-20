@@ -11,6 +11,10 @@ not_between <- function(x, t_low, t_high) {
 
 #' Winsorize
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' Replace extremely values that are defined by `min` and `max`.
 #'
 #' @template x
@@ -48,6 +52,10 @@ out_winsorize <- out_winsorise
 
 
 #' Detect outliers with upper and lower threshold
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #' @template fill
@@ -89,6 +97,10 @@ out_threshold <- function(x, tlow = NULL, thigh = NULL, fill = NA) {
 
 #' Detect outliers with Percentiles
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' @template x
 #' @template fill
 #' @param pt_low the lowest quantile
@@ -108,6 +120,10 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
 
 #' Detect outliers with zscore
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' @template x
 #' @template fill
 #' @param ... Further arguments passed to `score`.
@@ -123,6 +139,10 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
 }
 
 #' Detect outliers Iglewicz and Hoaglin (1993) robust z-score method
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #' @template fill
@@ -156,6 +176,10 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
 }
 
 #' Detect outliers with Tukey's method
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @template x
 #' @template fill

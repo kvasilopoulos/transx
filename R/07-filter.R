@@ -1,6 +1,10 @@
 
 #' Hamilton Filter
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' This function computes the cyclical component of the Hamilton filter.
 #'
 #' @template x
@@ -22,9 +26,8 @@
 #'
 #' @examples
 #' unemp <- ggplot2::economics$unemploy
-#' select_lambda("monthly")
 #' unemp_cycle <- filter_hamilton(unemp)
-#' plotx(unemp, unemp_cycle)
+#' plotx(cbind(unemp, unemp_cycle))
 filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
   lagmatrix <- embed(c(rep(NA, p - 1), x) , p)
   y <- leadx_(x, horizon)
@@ -102,22 +105,23 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 
 #' Hodrick-Prescot Filter
 #'
-#' This function computes the cyclical component of the Hodrick-Prescot filter.
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
+#' This function computes the cyclical component of the Hodrick-Prescot filter.
 #'
 #' @template x
 #' @param ... Further arguments passed to \code{\link[mFilter]{hpfilter}}.
-#'
-#'
 #'
 #' @seealso select_lambda
 #' @export
 #' @examples
 #' \donttest{
 #' unemp <- ggplot2::economics$unemploy
-#' select_lambda("monthly")
-#' unemp_cycle <- filter_hp(unemp)
-#' plotx(unemp, unemp_cycle)
+#' unemp_cycle <- filter_hp(unemp, freq = select_lambda("monthly"))
+#' plotx(cbind(unemp, unemp_cycle))
 #'}
 filter_hp <- function(x, ...) {
   need_pkg("mFilter")
@@ -145,6 +149,11 @@ filter_hp <- function(x, ...) {
 
 #' Baxter-King Filter
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
+#'
 #' This function computes the cyclical component of the Baxter-King filter.
 #'
 #' @template x
@@ -156,7 +165,7 @@ filter_hp <- function(x, ...) {
 #' \donttest{
 #' unemp <- ggplot2::economics$unemploy
 #' unemp_cycle <- filter_bk(unemp)
-#' plotx(unemp, unemp_cycle)
+#' plotx(cbind(unemp, unemp_cycle))
 #'}
 filter_bk <- function(x, fill = NA, ...) {
   need_pkg("mFilter")
@@ -170,6 +179,10 @@ filter_bk <- function(x, fill = NA, ...) {
 
 #' Christiano-Fitzgerald Filter
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' This function computes the cyclical component of the Christiano-Fitzgerald filter.
 #'
 #' @template x
@@ -180,7 +193,7 @@ filter_bk <- function(x, fill = NA, ...) {
 #' \donttest{
 #' unemp <- ggplot2::economics$unemploy
 #' unemp_cycle <- filter_cf(unemp)
-#' plotx(unemp, unemp_cycle)
+#' plotx(cbind(unemp, unemp_cycle))
 #'}
 filter_cf <- function(x, ...) {
   need_pkg("mFilter")
@@ -189,7 +202,11 @@ filter_cf <- function(x, ...) {
   with_attrs(out, x)
 }
 
-#' Butterworth  Filter
+#' Butterworth Filter
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' This function computes the cyclical component of the Butterworth  filter.
 #'
@@ -200,8 +217,8 @@ filter_cf <- function(x, ...) {
 #' @examples
 #' \donttest{
 #' unemp <- ggplot2::economics$unemploy
-#' unemp_cycle <- filter_bw(unemp)
-#' plotx(unemp, unemp_cycle)
+#' unemp_cycle <- filter_bw(unemp, freq = 10)
+#' plotx(cbind(unemp, unemp_cycle))
 #'}
 filter_bw <- function(x, ...) {
   need_pkg("mFilter")
@@ -212,9 +229,12 @@ filter_bw <- function(x, ...) {
 
 #' Trigonometric regression Filter
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' This function computes the cyclical component of the trigonometric regression filter.
 #'
-
 #' @template x
 #' @param ...  Further arguments passed to \code{\link[mFilter]{trfilter}}.
 #'
@@ -222,8 +242,8 @@ filter_bw <- function(x, ...) {
 #' @examples
 #' \donttest{
 #' unemp <- ggplot2::economics$unemploy
-#' unemp_cycle <- filter_tr(unemp)
-#' plotx(unemp, unemp_cycle)
+#' unemp_cycle <- filter_tr(unemp, pl=8, pu=40)
+#' plotx(cbind(unemp, unemp_cycle))
 #'}
 filter_tr <- function(x, ...) {
   need_pkg("mFilter")

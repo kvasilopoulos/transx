@@ -36,7 +36,7 @@ to provide  quasi-differencing assuming the value falls within 0 and 1.}
 Numeric value(s) or function used to fill observations.}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 
 Returns suitably lagged and iterated differences.
 \itemize{

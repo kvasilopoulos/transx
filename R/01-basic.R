@@ -81,7 +81,7 @@ leadx_ <- function(x, n, fill = NA, internal = TRUE) {
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' Returns suitably lagged and iterated differences.
 #'
@@ -178,7 +178,7 @@ ldiffx_ <- function(x, n, order = 1L, rho = 1, fill = NA, internal = TRUE) {
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' Removes the mean, the median or the mode from the series.
 #'
@@ -220,7 +220,7 @@ demode <- function(x, na.rm = getOption("transx.na.rm")) {
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' Change the base year.
 #'
@@ -268,7 +268,7 @@ rebase_origin <- function(x) {
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#' `r rlang:::lifecycle("maturing")`
 #'
 #'
 #' @details To rescale a range between an arbitrary set of values \[a, b\], the formula becomes:
@@ -327,7 +327,7 @@ scale_range_ <- function(x, a, b) {
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#' `r rlang:::lifecycle("maturing")`
 #'
 #'
 #' Convert number of standard deviations by which the value of a raw score

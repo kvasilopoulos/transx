@@ -14,14 +14,15 @@ Univariate vector, numeric or ts object with only one dimension.}
 \item{...}{Further arguments passed to \code{\link[mFilter]{hpfilter}}.}
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 This function computes the cyclical component of the Hodrick-Prescot filter.
 }
 \examples{
 \donttest{
 unemp <- ggplot2::economics$unemploy
-select_lambda("monthly")
-unemp_cycle <- filter_hp(unemp)
-plotx(unemp, unemp_cycle)
+unemp_cycle <- filter_hp(unemp, freq = select_lambda("monthly"))
+plotx(cbind(unemp, unemp_cycle))
 }
 }
 \seealso{

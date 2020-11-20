@@ -14,12 +14,14 @@ Univariate vector, numeric or ts object with only one dimension.}
 \item{...}{Further arguments passed to \code{\link[mFilter]{trfilter}}.}
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 This function computes the cyclical component of the trigonometric regression filter.
 }
 \examples{
 \donttest{
 unemp <- ggplot2::economics$unemploy
-unemp_cycle <- filter_tr(unemp)
-plotx(unemp, unemp_cycle)
+unemp_cycle <- filter_tr(unemp, pl=8, pu=40)
+plotx(cbind(unemp, unemp_cycle))
 }
 }

@@ -29,7 +29,7 @@ A value indicating whether NA values should be stripped before the computation p
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \details{
 To rescale a range between an arbitrary set of values [a, b], the formula becomes:

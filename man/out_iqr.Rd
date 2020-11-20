@@ -20,5 +20,5 @@ Numeric value(s) or function used to fill observations.}
 \item{...}{further arguments passed to \code{quantile}.}
 }
 \description{
-Detect outliers with Tukey's method
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }

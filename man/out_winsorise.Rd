@@ -26,6 +26,8 @@ The upper bound, all values above than this will be replaced by this value.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 Replace extremely values that are defined by \code{min} and \code{max}.
 }
 \examples{

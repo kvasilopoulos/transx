@@ -20,5 +20,5 @@ Numeric value(s) or function used to fill observations.}
 \item{...}{further arguments passed to \code{score}.}
 }
 \description{
-Detect outliers Iglewicz and Hoaglin (1993) robust z-score method
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }

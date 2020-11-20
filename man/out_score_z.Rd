@@ -20,5 +20,5 @@ Numeric value(s) or function used to fill observations.}
 \item{...}{Further arguments passed to \code{score}.}
 }
 \description{
-Detect outliers with zscore
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }

@@ -103,18 +103,15 @@
 
     
     
+<p>The problem arises when we have to use time-series in a data.frame or use time-series operations like <code>lag</code> and <code>diff</code> for numeric vectors in a data.frame. Let’s look into an example.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kvasilopoulos/transx">transx</a></span><span class="op">)</span></code></pre></div>
-<p>Some functions require inheritnly the frequency (like decompose or stl) of the time-series. Although the input can be <code>ts</code> and <code>xts</code> object, the output will always be a numeric vector.</p>
-<div id="problem" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problem" class="anchor"></a>Problem</h3>
-<ul>
-<li>stats</li>
-<li>dplyr</li>
-<li>tsibble</li>
-</ul>
-<p>We restrict tibble printing options to minimize the space occupied.</p>
+<!-- Some functions require inheritnly the frequency (like decompose or stl) of the time-series. Although the input can be `ts` and `xts` object, the output will always be a numeric vector. 
+* stats
+* dplyr
+* tsibble
+-->
+<p>First, wee restrict tibble printing options to minimize the space occupied.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>tibble.print_min <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
@@ -168,7 +165,6 @@
 <span class="co">#&gt; 2 1967-08-01  510. 198911    12.6     4.7     2945      199</span>
 <span class="co">#&gt; 3 1967-09-01  516. 199113    11.9     4.6     2958      202</span>
 <span class="co">#&gt; # … with 571 more rows</span></code></pre></div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

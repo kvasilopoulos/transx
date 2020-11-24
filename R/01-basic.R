@@ -186,6 +186,14 @@ ldiffx_ <- function(x, n, order = 1L, rho = 1, fill = NA, internal = TRUE) {
 #' @template return
 #' @name demean-demedian
 #' @export
+#' @example
+#'
+#' x <- c(2,5,10,20,30)
+#' summary(x)
+#'
+#' demean(x)
+#' demedian(x)
+#' demode(x)
 demean <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)
@@ -371,7 +379,7 @@ std_median <- function(x, na.rm = getOption("transx.na.rm")) {
 # }
 
 
-# TODO revisit documentation and lifecycle
+
 # TODO write examples to all functions
 
 

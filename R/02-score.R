@@ -22,6 +22,12 @@
 #' @export
 #' @seealso \code{\link[outliers]{scores}}
 #' @template return
+#' @examples
+#'
+#' x <- seq(-3,3,0.5)
+#' score_z(x)
+#' score_mad(x)
+#'
 score_z <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)

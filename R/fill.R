@@ -3,6 +3,16 @@ check_idx <- function(x) {
   !rlang::is_bare_atomic(x, 0)
 }
 
+nidx <- function(x) {
+  if(!check_idx(x)) {
+    return(0)
+  }
+  if(is.logical(x)) {
+    return(sum(x))
+  }
+  length(x)
+}
+
 body_ <- function(x, idx) {
 
   if(!check_idx(idx)) {
@@ -38,7 +48,7 @@ fill_  <- function(body, idx, fill, msg_on_na = NULL, msg_on_success = NULL, int
       disp_info("fill option is not available", internal = internal)
     }else{
       stopifnot(is.character(msg_on_na))
-      disp_info(msg_on_na, internal = internal)
+      msg_on_na
     }
     return(body)
   }
@@ -63,8 +73,7 @@ fill_  <- function(body, idx, fill, msg_on_na = NULL, msg_on_success = NULL, int
     disp_info("Filling {length(idx)} value{?s}.", internal = internal,
               .envir = parent.frame())
   }else{
-    stopifnot(msg_on_success)
-    disp_info(msg_on_success, internal = internal)
+    msg_on_success
   }
   vec
 }

@@ -23,6 +23,12 @@
 #' Transformation will work for data with both positive and negative `root`.
 #'
 #' @name root
+#' @examples
+#'
+#' root(4, 2)
+#' root(-4, 2)
+#'
+#' root(-4, 2, T)
 root <- function(x, root = NULL, modulus = FALSE) {
   assert_uni_ts(x)
   stopifnot(!is.null(root))
@@ -68,14 +74,18 @@ root_cubic <- function(x, ...) {
 #'
 #' @param modulus positive
 #' @template return
-#'
-pow <- function(x, pow = NA, modulus = FALSE) {
+#' @examples
+#' pow(2, 2)
+#' pow(-2, 2)
+#' pow(-2,2, TRUE)
+pow <- function(x, pow = NULL, modulus = FALSE) {
   assert_uni_ts(x)
+  stopifnot(!is.null(pow))
   out <- pow_(x, pow, modulus = modulus)
   with_attrs(out, x)
 }
 
-pow_ <- function(x, pow = NA, modulus = FALSE) {
+pow_ <- function(x, pow = NULL, modulus = FALSE) {
   if(modulus) {
     out <- sign(x) * abs(x)^pow
   }else{
@@ -107,8 +117,8 @@ pow_ <- function(x, pow = NA, modulus = FALSE) {
 #'
 #' @examples
 #' set.seed(123)
-#' x <- rnorm(100)
-#'
+#' x <- runif(10)
+#' pow_tukey(x, 2)
 pow_tukey <- function(x, lambda = NULL, ...) {
   assert_uni_ts(x)
   stopifnot(!is.null(lambda))
@@ -151,8 +161,8 @@ pow_tukey <- function(x, lambda = NULL, ...) {
 #'
 #' @examples
 #' set.seed(123)
-#' x <- rnorm(100)
-#'
+#' x <- runif(10)
+#' pow_boxcox(x, 3)
 pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 
   assert_uni_ts(x)
@@ -187,6 +197,10 @@ pow_boxcox <- function(x, lambda = NULL, lambda2 = NULL, ...) {
 #' \url{http://www.jstor.org/stable/2673623}
 #'
 #' @export
+#' @examples
+#' set.seed(123)
+#' x <- runif(10)
+#' pow_yj(x, 3)
 pow_yj <- function(x, lambda = NULL, ...) {
 
   assert_uni_ts(x)
@@ -223,6 +237,11 @@ pow_yj <- function(x, lambda = NULL, ...) {
 #'
 #' @template return
 #' @export
+#'
+#' @examples
+#' set.seed(123)
+#' x <- runif(10)
+#' pow_manly(x, 3)
 pow_manly <- function(x, lambda = NULL) {
   assert_uni_ts(x)
   stopifnot(!is.null(lambda))

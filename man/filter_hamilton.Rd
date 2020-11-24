@@ -17,7 +17,7 @@ A value indicating the number of lags}
 
 \item{horizon}{\verb{[integer(1): 8]}
 
-A value indicationg the number of periods to look ahead.}
+A value indicating the number of periods to look ahead.}
 
 \item{fill}{\verb{[numeric or function: NA]}
 

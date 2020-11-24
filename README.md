@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# transx <a href='https://kvasilopoulos.github.io/transx'><img src='man/figures/logo.png' align="right" height="138" /></a>
+# transx <a href='https://kvasilopoulos.github.io/transx/'><img src='man/figures/logo.png' align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -15,10 +15,10 @@ status](https://github.com/kvasilopoulos/transx/workflows/R-CMD-check/badge.svg)
 coverage](https://codecov.io/gh/kvasilopoulos/transx/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/transx?branch=master)
 <!-- badges: end -->
 
-`transx` implements several univariate time series operations that
-follow an opinionated design. The main principle of `transx` is to keep
-the number of observations the same. Functions that reduce this number
-have to `fill` the observations gap.
+The package `transx` implements several univariate time series
+operations that follow an opinionated design. The main principle of
+`transx` is to keep the number of observations the same. Functions that
+reduce this number have to `fill` the observations gap.
 
 ## Design Principles
 

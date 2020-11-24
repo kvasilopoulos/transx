@@ -1,5 +1,5 @@
 
-#' Plotting wrapper aroung plot.default
+#' Plotting wrapper around plot.default
 #'
 #' Helper function to only plot x as a line plot.
 #'

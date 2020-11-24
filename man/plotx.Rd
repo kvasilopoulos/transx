@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotx}
 \alias{plotx}
-\title{Plotting wrapper aroung plot.default}
+\title{Plotting wrapper around plot.default}
 \usage{
 plotx(x, ...)
 }

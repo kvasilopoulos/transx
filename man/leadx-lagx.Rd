@@ -34,7 +34,7 @@ Useful for comparing values behind of or ahead of the current values.
 }
 \details{
 This functions has been taken and modified from the \code{dplyr} package,
-however, to reduce dependecies they are not imported.
+however, to reduce dependencies they are not imported.
 }
 \examples{
 

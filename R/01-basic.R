@@ -20,7 +20,7 @@
 #' @template fill
 #'
 #' @details This functions has been taken and modified from the `dplyr` package,
-#' however, to reduce dependecies they are not imported.
+#' however, to reduce dependencies they are not imported.
 #'
 #'
 #' @importFrom stats lag
@@ -75,7 +75,7 @@ leadx_ <- function(x, n, fill = NA, internal = TRUE) {
 }
 
 
-# Differencing ------------------------------------------------------------
+# differencing ------------------------------------------------------------
 
 #' Compute lagged differnces
 #'
@@ -83,7 +83,7 @@ leadx_ <- function(x, n, fill = NA, internal = TRUE) {
 #'
 #' `r rlang:::lifecycle("maturing")`
 #'
-#' Returns suitably lagged and iterated differences.
+#' Returns suitably lagged and iterated difference
 #'
 #' * `diffx` computes simple differences.
 #' * `rdffix` computes percentage differences.

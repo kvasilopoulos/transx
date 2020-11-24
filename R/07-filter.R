@@ -15,7 +15,7 @@
 #'
 #' @param horizon `[integer(1): 8]`
 #'
-#' A value indicationg the number of periods to look ahead.
+#' A value indicating the number of periods to look ahead.
 #'
 #' @template fill
 #' @template return

@@ -38,7 +38,7 @@ Numeric value(s) or function used to fill observations.}
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 
-Returns suitably lagged and iterated differences.
+Returns suitably lagged and iterated difference
 \itemize{
 \item \code{diffx} computes simple differences.
 \item \code{rdffix} computes percentage differences.

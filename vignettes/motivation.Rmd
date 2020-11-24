@@ -14,19 +14,21 @@ knitr::opts_chunk$set(
 )
 ```
 
+The problem arises when we have to use time-series in a data.frame or use time-series
+operations like `lag` and `diff` for numeric vectors in a data.frame. Let's look into
+an example.
+
 ```{r setup}
 library(transx)
 ```
 
-Some functions require inheritnly the frequency (like decompose or stl) of the time-series. Although the input can be `ts` and `xts` object, the output will always be a numeric vector.
-
-### Problem
-
+<!-- Some functions require inheritnly the frequency (like decompose or stl) of the time-series. Although the input can be `ts` and `xts` object, the output will always be a numeric vector. 
 * stats
 * dplyr
 * tsibble
+-->
 
-We restrict tibble printing options to minimize the space occupied.
+First, wee restrict tibble printing options to minimize the space occupied.
 
 ```{r problem, message=FALSE}
 library(dplyr)

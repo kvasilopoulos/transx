@@ -12,3 +12,5 @@
 ^\.github$
 ^doc$
 ^codecov\.yml$
+^cran-comments\.md$
+^Meta$

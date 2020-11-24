@@ -28,9 +28,17 @@ Transformation will work for data with both positive and negative \code{root}.}
 \item{...}{Further arguments passed to \code{root}.}
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
 \itemize{
 \item \code{root}: nth root
 \item \code{root_sqrt}: square root
 \item \code{root_cubic}: cubic root
 }
+}
+\examples{
+
+root(4, 2)
+root(-4, 2)
+
+root(-4, 2, TRUE)
 }

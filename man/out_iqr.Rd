@@ -22,3 +22,8 @@ Numeric value(s) or function used to fill observations.}
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
+\examples{
+
+out_iqr(c(0,1,3,4,20))
+
+}

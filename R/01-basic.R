@@ -186,7 +186,7 @@ ldiffx_ <- function(x, n, order = 1L, rho = 1, fill = NA, internal = TRUE) {
 #' @template return
 #' @name demean-demedian
 #' @export
-#' @example
+#' @examples
 #'
 #' x <- c(2,5,10,20,30)
 #' summary(x)

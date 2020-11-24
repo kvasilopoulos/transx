@@ -2,7 +2,7 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow_tukey}
 \alias{pow_tukey}
-\title{Tukey Transformations}
+\title{Tukey Transformations Transformations}
 \usage{
 pow_tukey(x, lambda = NULL, ...)
 }
@@ -21,10 +21,10 @@ Transformation exponent, \eqn{\lambda}.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Tukey Transformations
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 set.seed(123)
-x <- rnorm(100)
-
+x <- runif(10)
+pow_tukey(x, 2)
 }

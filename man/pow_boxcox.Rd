@@ -25,12 +25,12 @@ Transformation exponent, \eqn{\lambda_2}.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Box-Cox Transformations
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 set.seed(123)
-x <- rnorm(100)
-
+x <- runif(10)
+pow_boxcox(x, 3)
 }
 \references{
 Box, G. E., & Cox, D. R. (1964). An analysis of transformations.

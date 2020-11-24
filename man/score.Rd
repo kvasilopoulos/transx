@@ -46,6 +46,14 @@ Because function are known with different names:
 \item \code{score_mad} is identical to \code{std_median}
 }
 }
+\examples{
+
+x <- seq(-3,3,0.5)
+score_z(x)
+score_mad(x)
+score_t(x)
+
+}
 \seealso{
 \code{\link[outliers]{scores}}
 }

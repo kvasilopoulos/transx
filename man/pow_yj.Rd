@@ -2,7 +2,7 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow_yj}
 \alias{pow_yj}
-\title{Yeo and Johnson(2000)}
+\title{Yeo and Johnson(2000) Transformations}
 \usage{
 pow_yj(x, lambda = NULL, ...)
 }
@@ -21,7 +21,12 @@ Transformation exponent, \eqn{\lambda}.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Yeo and Johnson(2000)
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+}
+\examples{
+set.seed(123)
+x <- runif(10)
+pow_yj(x, 3)
 }
 \references{
 Yeo, I., & Johnson, R. (2000).

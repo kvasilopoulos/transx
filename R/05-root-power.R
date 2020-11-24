@@ -23,12 +23,13 @@
 #' Transformation will work for data with both positive and negative `root`.
 #'
 #' @name root
+#' @export
 #' @examples
 #'
 #' root(4, 2)
 #' root(-4, 2)
 #'
-#' root(-4, 2, T)
+#' root(-4, 2, TRUE)
 root <- function(x, root = NULL, modulus = FALSE) {
   assert_uni_ts(x)
   stopifnot(!is.null(root))
@@ -70,10 +71,11 @@ root_cubic <- function(x, ...) {
 #' @template x
 #' @param pow `[numeric(1): NA]`
 #'
-#' The nth power
+#' The nth power.
 #'
 #' @param modulus positive
 #' @template return
+#' @export
 #' @examples
 #' pow(2, 2)
 #' pow(-2, 2)

@@ -15,22 +15,17 @@ status](https://github.com/kvasilopoulos/transx/workflows/R-CMD-check/badge.svg)
 coverage](https://codecov.io/gh/kvasilopoulos/transx/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/transx?branch=master)
 <!-- badges: end -->
 
-> **WARNING**: The package is still in early stages of development!
-
-`transx` implements several time series operations that follow an
-opiniated design. The main principle of `transx` is to keep the number
-of observations the same. Functions that reduce this number have as a
-default to `fill` the observation gap (default: NA). However, the user
-may choose to choose anothe value to fill or even provide a function
-through `fill_fun` to achieve the replacement. The `fill_fun` will use
-the remaining observations as the body of the argument.
+`transx` implements several univariate time series operations that
+follow an opinionated design. The main principle of `transx` is to keep
+the number of observations the same. Functions that reduce this number
+have to `fill` the observations gap.
 
 ## Design Principles
 
--   The input and the output will always be a numeric vector
--   The output retains the same length as the input
+-   The input and the output will always be a numeric vector.
+-   The output retains the same length as the input.
 -   Uses a filling logic, where `fill` is used to keep the length of
-    vector identical
+    vector identical.
 
 ### Optional:
 
@@ -49,7 +44,13 @@ You can install the development version from
 remotes::install_github("transx")
 ```
 
-### Basic Example
+### Usage
+
+This is a basic example with lagged and leading values. `fill` can be
+achieved either by value or by function. The function can be a build-in
+function such as mean, or median, that fill-in by a single values, or it
+can be of the `fill_*` family such as `fill_locf` and `fill_nocb` that
+consider the location of the observations before performing the filling.
 
 ``` r
 library(transx)
@@ -64,34 +65,6 @@ lagx(x, fill = mean)
 lagx(x, fill = fill_nocb)
 #> [1] 5 5 3 2 2
 ```
-
-### Outliers
-
-``` r
-x <- c(-2,0,3, 50)
-out_iqr(x)
-#> [1] -2  0  3 NA
-# Identify outlier and give a value with fill option
-out_iqr(x, fill = 0)
-#> [1] -2  0  3  0
-
-x2 <- rnorm(20)
-x2[10] <- 12
-out_score_z(x2)
-#>  [1] -0.89889 -0.75576  0.72596  0.86864 -1.34219 -0.58945 -0.31021 -2.28387  0.99317
-#> [10]       NA -0.07489 -1.41920  0.36181  0.51493 -0.45579  0.12874  0.39123  0.66809
-#> [19]  1.02677 -0.02443
-```
-
-### Filters
-
-``` r
-unemp <- ggplot2::economics$unemploy
-filtered <- cbind(filter_hamilton(unemp), filter_hp(unemp, select_lambda("monthly")))
-plotx(filtered)
-```
-
-<img src="man/figures/README-filtered-1.png" width="100%" />
 
 ## Code of Conduct
 

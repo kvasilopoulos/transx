@@ -2,9 +2,9 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow}
 \alias{pow}
-\title{Exponent or the nth Power}
+\title{nth Power Transformation}
 \usage{
-pow(x, pow = NA, modulus = FALSE)
+pow(x, pow = NULL, modulus = FALSE)
 }
 \arguments{
 \item{x}{\verb{[univariate vector]}
@@ -13,7 +13,7 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 \item{pow}{\verb{[numeric(1): NA]}
 
-The nth power}
+The nth power.}
 
 \item{modulus}{positive}
 }
@@ -21,5 +21,10 @@ The nth power}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Exponent or the nth Power
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
+}
+\examples{
+pow(2, 2)
+pow(-2, 2)
+pow(-2,2, TRUE)
 }

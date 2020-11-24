@@ -42,7 +42,7 @@ out_winsorise <- function(x, min = quantile(x, 0.05), max = quantile(x, 0.95)) {
   out[out_min] <- min
   out[out_max] <- max
   n_idx <- length(union(out_min, out_max))
-  disp_info("{n_indx} value{?s} winsorized.")
+  disp_info("{n_idx} value{?s} winsorized.")
   with_attrs(out, x)
 }
 
@@ -129,6 +129,9 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
 #' @param ... Further arguments passed to `score`.
 #' @param cutoff `[numeric(1): 3]`
 #'
+#' @examples
+#' out_score_z(c(0,0.1,2,1,3,2.5,2,.5,6,4,100))
+#'
 #' @export
 out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
   scores <- score_z(x, ...)
@@ -150,6 +153,9 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
 #' @param ... further arguments passed to `score`.
 #'
 #' @export
+#' @examples
+#' out_score_zrob(c(0,0.1,2,1,3,2.5,2,.5,6,4,100))
+#'
 out_score_zrob <- function(x, cutoff = 3.5, fill = NA, ...) {
   scores <- 0.6745*score_mad(x, ...)
   idx <- which(abs(scores) > cutoff)
@@ -190,6 +196,8 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
 #' @importFrom stats quantile
 #' @examples
 #'
+#' out_iqr(c(0,1,3,4,20))
+#'
 out_iqr <- function(x, cutoff = 1.5, fill = NA, ...) {
   q1 <- quantile(x, 0.25, ...)
   q3 <- quantile(x, 0.75, ...)
@@ -201,7 +209,9 @@ out_iqr <- function(x, cutoff = 1.5, fill = NA, ...) {
   with_attrs(out, x)
 }
 
+
 fill_outliers <- function(body, idx, fill) {
   fill_(body, idx, fill, msg_on_success = disp_info("{nidx(idx)} outlier{?s} detected."),
         msg_on_na = disp_info("{nidx(idx)} outliers detected."))
 }
+

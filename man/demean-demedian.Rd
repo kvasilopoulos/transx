@@ -30,3 +30,12 @@ Returns a vector with the same class and attributes as the input vector.
 
 Removes the mean, the median or the mode from the series.
 }
+\examples{
+
+x <- c(2,5,10,20,30)
+summary(x)
+
+demean(x)
+demedian(x)
+demode(x)
+}

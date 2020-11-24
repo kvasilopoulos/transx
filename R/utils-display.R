@@ -7,19 +7,17 @@
 disp_na <- function(x, na.rm) {
   n_na <- is.na(x)
   if(any(n_na)) {
-    disp_info("The vector contains {sum(is.na(x))} NA value{?s}, `na.rm` is set to {na.rm}.",
-              .envir = parent.frame())
+    disp_info("The vector contains {sum(is.na(x))} NA value{?s}, `na.rm` is set to {na.rm}.",)
   }
 }
 
-disp_outlier <- function(x) {
-  if(rlang::is_bare_atomic(x, 0)) {
-    disp_info("no outlier has been identified")
-  } else {
-    disp_success("{length(x)} outlier{?s} ha{?s/ve} been identified",
-                .envir = parent.frame())
-  }
-}
+# disp_outlier <- function(x) {
+#   if(rlang::is_bare_atomic(x, 0)) {
+#     disp_info("no outlier has been identified")
+#   } else {
+#     disp_success("{length(x)} outlier{?s} ha{?s/ve} been identified",)
+#   }
+# }
 
 # disp -----------------------------------------------------------------
 

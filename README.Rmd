@@ -23,15 +23,13 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/kvasilopoulos/transx/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/transx?branch=master)
 <!-- badges: end -->
 
-> **WARNING**: The package is still in early stages of development!
-
-`transx` implements several time series operations that follow an opiniated design. The main principle of `transx` is to keep the number of observations the same. Functions that reduce this number have as a default to `fill` the observation gap  (default: NA).
+`transx` implements several univariate time series operations that follow an opinionated design. The main principle of `transx` is to keep the number of observations the same. Functions that reduce this number have to `fill` the observations gap.
 
 ## Design Principles
 
-* The input and the output will always be a numeric vector
-* The output retains the same length as the input
-* Uses a filling logic, where `fill` is used to keep the length of vector identical
+* The input and the output will always be a numeric vector.
+* The output retains the same length as the input.
+* Uses a filling logic, where `fill` is used to keep the length of vector identical.
 
 ### Optional:
 
@@ -47,7 +45,12 @@ knitr::opts_chunk$set(
 remotes::install_github("transx")
 ```
 
-### Basic Example 
+### Usage
+
+This is a basic example with lagged and leading values. `fill` can be achieved either
+by value or by function. The function can be a build-in function such as mean, or median, 
+that fill-in by a single values, or it can be of the `fill_*` family such as `fill_locf` and
+`fill_nocb` that consider the location of the observations before performing the filling.
 
 ```{r example, message = FALSE}
 library(transx)
@@ -59,27 +62,6 @@ lagx(x, fill = mean)
 lagx(x, fill = fill_nocb)
 ```
 
-### Outliers
-
-```{r outlier}
-x <- c(-2,0,3, 50)
-out_iqr(x)
-# Identify outlier and give a value with fill option
-out_iqr(x, fill = 0)
-
-x2 <- rnorm(20)
-x2[10] <- 12
-out_score_z(x2)
-```
-
-### Filters
-
-
-```{r filtered}
-unemp <- ggplot2::economics$unemploy
-filtered <- cbind(filter_hamilton(unemp), filter_hp(unemp, select_lambda("monthly")))
-plotx(filtered)
-```
 
 ## Code of Conduct
   

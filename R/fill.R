@@ -70,8 +70,7 @@ fill_  <- function(body, idx, fill, msg_on_na = NULL, msg_on_success = NULL, int
     vec[idx] <- fill
   }
   if(is.null(msg_on_success)) {
-    disp_info("Filling {length(idx)} value{?s}.", internal = internal,
-              .envir = parent.frame())
+    disp_info("Filling {length(idx)} value{?s}.", internal = internal)
   }else{
     msg_on_success
   }

@@ -22,3 +22,7 @@ Numeric value(s) or function used to fill observations.}
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
+\examples{
+out_score_z(c(0,0.1,2,1,3,2.5,2,.5,6,4,100))
+
+}

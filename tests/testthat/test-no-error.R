@@ -1,5 +1,3 @@
-test_that("all functions work", {
-})
 
 test_that("plot", {
   x <- rnorm(10)

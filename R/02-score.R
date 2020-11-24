@@ -27,6 +27,7 @@
 #' x <- seq(-3,3,0.5)
 #' score_z(x)
 #' score_mad(x)
+#' score_t(x)
 #'
 score_z <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
@@ -41,6 +42,7 @@ zscore_ <- function(x) {
 }
 
 #' @rdname score
+#' @export
 score_mad <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)
@@ -54,6 +56,7 @@ madscore_ <- function(x) {
 }
 
 #' @rdname score
+#' @export
 score_t <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)
@@ -64,6 +67,7 @@ score_t <- function(x, na.rm = getOption("transx.na.rm")) {
 }
 
 #' @rdname score
+#' @export
 score_chisq <- function(x, na.rm = getOption("transx.na.rm")){
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)

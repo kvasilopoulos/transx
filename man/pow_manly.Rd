@@ -2,7 +2,7 @@
 % Please edit documentation in R/05-root-power.R
 \name{pow_manly}
 \alias{pow_manly}
-\title{Manly(1971)}
+\title{Manly(1971) Transformations}
 \usage{
 pow_manly(x, lambda = NULL)
 }
@@ -19,7 +19,14 @@ Transformation exponent, \eqn{\lambda}.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 The transformation was reported to be successful in transform
 unimodal skewed distribution into normal distribution, but is
 not quite useful for bimodal or U-shaped distribution.
+}
+\examples{
+set.seed(123)
+x <- runif(10)
+pow_manly(x, 3)
 }

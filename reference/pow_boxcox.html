@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Box-Cox Transformations — pow_boxcox" />
-<meta property="og:description" content="Box-Cox Transformations" />
+<meta property="og:description" content="" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -140,7 +140,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Box-Cox Transformations</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
     </div>
 
     <pre class="usage"><span class='fu'>pow_boxcox</span><span class='op'>(</span><span class='va'>x</span>, lambda <span class='op'>=</span> <span class='cn'>NULL</span>, lambda2 <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -180,9 +180,10 @@ Journal of the Royal Statistical Society. Series B (Methodological), 211-252.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>
-
-</div></pre>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'>pow_boxcox</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] -0.32540570 -0.17004250 -0.31053122 -0.10383130 -0.05605890 -0.33330182
+#&gt;  [7] -0.28423794 -0.09642233 -0.27743977 -0.30159906</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

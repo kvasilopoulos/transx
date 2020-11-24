@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manly(1971) — pow_manly • transx</title>
+<title>Manly(1971) Transformations — pow_manly • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Manly(1971) — pow_manly" />
-<meta property="og:description" content="The transformation was reported to be successful in transform
+<meta property="og:title" content="Manly(1971) Transformations — pow_manly" />
+<meta property="og:description" content="
+The transformation was reported to be successful in transform
 unimodal skewed distribution into normal distribution, but is
 not quite useful for bimodal or U-shaped distribution." />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
@@ -136,13 +137,14 @@ not quite useful for bimodal or U-shaped distribution." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Manly(1971)</h1>
+    <h1>Manly(1971) Transformations</h1>
     <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/05-root-power.R'><code>R/05-root-power.R</code></a></small>
     <div class="hidden name"><code>pow_manly.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The transformation was reported to be successful in transform
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>The transformation was reported to be successful in transform
 unimodal skewed distribution into normal distribution, but is
 not quite useful for bimodal or U-shaped distribution.</p>
     </div>
@@ -168,6 +170,12 @@ not quite useful for bimodal or U-shaped distribution.</p>
 
     <p>Returns a vector with the same class and attributes as the input vector.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'>pow_manly</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 0.45654233 3.21437948 0.80358169 4.38020999 5.26679528 0.04881639
+#&gt;  [7] 1.29198578 4.51504771 1.40981481 0.97824588</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -18,8 +18,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Transform Univariate Time Series">
-<meta property="og:description" content="`transx` implements several time series
-    operations that follow an opiniated design.">
+<meta property="og:description" content="transx implements several univariate time series operations that 
+    follow an opinionated design. The main principle of transx is to keep the 
+    number of observations the same. Functions that reduce this number have to 
+    fill the observations gap.">
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -98,17 +100,14 @@
 </h1></div>
 <!-- badges: start -->
 
-<blockquote>
-<p><strong>WARNING</strong>: The package is still in early stages of development!</p>
-</blockquote>
-<p><code>transx</code> implements several time series operations that follow an opiniated design. The main principle of <code>transx</code> is to keep the number of observations the same. Functions that reduce this number have as a default to <code>fill</code> the observation gap (default: NA). However, the user may choose to choose anothe value to fill or even provide a function through <code>fill_fun</code> to achieve the replacement. The <code>fill_fun</code> will use the remaining observations as the body of the argument.</p>
+<p><code>transx</code> implements several univariate time series operations that follow an opinionated design. The main principle of <code>transx</code> is to keep the number of observations the same. Functions that reduce this number have to <code>fill</code> the observations gap.</p>
 <div id="design-principles" class="section level2">
 <h2 class="hasAnchor">
 <a href="#design-principles" class="anchor"></a>Design Principles</h2>
 <ul>
-<li>The input and the output will always be a numeric vector</li>
-<li>The output retains the same length as the input</li>
-<li>Uses a filling logic, where <code>fill</code> is used to keep the length of vector identical</li>
+<li>The input and the output will always be a numeric vector.</li>
+<li>The output retains the same length as the input.</li>
+<li>Uses a filling logic, where <code>fill</code> is used to keep the length of vector identical.</li>
 </ul>
 <div id="optional" class="section level3">
 <h3 class="hasAnchor">
@@ -129,9 +128,10 @@
 <p>You can install the development version from <a href="https://github.com/kvasilopoulos/transx">Github</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"transx"</span><span class="op">)</span></code></pre></div>
-<div id="basic-example" class="section level3">
+<div id="usage" class="section level3">
 <h3 class="hasAnchor">
-<a href="#basic-example" class="anchor"></a>Basic Example</h3>
+<a href="#usage" class="anchor"></a>Usage</h3>
+<p>This is a basic example with lagged and leading values. <code>fill</code> can be achieved either by value or by function. The function can be a build-in function such as mean, or median, that fill-in by a single values, or it can be of the <code>fill_*</code> family such as <code>fill_locf</code> and <code>fill_nocb</code> that consider the location of the observations before performing the filling.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kvasilopoulos/transx">transx</a></span><span class="op">)</span>
 
@@ -144,33 +144,6 @@
 <span class="co">#&gt; [1] 3 5 3 2 2</span>
 <span class="fu"><a href="reference/leadx-lagx.html">lagx</a></span><span class="op">(</span><span class="va">x</span>, fill <span class="op">=</span> <span class="va">fill_nocb</span><span class="op">)</span>
 <span class="co">#&gt; [1] 5 5 3 2 2</span></code></pre></div>
-</div>
-<div id="outliers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#outliers" class="anchor"></a>Outliers</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">3</span>, <span class="fl">50</span><span class="op">)</span>
-<span class="fu"><a href="reference/out_iqr.html">out_iqr</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2  0  3 NA</span>
-<span class="co"># Identify outlier and give a value with fill option</span>
-<span class="fu"><a href="reference/out_iqr.html">out_iqr</a></span><span class="op">(</span><span class="va">x</span>, fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2  0  3  0</span>
-
-<span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
-<span class="va">x2</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">12</span>
-<span class="fu"><a href="reference/out_score_z.html">out_score_z</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span>
-<span class="co">#&gt;  [1] -0.89889 -0.75576  0.72596  0.86864 -1.34219 -0.58945 -0.31021 -2.28387  0.99317</span>
-<span class="co">#&gt; [10]       NA -0.07489 -1.41920  0.36181  0.51493 -0.45579  0.12874  0.39123  0.66809</span>
-<span class="co">#&gt; [19]  1.02677 -0.02443</span></code></pre></div>
-</div>
-<div id="filters" class="section level3">
-<h3 class="hasAnchor">
-<a href="#filters" class="anchor"></a>Filters</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">unemp</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/economics.html">economics</a></span><span class="op">$</span><span class="va">unemploy</span>
-<span class="va">filtered</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="reference/filter_hamilton.html">filter_hamilton</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>, <span class="fu"><a href="reference/filter_hp.html">filter_hp</a></span><span class="op">(</span><span class="va">unemp</span>, <span class="fu"><a href="reference/select_lambda.html">select_lambda</a></span><span class="op">(</span><span class="st">"monthly"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="reference/plotx.html">plotx</a></span><span class="op">(</span><span class="va">filtered</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-filtered-1.png" width="100%"></p>
 </div>
 </div>
 <div id="code-of-conduct" class="section level2">

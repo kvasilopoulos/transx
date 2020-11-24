@@ -170,6 +170,16 @@ Removes the mean, the median or the mode from the series." />
 
     <p>Returns a vector with the same class and attributes as the input vector.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>30</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;     2.0     5.0    10.0    13.4    20.0    30.0 </div><div class='input'>
+<span class='fu'>demean</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -11.4  -8.4  -3.4   6.6  16.6</div><div class='input'><span class='fu'>demedian</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -8 -5  0 10 20</div><div class='input'><span class='fu'>demode</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -4.795224 -1.795224  3.204776 13.204776 23.204776</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

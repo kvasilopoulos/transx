@@ -194,6 +194,20 @@ score_chi: chi-distribution
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/outliers/man/scores.html'>scores</a></code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>3</span>,<span class='fl'>3</span>,<span class='fl'>0.5</span><span class='op'>)</span>
+<span class='fu'>score_z</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] -1.5406578 -1.2838815 -1.0271052 -0.7703289 -0.5135526 -0.2567763
+#&gt;  [7]  0.0000000  0.2567763  0.5135526  0.7703289  1.0271052  1.2838815
+#&gt; [13]  1.5406578</div><div class='input'><span class='fu'>score_mad</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] -1.3489815 -1.1241513 -0.8993210 -0.6744908 -0.4496605 -0.2248303
+#&gt;  [7]  0.0000000  0.2248303  0.4496605  0.6744908  0.8993210  1.1241513
+#&gt; [13]  1.3489815</div><div class='input'><span class='fu'>score_t</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] -1.6469149 -1.3234774 -1.0296800 -0.7564749 -0.4971831 -0.2465228
+#&gt;  [7]  0.0000000  0.2465228  0.4971831  0.7564749  1.0296800  1.3234774
+#&gt; [13]  1.6469149</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

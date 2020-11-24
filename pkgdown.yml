@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   motivation: motivation.html
-last_built: 2020-11-20T16:36Z
+last_built: 2020-11-24T18:19Z
 urls:
   reference: https://kvasilopoulos.github.io/transx//reference
   article: https://kvasilopoulos.github.io/transx//articles

@@ -6,6 +6,7 @@
 #' @template x
 #' @param ... Further arguments used in `plot`.
 #' @importFrom stats plot.ts
+#' @importFrom graphics plot
 #' @export
 #' @keywords internal
 plotx <- function(x, ...) {

@@ -7,10 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "k.vasilopoulo@gmail.com",
            comment = c(ORCID = "0000-0002-9769-6395"))
-Description: The package 'transx' implements several univariate time series 
-    operations that follow an opinionated design. The main principle of 'transx' 
-    is to keep the number of observations the same. Functions that reduce this 
-    number have to fill the observations gap.
+Description: Univariate time series operations that follow an opinionated design. 
+    The main principle of 'transx' is to keep the number of observations the same. 
+    Operations that reduce this number have to fill the observations gap.
 License: GPL-3
 Imports: 
     rlang

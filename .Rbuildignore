@@ -14,3 +14,4 @@
 ^codecov\.yml$
 ^cran-comments\.md$
 ^Meta$
+^CRAN-RELEASE$

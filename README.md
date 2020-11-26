@@ -15,10 +15,10 @@ status](https://github.com/kvasilopoulos/transx/workflows/R-CMD-check/badge.svg)
 coverage](https://codecov.io/gh/kvasilopoulos/transx/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/transx?branch=master)
 <!-- badges: end -->
 
-The package `transx` implements several univariate time series
-operations that follow an opinionated design. The main principle of
-`transx` is to keep the number of observations the same. Functions that
-reduce this number have to `fill` the observations gap.
+Univariate time series operations that follow an opinionated design. The
+main principle of `transx` is to keep the number of observations the
+same. Operations that reduce this number have to fill the observations
+gap.
 
 ## Design Principles
 

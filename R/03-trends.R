@@ -32,6 +32,17 @@ dtrend_ <- function(x, degree = 1, bp = NULL) {
   out
 }
 
+
+trend <- function(x, degree = 1) {
+  t <- seq_along(x)
+  tmat <- matrix(nrow = NROW(x), ncol = degree)
+  colnames(tmat) <- paste0("time", 1:degree)
+  for(n in 1:degree) {
+    tmat[,n] <- t^n
+  }
+  tmat
+}
+
 #' Deterministic Trend
 #'
 #' @description

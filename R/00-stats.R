@@ -25,6 +25,7 @@ gmean <- function(x, na.rm = getOption("transx.na.rm")) {
 modex <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
   x <- with_na_rm(x, na.rm)
+  if(length(x) == 1) return(x)
   d <- density(x)
   d$x[which.max(d$y)]
 }
@@ -32,14 +33,10 @@ modex <- function(x, na.rm = getOption("transx.na.rm")) {
 #' @rdname modex
 modex_int <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
+  stopifnot(is.integer(x))
   x <- with_na_rm(x, na.rm)
   ux <- unique(x)
   ux[which.max(table(match(x, ux)))]
-}
-
-# Moments
-moment <- function(x, order =1) {
-  sum(x^order)/length(x)
 }
 
 #' Skewness/Kurtosis Value
@@ -71,4 +68,7 @@ kurtosis <- function(x, na.rm = getOption("transx.na.rm")) {
 # moments:: other measure of kurtosis
 
 
-
+# Moments
+moment <- function(x, order =1) {
+  sum(x^order)/length(x)
+}

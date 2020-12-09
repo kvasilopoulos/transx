@@ -110,25 +110,3 @@ new_vec <- function(body, idx, default = NA_real_) {
 }
 
 
-# fill vector -------------------------------------------------------------
-
-#' @examples
-#'
-#' lagx(c(1:5), fill = ~ fill_window(.x, .y, roll_mean))
-fill_window <- function(body, idx, fn, ...) {
-  fill_vec(body, idx, fn(body, ...))
-}
-
-#' Replaces
-#'
-#'
-#' @examples
-#'
-#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, 1:5))
-#'
-#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, roll_mean(.x)))
-fill_vec <- function(body, idx, vec) {
-  vec[idx]
-}
-
-

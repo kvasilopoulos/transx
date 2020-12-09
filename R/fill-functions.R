@@ -165,6 +165,42 @@ fill_spline <- function(body, idx, ...) {
 }
 
 
+
+# fill vector -------------------------------------------------------------
+
+#' Replaces
+#'
+#'
+#' @examples
+#'
+#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, 1:5))
+#'
+#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, roll_mean(.x)))
+fill_vec_ <- function(body, idx, vec) {
+  vec[idx]
+}
+
+#' @examples
+#'
+#' lagx(c(1:5), fill = fill_window2(rec_mean))
+#'
+fill_window <- function(fn, ...) {
+  fn <- as_fn(fn, ...)
+  ~ fill_vec_(.x, .y , fn(.x))
+}
+
+
+#' @examples
+#'
+#' lagx(c(1:5), fill = fill_vec2(1:5))
+#'
+fill_vec <- function(vec) {
+  ~ fill_vec_(.x, .y, vec)
+}
+
+# TODO asserts in new fill_functions
+
+
 # Kalman filter -----------------------------------------------------------
 
 # @noRd

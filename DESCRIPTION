@@ -1,6 +1,6 @@
 Package: transx
 Title: Transform Univariate Time Series
-Version: 0.0.1
+Version: 0.0.1.9000
 Authors@R: 
     person(given = "Kostas",
            family = "Vasilopoulos",

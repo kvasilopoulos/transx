@@ -37,9 +37,6 @@ filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
   with_attrs(out, x)
 }
 
-# Hodirck-Prescot ---------------------------------------------------------
-
-
 #' Selecting lambda
 #'
 #' @description
@@ -84,7 +81,7 @@ filter_hamilton <- function(x, p = 4, horizon = 8, fill = NA) {
 #'
 #' @export
 select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
-                           type = c("rot", "ru2002")) {
+                          type = c("rot", "ru2002")) {
   freq <- match.arg(freq)
   type <- match.arg(type)
   freq <- switch(
@@ -250,4 +247,185 @@ filter_tr <- function(x, ...) {
   assert_uni_ts(x)
   out <- mFilter::trfilter(x, ...)$cycle[,1]
   with_attrs(out, x)
+}
+
+#' Boosted HP filter
+#'
+#'  `r rlang:::lifecycle("experimental")`
+#'
+#' @template x
+#'
+#' @param lambda `[numeric(1): 1600]`
+#'
+#' Smoothness penalty parameter.
+#'
+#' @param stopping: `[character: "nonstop"]`
+#'
+#' * If stopping = "adf" or "BIC", used stopping criteria.
+#' * If stopping = "nonstop", iterated until max_iter
+#'
+#' @param sig_p: `[numeric(1): 0.05]`
+#'
+#' The significance level of the ADF test as the stopping criterion.
+#' It is used only when stopping == "adf".
+#'
+#' @param max_iter: `[numeric(1): 100]`
+#'
+#' the maximum number of iterations.
+#'
+#' @return
+#'
+#' @references Phillips, P.C.B. and Shi, Z. (2021), BOOSTING: WHY YOU CAN USE THE HP FILTER.
+#'  International Economic Review. https://doi.org/10.1111/iere.12495
+#'
+#' @source This function has been retrieved and rewritten from
+#' https://github.com/zhentaoshi/Boosted_HP_filter/blob/master/R/BoostedHP.R
+#'
+#'
+#' @template return
+#'
+#' @examples
+#' unemp <- ggplot2::economics$unemploy
+#' unemp_cycle <- filter_boosted_hp(unemp)
+#' plotx(cbind(unemp, unemp_cycle))
+#' @export
+filter_boosted_hp <- function(x, lambda = 1600, iter = TRUE,
+                              stopping = "nonstop", sig_p = 0.050, max_iter = 100) {
+  assert_uni_ts(x)
+
+  n <- length(x)
+  I_n <- diag(n)
+  D_temp <- rbind(matrix(0, 1, n), diag(1, n - 1, n))
+  D_temp <- (I_n - D_temp) %*% (I_n - D_temp)
+  D <- t(D_temp[3:n, ])
+  S <- solve(I_n + lambda * D %*% t(D))
+  mS <- diag(n) - S
+
+  ### ADF test as the stopping criterion
+  if (stopping == "adf") {
+    r <- 1
+    stationary <- FALSE
+    x_c <- x
+
+    x_f <- matrix(0, n, max_iter)
+    adf_p <- rep(0, max_iter)
+
+    while ((r <= max_iter) & (stationary == FALSE)) {
+      x_c <- (diag(n) - S) %*% x_c # update
+      x_f[, r] <- x - x_c
+      adf_p_r <- adf.test(x_c, alternative = "stationary")$p.value
+      adf_p[r] <- adf_p_r
+
+      if (stopping == "adf") {
+        stationary <- (adf_p_r <= sig_p)
+      }
+
+      # Truncate the storage matrix and vectors
+      if (stationary == TRUE) {
+        R <- r
+        x_f <- x_f[, 1:R]
+        adf_p <- adf_p[1:R]
+        break
+      }
+      r <- r + 1
+    }
+    if (r > max_iter) {
+      R <- max_iter
+      warning("The number of iterations exceeds the limit. The residual cycle remains non-stationary.")
+    }
+  } else {
+
+    r <- 0
+    x_c_r <- x
+    x_f <- matrix(0, n, max_iter)
+    IC <- rep(0, max_iter)
+    IC_decrease <- TRUE
+    I_S_0 <- diag(n) - S
+    c_HP <- I_S_0 %*% x
+    I_S_r <- I_S_0
+
+    # while (r < max_iter) {
+    for(r in 1:max_iter) {
+      # r <- r + 1
+      x_c_r <- I_S_r %*% x # this is the cyclical component after m iterations
+      x_f[, r] <- x - x_c_r
+      B_r <- diag(n) - I_S_r
+      IC[r] <- var(x_c_r) / var(c_HP) + log(n) / (n - sum(diag(S))) * sum(diag(B_r))
+      # I_S_r <- I_S_0 %*% I_S_r # update for the next round
+      I_S_r <- crossprod(I_S_0, I_S_r) # TODO eigenmatmultiplication in Rcpp
+      if ((r >= 2) & (stopping == "BIC")) {
+        if (IC[r - 1] < IC[r]) break
+      }
+    }
+    R <- r - 1
+    x_f <- as.matrix(x_f[, 1:R])
+    x_c <- x - x_f[, R]
+  }
+  x_c
+}
+
+adf.test <- function(x, alternative = c("stationary", "explosive"),
+                     k = trunc((length(x) - 1)^(1 / 3))) {
+
+  alternative <- match.arg(alternative)
+  k <- k + 1
+  x <- as.vector(x, mode = "double")
+  y <- diff(x)
+  n <- length(y)
+  z <- embed(y, k)
+  yt <- z[, 1]
+  xt1 <- x[k:n]
+  tt <- k:n
+  if (k > 1) {
+    yt1 <- z[, 2:k]
+    res <- lm(yt ~ xt1 + 1 + tt + yt1)
+  }
+  else {
+    res <- lm(yt ~ xt1 + 1 + tt)
+  }
+  res.sum <- summary(res)
+  STAT <- res.sum$coefficients[2, 1] / res.sum$coefficients[2, 2]
+  table <- cbind(
+    c(4.38, 4.15, 4.04, 3.99, 3.98, 3.96),
+    c(3.95, 3.8, 3.73, 3.69, 3.68, 3.66),
+    c(3.6, 3.5, 3.45, 3.43, 3.42, 3.41),
+    c(3.24, 3.18, 3.15, 3.13, 3.13, 3.12),
+    c(1.14, 1.19, 1.22, 1.23, 1.24, 1.25),
+    c(0.8, 0.87, 0.9, 0.92, 0.93, 0.94),
+    c(0.5, 0.58, 0.62, 0.64, 0.65, 0.66),
+    c(0.15, 0.24, 0.28, 0.31, 0.32, 0.33)
+  )
+  table <- -table
+  table <- -table
+  tablen <- dim(table)[2]
+  tableT <- c(25, 50, 100, 250, 500, 1e+05)
+  tablep <- c(0.01, 0.025, 0.05, 0.1, 0.9, 0.95, 0.975, 0.99)
+  tableipl <- numeric(tablen)
+  for (i in (1:tablen)) {
+    tableipl[i] <- approx(tableT, table[,i], n, rule = 2)$y
+  }
+  interpol <- approx(tableipl, tablep, STAT, rule = 2)$y
+  if (!is.na(STAT) && is.na(approx(tableipl, tablep, STAT, rule = 1)$y)) {
+    if (interpol == min(tablep)) {
+      warning("p-value smaller than printed p-value")
+    } else {
+      warning("p-value greater than printed p-value")
+    }
+  }
+  if (alternative == "stationary") {
+    PVAL <- interpol
+  } else if (alternative == "explosive") {
+    PVAL <- 1 - interpol
+  } else {
+    stop("irregular alternative")
+  }
+  PARAMETER <- k - 1
+
+  list(
+    statistic = STAT,
+    parameter = PARAMETER,
+    alternative = alternative,
+    p.value = PVAL
+  )
+
 }

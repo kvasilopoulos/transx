@@ -15,8 +15,11 @@
 #'
 #' Centers the moving average for even orders.
 #'
+#' @template fill
+#'
 #' @template return
 #'
+#' @importFrom stats filter approx
 #' @examples
 #'
 #' x <- co2
@@ -51,8 +54,9 @@ smooth_ma <- function(x, order = NULL, centre = TRUE, fill = NA)  {
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[ksmooth]{smooth_kernel}}
+#' Further arguments passed to \code{\link[stats:ksmooth]{smooth_kernel}}
 #'
+#' @importFrom stats ksmooth
 #' @examples
 #'
 #' x <- co2
@@ -73,8 +77,9 @@ smooth_kernel <- function(x, ...) {
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[lowess]{lowess}}
+#' Further arguments passed to \code{\link[stats:lowess]{lowess}}
 #'
+#' @importFrom stats lowess
 #' @examples
 #'
 #' x <- co2
@@ -93,8 +98,10 @@ smooth_loess <- function(x, ...) {
 #' @template x
 #' @param ...
 #'
-#' Further arguments passed to \code{\link[smooth.spline]{smooth.spline}}
+#' Further arguments passed to \code{\link[stats:smooth.spline]{smooth.spline}}
 #'
+#'
+#' @importFrom stats smooth.spline
 #' @examples
 #'
 #' x <- co2

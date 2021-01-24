@@ -18,6 +18,10 @@ Order of moving average smoother.}
 \item{centre}{\verb{[logical(1): TRUE]}
 
 Centers the moving average for even orders.}
+
+\item{fill}{\verb{[numeric or function: NA]}
+
+Numeric value(s) or function used to fill observations.}
 }
 \value{
 Returns a vector with the same class and attributes as the input vector.

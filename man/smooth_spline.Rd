@@ -11,7 +11,7 @@ smooth_spline(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[smooth.spline]{smooth.spline}}}
+\item{...}{Further arguments passed to \code{\link[stats:smooth.spline]{smooth.spline}}}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>}}{\strong{Experimental}}

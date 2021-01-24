@@ -11,7 +11,7 @@ smooth_kernel(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[ksmooth]{smooth_kernel}}}
+\item{...}{Further arguments passed to \code{\link[stats:ksmooth]{smooth_kernel}}}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>}}{\strong{Experimental}}

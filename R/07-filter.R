@@ -110,7 +110,9 @@ select_lambda <- function(freq = c("quarterly", "annual", "monthly", "weekly"),
 #' This function computes the cyclical component of the Hodrick-Prescot filter.
 #'
 #' @template x
-#' @param ... Further arguments passed to \code{\link[mFilter]{hpfilter}}.
+#' @param ...
+#'
+#' Further arguments passed to \code{\link[mFilter:hpfilter]{hpfilter}}.
 #'
 #' @seealso select_lambda
 #' @export
@@ -155,7 +157,7 @@ filter_hp <- function(x, ...) {
 #'
 #' @template x
 #' @template fill
-#' @param ... Further arguments passed to \code{\link[mFilter]{bkfilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter:bkfilter]{bkfilter}}.
 #'
 #' @export
 #' @examples
@@ -183,7 +185,7 @@ filter_bk <- function(x, fill = NA, ...) {
 #' This function computes the cyclical component of the Christiano-Fitzgerald filter.
 #'
 #' @template x
-#' @param ... Further arguments passed to \code{\link[mFilter]{cffilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter:cffilter]{cffilter}}.
 #'
 #' @export
 #' @examples
@@ -208,7 +210,7 @@ filter_cf <- function(x, ...) {
 #' This function computes the cyclical component of the Butterworth  filter.
 #'
 #' @template x
-#' @param ... Further arguments passed to \code{\link[mFilter]{bwfilter}}.
+#' @param ... Further arguments passed to \code{\link[mFilter:bwfilter]{bwfilter}}.
 #'
 #' @export
 #' @examples
@@ -233,7 +235,7 @@ filter_bw <- function(x, ...) {
 #' This function computes the cyclical component of the trigonometric regression filter.
 #'
 #' @template x
-#' @param ...  Further arguments passed to \code{\link[mFilter]{trfilter}}.
+#' @param ...  Further arguments passed to \code{\link[mFilter:trfilter]{trfilter}}.
 #'
 #' @export
 #' @examples

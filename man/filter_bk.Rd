@@ -15,7 +15,7 @@ Univariate vector, numeric or ts object with only one dimension.}
 
 Numeric value(s) or function used to fill observations.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{bkfilter}}.}
+\item{...}{Further arguments passed to \code{\link[mFilter:bkfilter]{bkfilter}}.}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}

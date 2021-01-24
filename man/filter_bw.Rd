@@ -11,7 +11,7 @@ filter_bw(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{bwfilter}}.}
+\item{...}{Further arguments passed to \code{\link[mFilter:bwfilter]{bwfilter}}.}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}

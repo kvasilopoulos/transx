@@ -11,7 +11,7 @@ filter_cf(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{cffilter}}.}
+\item{...}{Further arguments passed to \code{\link[mFilter:cffilter]{cffilter}}.}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}

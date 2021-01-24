@@ -11,7 +11,7 @@ filter_tr(x, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{...}{Further arguments passed to \code{\link[mFilter]{trfilter}}.}
+\item{...}{Further arguments passed to \code{\link[mFilter:trfilter]{trfilter}}.}
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}

@@ -49,8 +49,10 @@ reference:
 
   - title: Fill Functions
     contents:
+      - fill_vec
       - fill_locf
       - fill_nocb
+      - fill_both
       - fill_linear
       - fill_spline
 

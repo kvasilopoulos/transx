@@ -13,6 +13,9 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/dtrend.html</loc>
   </url>
   <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_both.html</loc>
+  </url>
+  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/fill_linear.html</loc>
   </url>
   <url>
@@ -25,7 +28,13 @@
     <loc>https://kvasilopoulos.github.io/transx//reference/fill_spline.html</loc>
   </url>
   <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/fill_vec_.html</loc>
+  </url>
+  <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/filter_bk.html</loc>
+  </url>
+  <url>
+    <loc>https://kvasilopoulos.github.io/transx//reference/filter_boosted_hp.html</loc>
   </url>
   <url>
     <loc>https://kvasilopoulos.github.io/transx//reference/filter_bw.html</loc>

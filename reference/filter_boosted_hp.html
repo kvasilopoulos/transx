@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plotting wrapper around plot.default — plotx • transx</title>
+<title>Boosted HP filter — filter_boosted_hp • transx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Plotting wrapper around plot.default — plotx" />
-<meta property="og:description" content="Helper function to only plot x as a line plot." />
+<meta property="og:title" content="Boosted HP filter — filter_boosted_hp" />
+<meta property="og:description" content="" />
 <meta property="og:image" content="https://kvasilopoulos.github.io/transx/logo.png" />
 
 
@@ -134,16 +134,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plotting wrapper around plot.default</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/plot.R'><code>R/plot.R</code></a></small>
-    <div class="hidden name"><code>plotx.Rd</code></div>
+    <h1>Boosted HP filter</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/07-filter.R'><code>R/07-filter.R</code></a></small>
+    <div class="hidden name"><code>filter_boosted_hp.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Helper function to only plot x as a line plot.</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotx</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>filter_boosted_hp</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  lambda <span class='op'>=</span> <span class='fl'>1600</span>,
+  iter <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stopping <span class='op'>=</span> <span class='st'>"nonstop"</span>,
+  sig_p <span class='op'>=</span> <span class='fl'>0.05</span>,
+  max_iter <span class='op'>=</span> <span class='fl'>100</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,12 +161,50 @@
 <p>Univariate vector, numeric or ts object with only one dimension.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Further arguments used in <code>plot</code>.</p></td>
+      <th>lambda</th>
+      <td><p><code>[numeric(1): 1600]</code></p>
+<p>Smoothness penalty parameter.</p></td>
+    </tr>
+    <tr>
+      <th>stopping:</th>
+      <td><p><code>[character: "nonstop"]</code></p><ul>
+<li><p>If stopping = "adf" or "BIC", used stopping criteria.</p></li>
+<li><p>If stopping = "nonstop", iterated until max_iter</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>sig_p:</th>
+      <td><p><code>[numeric(1): 0.05]</code></p>
+<p>The significance level of the ADF test as the stopping criterion.
+It is used only when stopping == "adf".</p></td>
+    </tr>
+    <tr>
+      <th>max_iter:</th>
+      <td><p><code>[numeric(1): 100]</code></p>
+<p>the maximum number of iterations.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
+    <p>This function has been retrieved and rewritten from
+https://github.com/zhentaoshi/Boosted_HP_filter/blob/master/R/BoostedHP.R</p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+
+<p>Returns a vector with the same class and attributes as the input vector.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Phillips, P.C.B. and Shi, Z. (2021), BOOSTING: WHY YOU CAN USE THE HP FILTER.
+International Economic Review. https://doi.org/10.1111/iere.12495</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>unemp</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/economics.html'>economics</a></span><span class='op'>$</span><span class='va'>unemploy</span>
+<span class='va'>unemp_cycle</span> <span class='op'>&lt;-</span> <span class='fu'>filter_boosted_hp</span><span class='op'>(</span><span class='va'>unemp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in filter_boosted_hp(unemp): could not find function "filter_boosted_hp"</span></div><div class='input'><span class='fu'><a href='plotx.html'>plotx</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>unemp</span>, <span class='va'>unemp_cycle</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in cbind(unemp, unemp_cycle): object 'unemp_cycle' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

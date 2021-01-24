@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">transx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +117,7 @@
 </li>
 <li>
   <a href="https://github.com/kvasilopoulos/transx">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +135,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fill with "Next observation carried backwards"</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/fill.R'><code>R/fill.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/kvasilopoulos/transx/blob/master/R/fill-functions.R'><code>R/fill-functions.R</code></a></small>
     <div class="hidden name"><code>fill_nocb.Rd</code></div>
     </div>
 
@@ -178,9 +178,9 @@
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>pmin</a></span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>xlen</span><span class='op'>)</span>
 <span class='va'>idx</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>xlen</span> <span class='op'>-</span> <span class='va'>n</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>:</span><span class='va'>xlen</span>
 <span class='va'>body</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>]</span>
-<span class='fu'><a href='fill_locf.html'>fill_locf</a></span><span class='op'>(</span><span class='va'>body</span>, <span class='va'>idx</span>, <span class='cn'>NA</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 5 5</div><div class='input'>
-
+<span class='fu'>fill_nocb</span><span class='op'>(</span><span class='va'>body</span>, <span class='va'>idx</span>, <span class='cn'>NA</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] NA NA</div><div class='input'><span class='fu'><a href='fill_both.html'>fill_both</a></span><span class='op'>(</span><span class='va'>body</span>, <span class='va'>idx</span>, order <span class='op'>=</span> <span class='st'>"nocb"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in fill_both(body, idx, order = "nocb"): could not find function "fill_both"</span></div><div class='input'>
 
 </div></pre>
   </div>

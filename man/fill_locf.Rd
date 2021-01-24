@@ -23,14 +23,14 @@ In case it fails to fill some values.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with "Last Observation Carried Forward"
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 x <- c(5,3,2,2,5)
 
 lagx(x, n = 2, fill = fill_locf)
 
-# A not so very neat way to deal with NA when `fill_locf` fails is
+# A not so very neat way to deal with NA when `fill_locf` fails is (WIP)
 lagx(x, n = 2, fill = ~ fill_locf(.x,.y, fail = 0))
 
 leadx(x, n = 2, fill = fill_locf)

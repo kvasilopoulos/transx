@@ -33,7 +33,7 @@ modex <- function(x, na.rm = getOption("transx.na.rm")) {
 #' @rdname modex
 modex_int <- function(x, na.rm = getOption("transx.na.rm")) {
   assert_uni_ts(x)
-  stopifnot(is.integer(x))
+  # stopifnot(is.integer(x))
   x <- with_na_rm(x, na.rm)
   ux <- unique(x)
   ux[which.max(table(match(x, ux)))]

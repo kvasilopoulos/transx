@@ -21,7 +21,7 @@ the index to replace with.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with "cubic spline interpolation"
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 x <- c(5,3,NA,2,5)

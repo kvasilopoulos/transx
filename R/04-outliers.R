@@ -129,6 +129,9 @@ out_pt <- function(x, pt_low = 0.1, pt_high = 0.9, fill = NA) {
 #' @param ... Further arguments passed to `score`.
 #' @param cutoff `[numeric(1): 3]`
 #'
+#' Cutoff point that determines the number of score quantities after which an
+#' observation is considered outlier.
+#'
 #' @examples
 #' out_score_z(c(0,0.1,2,1,3,2.5,2,.5,6,4,100))
 #'
@@ -150,6 +153,10 @@ out_score_z <- function(x, cutoff = 3, fill = NA, ...) {
 #' @template x
 #' @template fill
 #' @param cutoff `[numeric(1): 3.5]`
+#'
+#' Cutoff point that determines the number of score quantities after which an
+#' observation is considered outlier.
+#'
 #' @param ... further arguments passed to `score`.
 #'
 #' @export
@@ -190,6 +197,10 @@ out_score_chisq <- function(x, cutoff = 3.5, fill = NA, ...) {
 #' @template x
 #' @template fill
 #' @param cutoff `[numeric(1): 1.5]`
+#'
+#' Cutoff point that determines the number of score quantities after which an
+#' observation is considered outlier.
+#'
 #' @param ... further arguments passed to `quantile`.
 #'
 #' @export
@@ -211,7 +222,10 @@ out_iqr <- function(x, cutoff = 1.5, fill = NA, ...) {
 
 
 fill_outliers <- function(body, idx, fill) {
-  fill_(body, idx, fill, msg_on_success = disp_info("{nidx(idx)} outlier{?s} detected."),
-        msg_on_na = disp_info("{nidx(idx)} outliers detected."))
+  fill_(
+    body, idx, fill,
+    msg_on_success = disp_info("{nidx(idx)} outlier{?s} detected."),
+    msg_on_na = disp_info("{nidx(idx)} outliers detected.")
+    )
 }
 

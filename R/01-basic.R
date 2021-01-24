@@ -380,7 +380,4 @@ std_median <- function(x, na.rm = getOption("transx.na.rm")) {
 
 
 
-# TODO write examples to all functions
-
-
 

@@ -11,7 +11,10 @@ out_score_zrob(x, cutoff = 3.5, fill = NA, ...)
 
 Univariate vector, numeric or ts object with only one dimension.}
 
-\item{cutoff}{\verb{[numeric(1): 3.5]}}
+\item{cutoff}{\verb{[numeric(1): 3.5]}
+
+Cutoff point that determines the number of score quantities after which an
+observation is considered outlier.}
 
 \item{fill}{\verb{[numeric or function: NA]}
 

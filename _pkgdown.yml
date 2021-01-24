@@ -2,6 +2,9 @@ title: transx
 url: https://kvasilopoulos.github.io/transx/
 destination: docs
 
+development:
+  mode: auto
+
 template:
   params:
     bootswatch: cosmo
@@ -42,6 +45,10 @@ reference:
   - title: Cycle Filters
     contents:
       - contains("filter")
+
+  - title: Smoothing
+    contents:
+      - contains("smooth")
 
   - title: Outliers
     contents:

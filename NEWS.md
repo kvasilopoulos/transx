@@ -1,7 +1,10 @@
 # transx (development version)
 
-* Added window functions 
-* Added smoothing functions
+* Added window functions family
+  - roll
+  - rec
+  - blck
+* Added smoothing functions family
 * Added the boosted HP function of Phillips and Shi (2021)
 
 # transx 0.0.1

@@ -253,7 +253,11 @@ filter_tr <- function(x, ...) {
 
 #' Boosted HP filter
 #'
-#'  `r rlang:::lifecycle("experimental")`
+#' @description
+#'
+#' `r rlang:::lifecycle("experimental")`
+#'
+#' This function computes the cyclical component of the Boosted Hodrick-Prescot filter.
 #'
 #' @template x
 #'
@@ -273,7 +277,7 @@ filter_tr <- function(x, ...) {
 #'
 #' @param max_iter: `[numeric(1): 100]`
 #'
-#' the maximum number of iterations.
+#' The maximum number of iterations.
 #'
 #' @return
 #'
@@ -291,8 +295,8 @@ filter_tr <- function(x, ...) {
 #' unemp_cycle <- filter_boosted_hp(unemp)
 #' plotx(cbind(unemp, unemp_cycle))
 #' @export
-filter_boosted_hp <- function(x, lambda = 1600, iter = TRUE,
-                              stopping = "nonstop", sig_p = 0.050, max_iter = 100) {
+filter_boosted_hp <- function(x, lambda = 1600, stopping = "nonstop",
+                              sig_p = 0.050, max_iter = 100) {
   assert_uni_ts(x)
 
   n <- length(x)
@@ -365,6 +369,7 @@ filter_boosted_hp <- function(x, lambda = 1600, iter = TRUE,
   }
   x_c
 }
+
 
 adf.test <- function(x, alternative = c("stationary", "explosive"),
                      k = trunc((length(x) - 1)^(1 / 3))) {

@@ -28,7 +28,9 @@ Suggests:
     outliers,
     rmarkdown,
     mFilter,
-    covr
+    covr,
+    RcppRoll,
+    cumstats
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Language: en-US

@@ -4,7 +4,7 @@
 \alias{fill_both}
 \title{Fill with \code{locf} and \code{nocb}}
 \usage{
-fill_both(body, idx, order = c("locf", "nocb"))
+fill_both(body, idx, first = c("locf", "nocb"))
 }
 \arguments{
 \item{body}{\verb{[numeric vector]}
@@ -15,7 +15,7 @@ The body of the vector.}
 
 the index to replace with.}
 
-\item{order}{\verb{[character: "locf"]}
+\item{first}{\verb{[character: "locf"]}
 
 Select which filling algorithms will occur first "locf" or "nocb".}
 }
@@ -23,15 +23,17 @@ Select which filling algorithms will occur first "locf" or "nocb".}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with \code{locf} and \code{nocb}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 
 leadx(1:4, fill = fill_both)
-leadx(1:4, fill = ~ fill_both(.x,.y, order = "nocb"))
+leadx(1:4, fill = ~ fill_both(.x,.y, first = "nocb"))
 
 lagx(1:4, fill = fill_both)
-lagx(1:4, fill = ~ fill_both(.x,.y, order = "nocb"))
+lagx(1:4, fill = ~ fill_both(.x,.y, first = "nocb"))
 
-
+set.seed(123)
+x <- rnorm(10)
+smooth_ma(x, 4, fill = fill_both)
 }

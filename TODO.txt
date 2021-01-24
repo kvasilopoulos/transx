@@ -1,4 +1,5 @@
-filter_*
+seas_
+
 - [ ] decomp_bn(): Beveridge-Nelson decomposition
 
 ## Smoothers
@@ -17,7 +18,7 @@ sm_*
 - [ ] smooth_nn: Nearest neighbor smoother
 - [ ] smooth_kernel(): Kernel smoothers
 - [ ] smooth_spline(): Smoothing splines
-<!-- - [ ] sm_loess(): LOESS (locally estimated scatterplot smoother)  -->
+- [ ] sm_loess(): LOESS (locally estimated scatterplot smoother)
 
 ## Resampling
 
@@ -47,47 +48,31 @@ Rolling window. You can see also packages `RcppRoll` and the `zoo`.
 
 Window that creates non-overlapping blocks
 
-blck_*
-
-<!-- rec_* -->
-
-<!-- - [ ] rec_fun -->
-<!-- - [ ] rec_sample -->
-<!-- - [ ] rec_count -->
-<!-- - [ ] rec_sum -->
-<!-- - [ ] rec_mean -->
-<!-- - [ ] rec_median -->
-<!-- - [ ] rec_prod -->
-<!-- - [ ] rec_var -->
-<!-- - [ ] rec_sd -->
-<!-- <!-- - [ ] rec_qt -->
-<!-- - [ ] rec_skew -->
-<!-- - [ ] rec_kurt --> -->
-<!-- - [ ] rec_max -->
-<!-- - [ ] rec_min -->
 
 
+# Benchmark later when everything is in c++
 
-<!-- - [ ] roll_fun -->
-<!-- - [ ] roll_sample -->
-<!-- - [ ] roll_sum -->
-<!-- - [ ] roll_mean -->
-<!-- - [ ] roll_median -->
-<!-- - [ ] roll_prod -->
-<!-- - [ ] roll_var -->
-<!-- - [ ] roll_sd -->
-<!-- - [ ] roll_max -->
-<!-- - [ ] roll_min -->
+microbenchmark::microbenchmark(
+  RcppRoll::roll_max(x),
+  zoo::rollmax(x, 1),
+  roll_max(x)
+)
+
+microbenchmark::microbenchmark(
+  cumstats::cummean(x),
+  rec_fn(x, mean)
+)
+
+microbenchmark::microbenchmark(
+  slider::slide(x, mean),
+  roll_fn(x, mean)
+)
+
+x = c(1,2,3,4,5)
+microbenchmark::microbenchmark(
+rec_fn(x, mean),
+rec_mean(x)
+)
+)
 
 
-
-<!-- - [ ] blck_fun -->
-<!-- - [ ] blck_sample -->
-<!-- - [ ] blck_sum -->
-<!-- - [ ] blck_mean -->
-<!-- - [ ] blck_median -->
-<!-- - [ ] blck_prod -->
-<!-- - [ ] blck_var -->
-<!-- - [ ] blck_sd -->
-<!-- - [ ] blck_max -->
-<!-- - [ ] blck_min -->

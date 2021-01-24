@@ -23,7 +23,7 @@ In case it fails to fill some values.}
 Returns a vector with the same class and attributes as the input vector.
 }
 \description{
-Fill with "Next observation carried backwards"
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
 }
 \examples{
 x <- c(5,3,2,2,5)
@@ -35,7 +35,7 @@ n <- pmin(n, xlen)
 idx <- (xlen - n + 1):xlen
 body <- x[-seq_len(n)]
 fill_nocb(body, idx, NA)
-fill_both(body, idx, order = "nocb")
+fill_both(body, idx, first = "nocb")
 
 
 }

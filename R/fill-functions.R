@@ -2,6 +2,9 @@
 
 #' Fill with "Last Observation Carried Forward"
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @param body `[numeric vector]`
 #'
@@ -22,7 +25,7 @@
 #'
 #' lagx(x, n = 2, fill = fill_locf)
 #'
-#' # A not so very neat way to deal with NA when `fill_locf` fails is
+#' # A not so very neat way to deal with NA when `fill_locf` fails is (WIP)
 #' lagx(x, n = 2, fill = ~ fill_locf(.x,.y, fail = 0))
 #'
 #' leadx(x, n = 2, fill = fill_locf)
@@ -50,6 +53,10 @@ fill_locf <- function(body, idx, fail = NA) {
 
 #' Fill with "Next observation carried backwards"
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' @inheritParams fill_locf
 #'
 #' @export
@@ -64,7 +71,7 @@ fill_locf <- function(body, idx, fail = NA) {
 #' idx <- (xlen - n + 1):xlen
 #' body <- x[-seq_len(n)]
 #' fill_nocb(body, idx, NA)
-#' fill_both(body, idx, order = "nocb")
+#' fill_both(body, idx, first = "nocb")
 #'
 #'
 fill_nocb <- function(body, idx, fail = NA){
@@ -82,8 +89,13 @@ fill_nocb <- function(body, idx, fail = NA){
 
 #' Fill with `locf` and `nocb`
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' @inheritParams fill_locf
-#' @param order `[character: "locf"]`
+#'
+#' @param first `[character: "locf"]`
 #'
 #' Select which filling algorithms will occur first "locf" or "nocb".
 #'
@@ -92,16 +104,19 @@ fill_nocb <- function(body, idx, fail = NA){
 #' @examples
 #'
 #' leadx(1:4, fill = fill_both)
-#' leadx(1:4, fill = ~ fill_both(.x,.y, order = "nocb"))
+#' leadx(1:4, fill = ~ fill_both(.x,.y, first = "nocb"))
 #'
 #' lagx(1:4, fill = fill_both)
-#' lagx(1:4, fill = ~ fill_both(.x,.y, order = "nocb"))
+#' lagx(1:4, fill = ~ fill_both(.x,.y, first = "nocb"))
 #'
-#'
-fill_both <- function(body, idx, order = c("locf", "nocb")) {
+#' set.seed(123)
+#' x <- rnorm(10)
+#' smooth_ma(x, 4, fill = fill_both)
+#' @export
+fill_both <- function(body, idx, first = c("locf", "nocb")) {
 
-  order <- match.arg(order)
-  if(order[1] == "locf") {
+  first <- match.arg(first)
+  if(first[1] == "locf") {
     fn1 <- fill_locf
     fn2 <- fill_nocb
   }else{
@@ -116,12 +131,17 @@ fill_both <- function(body, idx, order = c("locf", "nocb")) {
     return(vec[idx])
   body2 <- body_(vec, idx2)
 
+  vec2 <-  new_vec(body2, idx2)
   vec2[idx2] <- fn2(body2, idx2)
   vec2[union(idx, idx2)]
 }
 
 
 #' Fill with "linear approximation"
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
 #'
 #' @inheritParams fill_locf
 #' @param ...
@@ -147,6 +167,10 @@ fill_linear <- function(body, idx, ...) {
 
 #' Fill with "cubic spline interpolation"
 #'
+#' @description
+#'
+#' `r rlang:::lifecycle("maturing")`
+#'
 #' @inheritParams fill_locf
 #' @param ...
 #'
@@ -168,65 +192,62 @@ fill_spline <- function(body, idx, ...) {
 
 # fill vector -------------------------------------------------------------
 
-#' Replaces
-#'
-#'
-#' @examples
-#'
-#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, 1:5))
-#'
-#' lagx(c(1:5), fill = ~ fill_vec(.x, .y, roll_mean(.x)))
+
 fill_vec_ <- function(body, idx, vec) {
   vec[idx]
 }
 
+#' Fill with values
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("experimental")`
+#'
+#' @param vec `[numeric]`
+#'
+#' Numeric vector of the same length
+#'
 #' @examples
 #'
-#' lagx(c(1:5), fill = fill_window2(rec_mean))
+#' lagx(c(1:5), fill = fill_vec(1:5))
+#' \dontrun{
 #'
+#' lagx(c(1:5), fill = fill_window(roll_mean(.x)))
+#' }
+#' @export
+fill_vec <- function(vec) {
+  ~ fill_vec_(.x, .y, vec)
+}
+
+#' Fill window functions
+#'
+#' @description
+#'
+#' `r rlang:::lifecycle("experimental")`
+#'
+#' @param fn `[function]`
+#'
+#' Window function, usually of the `roll`, `rec` or `blck` families.
+#'
+#' @param ... Further arguments passed to `fn`.
+#'
+#'
+#' @examples
+#' \dontrun{
+#' lagx(c(1:5), fill = fill_window(rec_mean))
+#' }
+#' @export
 fill_window <- function(fn, ...) {
   fn <- as_fn(fn, ...)
   ~ fill_vec_(.x, .y , fn(.x))
 }
 
 
-#' @examples
-#'
-#' lagx(c(1:5), fill = fill_vec2(1:5))
-#'
-fill_vec <- function(vec) {
-  ~ fill_vec_(.x, .y, vec)
-}
-
+# TODO make better fill documentation
 # TODO asserts in new fill_functions
-
+# TODO make more fill test
 
 # Kalman filter -----------------------------------------------------------
-
-# @noRd
-# @examples
-# first(c(1,2,3))
-# first(c(1,2,4))
-# first(c(2,3,4))
-#
-# first <- function(x) {
-#   n1 <-if(x[1] == 1)  1 else 0
-#   if(n1 == 0) {}
-#   return(vector(length = length(x)))
-#   c(n1, diff(x)) == 1
-# }
-
-# @noRd
-# @examples
-# first(c(1,2,3))
-# first(c(1,2,4))
-# first(c(2,3,4))
-#
-# last <- function(x, n) {
-#   nn <- if(x[n] == n) 1 else 0
-#   nn
-# }
-
 
 # fill_kalman <- function(body, idx, ...) {
 #   mod <- stats::StructTS(body)$model0

@@ -11,7 +11,6 @@ https://github.com/zhentaoshi/Boosted_HP_filter/blob/master/R/BoostedHP.R
 filter_boosted_hp(
   x,
   lambda = 1600,
-  iter = TRUE,
   stopping = "nonstop",
   sig_p = 0.05,
   max_iter = 100
@@ -39,7 +38,7 @@ It is used only when stopping == "adf".}
 
 \item{max_iter:}{\verb{[numeric(1): 100]}
 
-the maximum number of iterations.}
+The maximum number of iterations.}
 }
 \value{
 
@@ -48,6 +47,8 @@ Returns a vector with the same class and attributes as the input vector.
 }
 \description{
 \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>}}{\strong{Experimental}}
+
+This function computes the cyclical component of the Boosted Hodrick-Prescot filter.
 }
 \examples{
 unemp <- ggplot2::economics$unemploy
